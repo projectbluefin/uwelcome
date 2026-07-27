@@ -25,8 +25,8 @@ var localesFS embed.FS
 func main() {
 
 	// Loads the locale based on the system's locale
-	locale := locale.DetectLocale(localesFS)
-	l := gotext.NewLocaleFSWithPath(locale, localesFS, "locales")
+	currentLocale := locale.DetectLocale(localesFS)
+	l := gotext.NewLocaleFSWithPath(currentLocale, localesFS, "locales")
 	l.AddDomain("default")
 
 	isDisabled := state.IsDisabled()
@@ -143,7 +143,10 @@ func main() {
 			case "man_upd":
 				cmd.Desc = l.Get("Manually update the system")
 			}
-			fmt.Fprintf(&cmdSb, "| `%s` | %s |\n", cmd.Cmd, cmd.Desc)
+			_, err := fmt.Fprintf(&cmdSb, "| `%s` | %s |\n", cmd.Cmd, cmd.Desc)
+			if err != nil {
+				return
+			}
 		}
 		in += cmdSb.String()
 		in += "\n"
@@ -182,7 +185,10 @@ func main() {
 			default:
 				link.Name = symbols.GetSymbol("link") + " [" + link.Name + "]"
 			}
-			fmt.Fprintf(&linkSb, " - %s(%s)\n", link.Name, link.URL)
+			_, err := fmt.Fprintf(&linkSb, " - %s(%s)\n", link.Name, link.URL)
+			if err != nil {
+				return
+			}
 		}
 		in += linkSb.String()
 		in += "\n"

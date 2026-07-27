@@ -10,10 +10,6 @@ import (
 
 const defaultMargin uint = 2
 
-func stringPtr(s string) *string { return new(s) }
-func boolPtr(b bool) *bool       { return new(b) }
-func uintPtr(u uint) *uint       { return new(u) }
-
 func GetRender(color string, input string) string {
 	var withColor bool = true
 	var processColor map[string]string
@@ -36,6 +32,7 @@ func GetRender(color string, input string) string {
 			glamour.WithStyles(getColorizedStyle(processColor)),
 		)
 		out, _ = r.Render(input)
+		r.Close()
 	}
 
 	return out
@@ -75,10 +72,10 @@ func getColorizedStyle(color map[string]string) ansi.StyleConfig {
 
 	return ansi.StyleConfig{
 		Document: ansi.StyleBlock{
-			// StylePrimitive: ansi.StylePrimitive{
-			// 	BlockPrefix: "\n",
-			// 	BlockSuffix: "\n",
-			// },
+			StylePrimitive: ansi.StylePrimitive{
+				// BlockPrefix: "\n",
+				BlockSuffix: "\n",
+			},
 			Margin: new(defaultMargin),
 		},
 		BlockQuote: ansi.StyleBlock{

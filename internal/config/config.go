@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
-
-	"github.com/leonelquinteros/gotext"
 )
 
 type Config struct {
@@ -51,7 +49,7 @@ func defaultConfig() Config {
 			{Name: "mastodon", URL: "https://fosstodon.org/@UniversalBlue"},
 		},
 		Greeting: Greeting{
-			Suffix: " !",
+			Suffix: "!",
 		},
 	}
 }
@@ -67,7 +65,7 @@ func WriteDefaultConfig(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-func AddMotdMessage(msg string, l *gotext.Locale) error {
+func AddMotdMessage(msg string) error {
 	cfg := GetConfig()
 	cfg.Motd.Messages = append(cfg.Motd.Messages, msg)
 	data, err := json.MarshalIndent(cfg, "", "  ")
@@ -77,7 +75,7 @@ func AddMotdMessage(msg string, l *gotext.Locale) error {
 	return os.WriteFile(GetPath(), data, 0644)
 }
 
-func RemoveMotdMessage(msg string, l *gotext.Locale) error {
+func RemoveMotdMessage(msg string) error {
 	// if strings.Contains(GetPath(), "/etc/") {
 	// 	return nil
 	// }
@@ -123,13 +121,13 @@ func isConfigOkay(path string) bool {
 	return noError
 }
 
-// GetConfigPath returns the path to a valid config file, returns "" if no valid config file is found
+// GetPath returns the path to a valid config file, returns "" if no valid config file is found
 func GetPath() string {
-	filepath := []string{
+	path := []string{
 		os.ExpandEnv("$HOME/.config/uwelcome/config.json"),
 		"/etc/uwelcome/config.json",
 	}
-	for _, path := range filepath {
+	for _, path := range path {
 		if isConfigOkay(path) {
 			return path
 		}

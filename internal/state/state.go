@@ -34,11 +34,15 @@ func Disable(l *gotext.Locale) {
 		println(l.Get("Error ~> %s", err.Error()))
 		return
 	}
-	_, err = os.Create(getDisabledFile())
+	disabledFile, err := os.Create(getDisabledFile())
 	if err != nil {
 		fmt.Println(l.Get("Failed to disable the banner."))
 		println(l.Get("Error ~> %s", err.Error()))
 		return
 	}
 	fmt.Println(l.Get("The banner has been disabled."))
+	err = disabledFile.Close()
+	if err != nil {
+		return
+	}
 }

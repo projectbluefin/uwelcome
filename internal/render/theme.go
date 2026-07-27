@@ -11,15 +11,20 @@ import (
 // Uses OSC 11 query to detect the terminal background color
 func queryTerminalBackground() string {
 
-	if !term.IsTerminal(uintptr(os.Stdout.Fd())) {
+	if !term.IsTerminal(os.Stdout.Fd()) {
 		return "dark"
 	}
 
-	oldState, err := term.MakeRaw(uintptr(os.Stdin.Fd()))
+	oldState, err := term.MakeRaw(os.Stdin.Fd())
 	if err != nil {
 		return "dark"
 	}
-	defer term.Restore(uintptr(os.Stdin.Fd()), oldState)
+	defer func(fd uintptr, oldState *term.State) {
+		err := term.Restore(fd, oldState)
+		if err != nil {
+
+		}
+	}(os.Stdin.Fd(), oldState)
 
 	fmt.Print("\033]11;?\033\\")
 
@@ -46,7 +51,10 @@ func queryTerminalBackground() string {
 	// take just the first two chars (most significant byte)
 	rVal := parts[0][:2]
 	var r int
-	fmt.Sscanf(rVal, "%x", &r)
+	_, err = fmt.Sscanf(rVal, "%x", &r)
+	if err != nil {
+		return ""
+	}
 
 	// luminance threshold — below 128 is dark
 	if r < 128 {
@@ -70,7 +78,10 @@ func detectTheme() string {
 	if cfg := os.Getenv("COLORFGBG"); cfg != "" {
 		parts := strings.Split(cfg, ";")
 		var bg int
-		fmt.Sscanf(parts[len(parts)-1], "%d", &bg)
+		_, err := fmt.Sscanf(parts[len(parts)-1], "%d", &bg)
+		if err != nil {
+			return ""
+		}
 		if bg > 8 {
 			return "light"
 		}

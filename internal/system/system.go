@@ -21,9 +21,10 @@ func GetDesktop() string {
 	return desktop
 }
 
+// GetGreenbootInfo is a command to greenboot status
 func GetGreenbootInfo() string {
-	cmd_grep := exec.Command("grep", "-q", "status is GREEN", "/etc/motd.d/boot-status")
-	err := cmd_grep.Run()
+	cmdGrep := exec.Command("grep", "-q", "status is GREEN", "/etc/motd.d/boot-status")
+	err := cmdGrep.Run()
 	if err != nil {
 		return ""
 	}
@@ -32,17 +33,18 @@ func GetGreenbootInfo() string {
 	isGreen := re.FindString("status is GREEN")
 	if isGreen != "" {
 		return "healthy"
-	} else {
-		cmd := exec.Command("cat", "/etc/motd.d/boot-status")
-		output, err := cmd.Output()
-		if err != nil {
-			return ""
-		}
-		return "`" + string(output) + "`"
 	}
+
+	cmd := exec.Command("cat", "/etc/motd.d/boot-status")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	return "`" + string(output) + "`"
+
 }
 
-// Ublue focused command that retrieves the system image reference from their image-info file
+// GetImageInfo is a Universal Blue focused command that retrieves the system image reference from their image-info file
 func GetImageInfo() ImageInfo {
 
 	infoFile := "/usr/share/ublue-os/image-info.json"
@@ -53,7 +55,10 @@ func GetImageInfo() ImageInfo {
 	}
 
 	var info ImageInfo
-	json.Unmarshal(data, &info)
+	err = json.Unmarshal(data, &info)
+	if err != nil {
+		return ImageInfo{}
+	}
 
 	// strip the ostree prefix, same as the sed in bash
 	info.ImageRef = strings.TrimPrefix(info.ImageRef, "ostree-image-signed:docker://")
@@ -61,7 +66,7 @@ func GetImageInfo() ImageInfo {
 	return info
 }
 
-// Gets the OS name from /etc/os-release
+// GetOSName gets the OS name from /etc/os-release
 func GetOSName() string {
 	data, err := os.ReadFile("/etc/os-release")
 	if err != nil {

@@ -8,7 +8,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-// Language detection
+// DetectLocale detects the current language
 func DetectLocale(localesFS embed.FS) string {
 	langDir, _ := localesFS.ReadDir("locales")
 

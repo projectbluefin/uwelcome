@@ -6,9 +6,10 @@ import (
 	"uwelcome/internal/config"
 )
 
+// GetRandomMessage returns a random string or the output of a random command
 func GetRandomMessage(cfg config.Config) string {
 
-	messages := []string{}
+	var messages []string
 
 	if len(cfg.Motd.Messages) > 0 {
 		for _, msg := range cfg.Motd.Messages {
@@ -18,7 +19,7 @@ func GetRandomMessage(cfg config.Config) string {
 
 	if len(cfg.Motd.Commands) > 0 {
 		for _, msg := range cfg.Motd.Commands {
-			out, _ := exec.Command(string(msg)).Output()
+			out, _ := exec.Command(msg).Output()
 			messages = append(messages, string(out))
 		}
 	}
