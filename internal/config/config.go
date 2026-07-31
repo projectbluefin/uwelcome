@@ -7,11 +7,11 @@ import (
 )
 
 type Config struct {
+	Color    string    `json:"color"`
 	Commands []Command `json:"commands"`
 	Greeting Greeting  `json:"greeting"`
 	Links    []Link    `json:"links"`
 	Motd     Motd      `json:"motd"`
-	Color    string    `json:"color"`
 }
 
 type Command struct {
