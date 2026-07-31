@@ -54,6 +54,7 @@ func defaultConfig() Config {
 	}
 }
 
+// WriteDefaultConfig writes the default config to the given path
 func WriteDefaultConfig(path string) error {
 	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 		return err
@@ -65,34 +66,47 @@ func WriteDefaultConfig(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
+// AddMotdMessage adds a message to the MOTD messages in the config
 func AddMotdMessage(msg string) error {
+	path := GetPath()
+	if path == "" {
+		return nil
+	}
+
 	cfg := GetConfig()
 	cfg.Motd.Messages = append(cfg.Motd.Messages, msg)
 	data, err := json.MarshalIndent(cfg, "", "  ")
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(GetPath(), data, 0644)
+
+	return os.WriteFile(path, data, 0644)
 }
 
+// RemoveMotdMessage removes a message from the MOTD messages in the config
 func RemoveMotdMessage(msg string) error {
-	// if strings.Contains(GetPath(), "/etc/") {
-	// 	return nil
-	// }
+	path := GetPath()
+	if path == "" {
+		return nil
+	}
+
 	cfg := GetConfig()
 	for i, preset := range cfg.Motd.Messages {
 		if preset == msg {
 			cfg.Motd.Messages = append(cfg.Motd.Messages[:i], cfg.Motd.Messages[i+1:]...)
-			break
+			i--
 		}
 	}
+
 	data, err := json.MarshalIndent(cfg, "", "  ")
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(GetPath(), data, 0644)
+
+	return os.WriteFile(path, data, 0644)
 }
 
+// ListMotdMessages returns the list of MOTD messages from the config
 func ListMotdMessages() []string {
 	cfg := GetConfig()
 	return cfg.Motd.Messages
@@ -101,37 +115,39 @@ func ListMotdMessages() []string {
 // isConfigOkay checks if the config file at the given path is valid
 func isConfigOkay(path string) bool {
 
-	var noError bool = true
-
-	_, err := os.Stat(path)
-	if err != nil {
-		noError = false
-	}
-
 	data, err := os.ReadFile(path)
 	if err != nil {
-		noError = false
+		return false
 	}
 
 	var tempCfg Config
 	if err := json.Unmarshal(data, &tempCfg); err != nil {
-		noError = false
+		return false
 	}
 
-	return noError
+	return true
 }
 
 // GetPath returns the path to a valid config file, returns "" if no valid config file is found
 func GetPath() string {
-	path := []string{
-		os.ExpandEnv("$HOME/.config/uwelcome/config.json"),
+
+	xdg := os.Getenv("XDG_CONFIG_HOME")
+	if xdg == "" {
+		xdg, _ = os.UserHomeDir()
+		xdg = filepath.Join(xdg, ".config")
+	}
+
+	paths := []string{
+		filepath.Join(xdg, "uwelcome", "config.json"),
 		"/etc/uwelcome/config.json",
 	}
-	for _, path := range path {
-		if isConfigOkay(path) {
-			return path
+
+	for _, p := range paths {
+		if isConfigOkay(p) {
+			return p
 		}
 	}
+
 	return ""
 }
 
