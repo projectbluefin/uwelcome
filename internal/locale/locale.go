@@ -22,19 +22,18 @@ func DetectLocale(localesFS embed.FS) string {
 
 	var supported = language.NewMatcher(tags)
 
-	raw := os.Getenv("LANGUAGE")
+	raw := os.Getenv("LC_ALL")
+	if raw == "" {
+		raw = os.Getenv("LANGUAGE")
+	}
 	if raw == "" {
 		raw = os.Getenv("LANG")
 	}
-	if raw == "" {
-		raw = os.Getenv("LC_ALL")
-	}
 	raw = strings.Split(raw, ".")[0]
-	raw = strings.Replace(raw, "_", "-", 1)
+	raw = strings.ReplaceAll(raw, "_", "-")
 
 	tag := language.Make(raw)
 	match, _, _ := supported.Match(tag)
 
-	base, _ := match.Base()
-	return base.String()
+	return match.String()
 }
