@@ -1,0 +1,125 @@
+msgid ""
+msgstr ""
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: xgotext\n"
+
+#: main.go:180
+msgid "Bluesky"
+msgstr "Bluesky"
+
+#: main.go:119
+msgid "Boot Status"
+msgstr "État du démarrage"
+
+#: main.go:131
+msgid "Command"
+msgstr "Commande"
+
+#: main.go:131
+msgid "Description"
+msgstr "Description"
+
+#: main.go:176
+msgid "Discord"
+msgstr "Discord"
+
+#: main.go:174
+msgid "Discuss"
+msgstr "Discussions"
+
+#: main.go:172
+msgid "Documentation"
+msgstr "Documentation"
+
+#: main.go:184
+msgid "Donate"
+msgstr "Faire un don"
+
+#: main.go:141
+msgid "Enable terminal bling"
+msgstr "Active le bling du terminal"
+
+#: internal/state/state.go:24 internal/state/state.go:34
+#: internal/state/state.go:40
+msgid "Error ~> %s"
+msgstr "Erreur ~> %s"
+
+#: internal/state/state.go:33 internal/state/state.go:39
+msgid "Failed to disable the banner."
+msgstr "Échec de la désactivation de la bannière."
+
+#: internal/state/state.go:23
+msgid "Failed to enable the banner."
+msgstr "Échec de l'activation de la bannière."
+
+#: main.go:121
+msgid "Healthy"
+msgstr "Sain"
+
+#: main.go:78
+msgid "Invalid command"
+msgstr "Commande invalide"
+
+#: main.go:137
+msgid "List all available commands"
+msgstr "Liste toutes les commandes disponibles"
+
+#: main.go:139
+msgid "Manage command line packages"
+msgstr "Gère les paquets via le terminal"
+
+#: main.go:147
+msgid "Manually update the system"
+msgstr "Met à jour le système manuellement"
+
+#: main.go:182
+msgid "Mastodon"
+msgstr "Mastodon"
+
+#: main.go:178
+msgid "Matrix"
+msgstr "Matrix"
+
+#: main.go:170
+msgid "Report an issue"
+msgstr "Signaler un problème"
+
+#: internal/state/state.go:43
+msgid "The banner has been disabled."
+msgstr "La bannière a été désactivé."
+
+#: internal/state/state.go:27
+msgid "The banner has been enabled."
+msgstr "La bannière a été activé."
+
+#: main.go:66
+msgid "The banner is already disabled."
+msgstr "La bannière est déjà désactivée."
+
+#: main.go:59
+msgid "The banner is already enabled."
+msgstr "La bannière est déjà activée."
+
+#: main.go:143
+msgid "Toggle this banner on/off"
+msgstr "Active/désactive ce panneau"
+
+#: main.go:113
+msgid "Unknown system"
+msgstr "Système inconnu"
+
+#: main.go:145
+msgid "View system information"
+msgstr "Affiche les informations système"
+
+#: main.go:168
+msgid "Website"
+msgstr "Site Web"
+
+#: main.go:102
+msgid "Welcome to %s"
+msgstr "Bienvenue sur %s"

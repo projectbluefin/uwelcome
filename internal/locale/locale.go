@@ -10,30 +10,51 @@ import (
 
 // DetectLocale detects the current language
 func DetectLocale(localesFS embed.FS) string {
-	langDir, _ := localesFS.ReadDir("locales")
+	entries, err := localesFS.ReadDir("locales")
+	if err != nil {
+		return "en"
+	}
 
 	tags := []language.Tag{language.English}
-	for _, languageDir := range langDir {
-		if languageDir.Name() == "en" {
+	for _, entry := range entries {
+		if !entry.IsDir() || entry.Name() == "en" {
 			continue
 		}
-		tags = append(tags, language.Make(languageDir.Name()))
+		if tag, err := language.Parse(entry.Name()); err == nil {
+			tags = append(tags, tag)
+		}
 	}
 
-	var supported = language.NewMatcher(tags)
+	matcher := language.NewMatcher(tags)
 
-	raw := os.Getenv("LC_ALL")
-	if raw == "" {
-		raw = os.Getenv("LANGUAGE")
+	candidates := []string{}
+	for _, key := range []string{"LC_ALL", "LC_MESSAGES", "LANGUAGE", "LANG"} {
+		raw := os.Getenv(key)
+		if raw == "" {
+			continue
+		}
+		for _, part := range strings.Split(raw, ":") {
+			part = strings.TrimSpace(part)
+			if part == "" {
+				continue
+			}
+			if idx := strings.Index(part, "."); idx >= 0 {
+				part = part[:idx]
+			}
+			if idx := strings.Index(part, "@"); idx >= 0 {
+				part = part[:idx]
+			}
+			candidates = append(candidates, strings.ReplaceAll(part, "_", "-"))
+		}
 	}
-	if raw == "" {
-		raw = os.Getenv("LANG")
+
+	for _, raw := range candidates {
+		if tag, err := language.Parse(raw); err == nil {
+			if match, _, _ := matcher.Match(tag); match != language.Und {
+				return match.String()
+			}
+		}
 	}
-	raw = strings.Split(raw, ".")[0]
-	raw = strings.ReplaceAll(raw, "_", "-")
 
-	tag := language.Make(raw)
-	match, _, _ := supported.Match(tag)
-
-	return match.String()
+	return "en"
 }

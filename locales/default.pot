@@ -1,0 +1,127 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Generator: xgotext\n"
+
+#: main.go:180
+msgid "Bluesky"
+msgstr ""
+
+#: main.go:119
+msgid "Boot Status"
+msgstr ""
+
+#: main.go:131
+msgid "Command"
+msgstr ""
+
+#: main.go:131
+msgid "Description"
+msgstr ""
+
+#: main.go:176
+msgid "Discord"
+msgstr ""
+
+#: main.go:174
+msgid "Discuss"
+msgstr ""
+
+#: main.go:172
+msgid "Documentation"
+msgstr ""
+
+#: main.go:184
+msgid "Donate"
+msgstr ""
+
+#: main.go:141
+msgid "Enable terminal bling"
+msgstr ""
+
+#: internal/state/state.go:24
+#: internal/state/state.go:34
+#: internal/state/state.go:40
+msgid "Error ~> %s"
+msgstr ""
+
+#: internal/state/state.go:33
+#: internal/state/state.go:39
+msgid "Failed to disable the banner."
+msgstr ""
+
+#: internal/state/state.go:23
+msgid "Failed to enable the banner."
+msgstr ""
+
+#: main.go:121
+msgid "Healthy"
+msgstr ""
+
+#: main.go:78
+msgid "Invalid command"
+msgstr ""
+
+#: main.go:137
+msgid "List all available commands"
+msgstr ""
+
+#: main.go:139
+msgid "Manage command line packages"
+msgstr ""
+
+#: main.go:147
+msgid "Manually update the system"
+msgstr ""
+
+#: main.go:182
+msgid "Mastodon"
+msgstr ""
+
+#: main.go:178
+msgid "Matrix"
+msgstr ""
+
+#: main.go:170
+msgid "Report an issue"
+msgstr ""
+
+#: internal/state/state.go:43
+msgid "The banner has been disabled."
+msgstr ""
+
+#: internal/state/state.go:27
+msgid "The banner has been enabled."
+msgstr ""
+
+#: main.go:66
+msgid "The banner is already disabled."
+msgstr ""
+
+#: main.go:59
+msgid "The banner is already enabled."
+msgstr ""
+
+#: main.go:143
+msgid "Toggle this banner on/off"
+msgstr ""
+
+#: main.go:113
+msgid "Unknown system"
+msgstr ""
+
+#: main.go:145
+msgid "View system information"
+msgstr ""
+
+#: main.go:168
+msgid "Website"
+msgstr ""
+
+#: main.go:102
+msgid "Welcome to %s"
+msgstr ""
