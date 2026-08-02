@@ -7,17 +7,19 @@ To translate and test uWelcome, you'll need to have the following tools installe
 
 - [`go`](https://repology.org/project/go/versions)
 - [`gettext`](https://repology.org/project/gettext/versions)
-- [`xgotext`](https://pkg.go.dev/github.com/leonelquinteros/gotext/cli/xgotext) (it should be installed automatically on the first run of the `translators.sh` script)
+- [`xgotext`](https://pkg.go.dev/github.com/leonelquinteros/gotext/cli/xgotext) (it should be installed automatically when you use `just translate <lang>`)
 
 ## Usage
 
-You can simply run the `translators.sh` script to extract the translatable strings and update the translations file.
+You can simply run `just translate <language code>` to extract the translatable strings and update the translations file.
+
+Example:
 
 ```sh
-./translators.sh <language code>
+just translate fr
 ```
 
-Your translation file will be located in the `locales/<language code>/default.po` directory.
+Your generated/updated translation file will be located in the `locales/<language code>` directory.
 
 > If your language already exists, it will get updated automatically. If not, a new translation file will be created for you.
 
