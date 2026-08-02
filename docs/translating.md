@@ -11,17 +11,17 @@ To translate and test uWelcome, you'll need to have the following tools installe
 
 ## Usage
 
-You can simply run the `translators.sh` script to extract the translatable strings and update the translations files.
+You can simply run the `translators.sh` script to extract the translatable strings and update the translations file.
 
 ```sh
 ./translators.sh <language code>
 ```
 
-Your translation files are located in the `locales/<language code>/LC_MESSAGES/default.po` directory.
+Your translation file will be located in the `locales/<language code>/default.po` directory.
 
-> If your language already exists, it will get updated automatically. If not, a new language file will be created for you.
+> If your language already exists, it will get updated automatically. If not, a new translation file will be created for you.
 
-Finally, use your favorite po editor to translate the strings in the `.po` file - like [Poedit](appstream://net.poedit.poedit), [Gtranslator](appstream://org.gnome.Gtranslator) or [Lokalize](appstream://org.kde.lokalize).
+Finally, use your favorite po editor to translate the strings in the `.po` file - like [Poedit](https://flathub.org/en/apps/net.poedit.Poedit), [Gtranslator](https://flathub.org/en/apps/org.gnome.Gtranslator) or [Lokalize](https://flathub.org/en/apps/org.kde.lokalize).
 
 ## Testing your translation
 
