@@ -13,6 +13,8 @@ type ImageInfo struct {
 	ImageTag string `json:"image-tag"`
 }
 
+var infoFile = "/usr/share/ublue-os/image-info.json"
+
 func GetDesktop() string {
 	desktop := os.Getenv("XDG_CURRENT_DESKTOP")
 	if desktop == "" {
@@ -46,8 +48,6 @@ func GetGreenbootInfo() string {
 
 // GetImageInfo is a Universal Blue focused command that retrieves the system image reference from their image-info file
 func GetImageInfo() ImageInfo {
-
-	infoFile := "/usr/share/ublue-os/image-info.json"
 
 	data, err := os.ReadFile(infoFile)
 	if err != nil {

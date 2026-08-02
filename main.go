@@ -164,24 +164,26 @@ func main() {
 		for _, link := range cfg.Links {
 			linkLabel := link.Name
 			switch link.Name {
-			case "website":
-				linkLabel = symbols.GetSymbol("website") + " [" + l.Get("Website") + "]"
-			case "issues":
-				linkLabel = symbols.GetSymbol("issues") + " [" + l.Get("Report an issue") + "]"
-			case "docs":
-				linkLabel = symbols.GetSymbol("docs") + " [" + l.Get("Documentation") + "]"
-			case "discuss":
-				linkLabel = symbols.GetSymbol("discuss") + " [" + l.Get("Discuss") + "]"
-			case "discord":
-				linkLabel = symbols.GetSymbol("discord") + " [" + l.Get("Discord") + "]"
-			case "matrix":
-				linkLabel = symbols.GetSymbol("matrix") + " [" + l.Get("Matrix") + "]"
 			case "bluesky":
 				linkLabel = symbols.GetSymbol("bluesky") + " [" + l.Get("Bluesky") + "]"
-			case "mastodon":
-				linkLabel = symbols.GetSymbol("mastodon") + " [" + l.Get("Mastodon") + "]"
+			case "docs":
+				linkLabel = symbols.GetSymbol("docs") + " [" + l.Get("Documentation") + "]"
 			case "donate":
 				linkLabel = symbols.GetSymbol("donate") + " [" + l.Get("Donate") + "]"
+			case "discord":
+				linkLabel = symbols.GetSymbol("discord") + " [" + l.Get("Discord") + "]"
+			case "discuss":
+				linkLabel = symbols.GetSymbol("discuss") + " [" + l.Get("Discuss") + "]"
+			case "issues":
+				linkLabel = symbols.GetSymbol("issues") + " [" + l.Get("Report an issue") + "]"
+			case "mastodon":
+				linkLabel = symbols.GetSymbol("mastodon") + " [" + l.Get("Mastodon") + "]"
+			case "matrix":
+				linkLabel = symbols.GetSymbol("matrix") + " [" + l.Get("Matrix") + "]"
+			case "source":
+				linkLabel = symbols.GetSymbol("source") + " [" + l.Get("Source code") + "]"
+			case "website":
+				linkLabel = symbols.GetSymbol("website") + " [" + l.Get("Website") + "]"
 			default:
 				linkLabel = symbols.GetSymbol("link") + " [" + link.Name + "]"
 			}

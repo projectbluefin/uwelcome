@@ -44,9 +44,18 @@ func defaultConfig() Config {
 			{Cmd: "brew help", Desc: "cli_pkg"},
 		},
 		Links: []Link{
-			{Name: "discuss", URL: "https://universal-blue.discourse.group/"},
-			{Name: "discord", URL: "https://discord.com/invite/8RZGC3uFzA"},
-			{Name: "mastodon", URL: "https://fosstodon.org/@UniversalBlue"},
+			{Name: "source", URL: "https://github.com/projectbluefin/uwelcome/"},
+			{Name: "issues", URL: "https://github.com/projectbluefin/uwelcome/issues"},
+			{Name: "docs", URL: "https://github.com/projectbluefin/uwelcome/tree/main/docs"},
+		},
+		Motd: Motd{
+			Messages: []string{
+				"uWelcome is made with ❤️  by Project Bluefin.",
+				"uWelcome is free and open source! [Check out the source code on GitHub](https://github.com/projectbluefin/uwelcome/)",
+				"uWelcome is a terminal welcome banner written in Go.",
+				"uWelcome is translatable! You can help translate it into your language. Read the [translation guide](https://github.com/projectbluefin/uwelcome/blob/main/TRANSLATION.md)",
+				"You're currently using the default config. You can customize it by editing the config file at `~/.config/uwelcome/config.json`.",
+			},
 		},
 		Greeting: Greeting{
 			Suffix: "!",

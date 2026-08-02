@@ -53,17 +53,17 @@ var colorMap = map[string]map[string]string{
 }
 
 func getAccentColor() map[string]string {
-	defaultColorTheme := colorMap["blue"]
+	defaultColor := colorMap["blue"]
 	cmd := exec.Command("dconf", "read", "/org/gnome/desktop/interface/accent-color")
 	output, err := cmd.Output()
 	if err != nil {
-		return defaultColorTheme
+		return defaultColor
 	}
 	accent := strings.Trim(strings.TrimSpace(string(output)), "'")
 	if color, ok := colorMap[accent]; ok {
 		return color
 	}
-	return defaultColorTheme
+	return defaultColor
 }
 
 func getColorizedStyle(color map[string]string) ansi.StyleConfig {

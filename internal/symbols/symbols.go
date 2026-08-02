@@ -5,24 +5,31 @@ import (
 	"strings"
 )
 
+/*
+nerdFontSymbols is a map of symbols that are available in Nerd Fonts Symbols.
+
+https://nerdfonts.ytyng.com/
+*/
 var nerdFontSymbols = map[string]string{
-	"command_palette": " ",
-	"oci":             "󱋩",
+	"bluesky":         "",
 	"boot":            "󰟀",
+	"command_palette": " ",
+	"discord":         "󰙯",
+	"discuss":         "󰊌",
+	"docs":            "󰈙",
+	"donate":          "󱢏",
 	"healthy":         "󰄳",
 	"info":            "󰋼",
-	"website":         "󰌹",
-	"issues":          "󰊤",
-	"docs":            "󰈙",
-	"discuss":         "󰊌",
-	"discord":         "󰙯",
-	"matrix":          "󰊌",
-	"bluesky":         "",
-	"mastodon":        "󰫑",
-	"donate":          "󱢏",
+	"issues":          "",
 	"link":            "󰌹",
+	"mastodon":        "󰫑",
+	"matrix":          "󰊌",
+	"oci":             "󱋩",
+	"source":          "󰊢",
+	"website":         "󰖟",
 }
 
+// asciiSymbols is a map of symbols that are available in ASCII.
 var asciiSymbols = map[string]string{
 	"command_palette": ">_",
 	"oci":             "[Ci]",
@@ -30,7 +37,8 @@ var asciiSymbols = map[string]string{
 	"info":            "(i)",
 }
 
-func getNerdFontSymbols() bool {
+// hasNerdFontSymbols checks if the system has Nerd Fonts Symbols installed.
+func hasNerdFontSymbols() bool {
 	out, err := exec.Command("fc-list").Output()
 	if err != nil {
 		return false
@@ -40,10 +48,9 @@ func getNerdFontSymbols() bool {
 		strings.Contains(lower, "nerdfontssymbolsonly")
 }
 
-var hasNerdFontSymbols bool = getNerdFontSymbols()
-
+// GetSymbol returns the symbol for the given symbol name. If the system has Nerd Fonts Symbols installed, it will return the Nerd Fonts Symbols version of the symbol. Otherwise, it will return the ASCII version of the symbol.
 func GetSymbol(symbolName string) string {
-	if hasNerdFontSymbols {
+	if hasNerdFontSymbols() {
 		if symbol, ok := nerdFontSymbols[symbolName]; ok {
 			return symbol
 		}
