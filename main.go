@@ -36,7 +36,7 @@ func main() {
 		switch os.Args[1] {
 
 		// Prints the version
-		case "--version", "-v", "version":
+		case "version":
 			fmt.Println(version)
 			return
 

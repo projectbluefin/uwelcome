@@ -8,17 +8,15 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-func getDisabledFile() string {
-	return os.ExpandEnv("$HOME/.config/uwelcome/disabled")
-}
+var disabledFile = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
 
 func IsDisabled() bool {
-	_, err := os.Stat(getDisabledFile())
+	_, err := os.Stat(disabledFile)
 	return err == nil
 }
 
 func Enable(l *gotext.Locale) {
-	err := os.Remove(getDisabledFile())
+	err := os.Remove(disabledFile)
 	if err != nil && !os.IsNotExist(err) {
 		fmt.Println(l.Get("Failed to enable the banner."))
 		println(l.Get("Error ~> %s", err.Error()))
@@ -28,13 +26,13 @@ func Enable(l *gotext.Locale) {
 }
 
 func Disable(l *gotext.Locale) {
-	err := os.MkdirAll(filepath.Dir(getDisabledFile()), 0755)
+	err := os.MkdirAll(filepath.Dir(disabledFile), 0755)
 	if err != nil {
 		fmt.Println(l.Get("Failed to disable the banner."))
 		println(l.Get("Error ~> %s", err.Error()))
 		return
 	}
-	disabledFile, err := os.Create(getDisabledFile())
+	disabledFile, err := os.Create(disabledFile)
 	if err != nil {
 		fmt.Println(l.Get("Failed to disable the banner."))
 		println(l.Get("Error ~> %s", err.Error()))
