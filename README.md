@@ -6,7 +6,10 @@
 
 **Contributions are welcome!** If you want to contribute, you're welcome to submit a pull request or [open an issue](https://github.com/theMimolet/uwelcome/issues) - it's very much appreciated ❤️
 
-Want to configure or contribute to uWelcome ? Take a look at the [documentation](https://github.com/theMimolet/uwelcome/tree/main/docs) !
+Want to configure or contribute to uWelcome ? Take a look at the [documentation](https://github.com/projectbluefin/uwelcome/tree/main/docs) !
+
+> Interessed in the translatable system MOTD instead ? Check [umotd](https://github.com/projectbluefin/umotd)
+
 
 ## Roadmap
 
@@ -19,7 +22,7 @@ Here are features that are planned for the future:
 
 ### Download it from the releases page
 
-You can download the latest release from the [releases page](https://github.com/theMimolet/uwelcome/releases).
+You can download the latest release from the [releases page](https://github.com/projectbluefin/uwelcome/releases).
 
 You can then rename it to `uwelcome` and place it in your usual `/bin` folder.
 
@@ -32,7 +35,7 @@ You'll need to have [`go`](https://repology.org/project/go/versions) installed o
 Then you'll have to simply clone the repository and then build the binary:
 
 ```sh
-git clone https://github.com/theMimolet/uwelcome
+git clone https://github.com/projectbluefin/uwelcome
 cd uwelcome
 go build
 ./uwelcome
@@ -51,9 +54,10 @@ disable - Always disables the MOTD for the current user
 version - Displays the version of uWelcome currently in use
 ```
 
+Learn more in the [docs folder](https://github.com/projectbluefin/uwelcome/tree/main/docs) !
+
 ## AI usage
 
-This project had mild AI involvement mainly for auto-completion in the code editor.
-This is why I give this project the following rating :
+This project had mild AI involvement mainly for auto-completion and code checking.
 
 [![REAL AI Rating - Level 3 "Moderate AI"](docs/ai-rating.png)](https://www.realgoodai.org/real-rating)
