@@ -10,7 +10,6 @@ Want to configure or contribute to uWelcome ? Take a look at the [documentation]
 
 > Interessed in the translatable system MOTD instead ? Check [umotd](https://github.com/projectbluefin/umotd)
 
-
 ## Roadmap
 
 Here are features that are planned for the future:
