@@ -59,5 +59,6 @@ Learn more in the [docs folder](https://github.com/projectbluefin/uwelcome/tree/
 ## AI usage
 
 This project had mild AI involvement mainly for auto-completion and code checking.
+The program is always tested before release, no worries. (I have standards >:3)
 
 [![REAL AI Rating - Level 3 "Moderate AI"](docs/ai-rating.png)](https://www.realgoodai.org/real-rating)

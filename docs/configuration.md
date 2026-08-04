@@ -31,7 +31,7 @@ This :
   "greeting": {
     "prefix": "> ",
     "suffix": " !"
-  }  
+  }
 }
 ```
 
@@ -64,12 +64,14 @@ This option allows you to define a list of commands to display in the banner.
 
 Here are the unique codes you can use to get translated strings for command descriptions :
 
-- `cmd_list`: "List of available commands"
-- `cli_pkg`: "Manage command line packages"
-- `term_bling`: "Enable terminal bling"
-- `banner_toggle`: "Toggle this banner on/off" (there are built-in commands for this)
-- `sys_info`: "View system info"
-- `man_upd`: "Manually update the system"
+| Strings | English Display (translated) |
+| --- | --- |
+| `cmd_list` | "List of available commands" |
+| `cli_pkg` | "Manage command line packages" |
+| `term_bling` | "Enable terminal bling" |
+| `banner_toggle` | "Toggle this banner on/off" (there are built-in commands for this) |
+| `sys_info` | "View system info" |
+| `man_upd` | "Manually update the system" |
 
 ```json
 {
@@ -119,15 +121,18 @@ This option allows to add custom links to the banner.
 
 There are unique names you can use to get a translated name for the link :
 
-- `website` : "Website"
-- `issues` : "Report an issue"
-- `docs` : "Documentation"
-- `discuss` : "Discuss"
-- `discord` : "Discord"
-- `matrix` : "Matrix"
-- `bluesky` : "Bluesky"
-- `mastodon` : "Mastodon"
-- `donate` : "Donate"
+| Strings | English Display (translated) |
+| --- | --- |
+| `bluesky` | "Bluesky" |
+| `discord` | "Discord" |
+| `discuss` | "Discuss" |
+| `docs` | "Documentation" |
+| `donate` | "Donate" |
+| `issues` | "Report an issue" |
+| `mastodon` | "Mastodon" |
+| `matrix` | "Matrix" |
+| `source` | "Source Code" |
+| `website` | "Website" |
 
 ```json
 {
@@ -168,9 +173,9 @@ Not setting this option or setting it to something other than the options below 
 
 Here are all the different options:
 
-- `auto` : Sets the color automatically to the accent theme.
+- `auto`
 
-> Note: It's only available for the GNOME desktop as it relies on `dconf`.
+> "auto" sets the color automatically to the system's accent color - the latter being predefined or fully custom.
 
 - `blue`
 - `green`
@@ -181,6 +186,8 @@ Here are all the different options:
 - `slate`
 - `teal`
 - `yellow`
+
+> Those set the color to a predefined color. More could be added in the future.
 
 ```json
 {
