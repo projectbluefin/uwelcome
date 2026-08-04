@@ -1,20 +1,31 @@
 package render
 
 import (
-	"os/exec"
-	"strings"
+	"fmt"
+	"math"
 
 	"charm.land/glamour/v2"
 	"charm.land/glamour/v2/ansi"
+	"github.com/rymdport/portal/settings"
 )
 
 const defaultMargin uint = 2
 
+/*
+GetRender takes a color and input string, and returns the rendered output based on the specified color scheme.
+
+- If the color is set to "auto", it detects the accent color from the system settings.
+
+- If the color is one of the predefined colors, it uses that color for rendering.
+
+- If the color is not recognized, it defaults to a non-colored rendering.
+*/
 func GetRender(color string, input string) string {
 	var withColor bool = true
-	var processColor map[string]string
+	var processColor string
 	var out string
 
+	// Determine the color scheme based on the provided color argument
 	switch color {
 	case "auto":
 		processColor = getAccentColor()
@@ -24,6 +35,7 @@ func GetRender(color string, input string) string {
 		withColor = false
 	}
 
+	// Render the input string using the appropriate color scheme
 	if !withColor {
 		colorScheme := detectTheme()
 		out, _ = glamour.Render(input, colorScheme)
@@ -38,42 +50,95 @@ func GetRender(color string, input string) string {
 	return out
 }
 
-// The colors are ANSI color codes (ANSI 256 - https://en.wikipedia.org/wiki/ANSI_escape_code#Colors)
-
-var colorMap = map[string]map[string]string{
-	"blue":   {"accent": "33", "link": "69"},
-	"green":  {"accent": "34", "link": "28"},
-	"orange": {"accent": "208", "link": "130"},
-	"pink":   {"accent": "212", "link": "163"},
-	"purple": {"accent": "165", "link": "164"},
-	"red":    {"accent": "203", "link": "124"},
-	"slate":  {"accent": "104", "link": "104"},
-	"teal":   {"accent": "44", "link": "38"},
-	"yellow": {"accent": "220", "link": "178"},
+// colorMap maps color names to their corresponding hex values. These colors are used for accent and link styling in the rendered output.
+var colorMap = map[string]string{
+	"blue":   "#3584E4",
+	"teal":   "#2190A4",
+	"green":  "#3A944A",
+	"yellow": "#C88800",
+	"orange": "#ED5B00",
+	"red":    "#E62D42",
+	"pink":   "#D56199",
+	"purple": "#9141AC",
+	"slate":  "#6F8396",
 }
 
-func getAccentColor() map[string]string {
-	defaultColor := colorMap["blue"]
-	cmd := exec.Command("dconf", "read", "/org/gnome/desktop/interface/accent-color")
-	output, err := cmd.Output()
+// RGB is a struct that matches the (ddd) DBus type
+type RGB struct {
+	R, G, B float64
+}
+
+// xyzToRgb converts a DBus (ddd) type to an RGB struct. The input is expected to be a slice of three float64 values representing the RGB components in the range [0, 1]. The function scales these values to the range [0, 255] and returns an RGB struct.
+func xyzToRgb(xyz any) (RGB, error) {
+	// Type assert the input as []interface{}
+	rgbSlice, ok := xyz.([]interface{})
+	if !ok {
+		return RGB{R: 0, G: 0, B: 0}, fmt.Errorf("input must be a []interface{} slice of RGB values (0-1)")
+	}
+	if len(rgbSlice) != 3 {
+		return RGB{R: 0, G: 0, B: 0}, fmt.Errorf("input must contain exactly 3 RGB values")
+	}
+
+	// Extract R, G, B as float64
+	r, okR := rgbSlice[0].(float64)
+	g, okG := rgbSlice[1].(float64)
+	b, okB := rgbSlice[2].(float64)
+	if !okR || !okG || !okB {
+		return RGB{R: 0, G: 0, B: 0}, fmt.Errorf("R, G, B values must be float64")
+	}
+
+	// Scale to 0-255 (convert from 0-1 range to 0-255)
+	scale := func(v float64) int {
+		return int(math.Round(v * 255))
+	}
+	ri, gi, bi := scale(r), scale(g), scale(b)
+	return RGB{R: float64(ri), G: float64(gi), B: float64(bi)}, nil
+}
+
+// rgbToHex converts an RGB struct to a hexadecimal color string. The input is expected to be an RGB struct with R, G, B values in the range [0, 255]. The function returns a hex string in the format "#RRGGBB". If the RGB values are out of range, it returns an error.
+func rgbToHex(rgb RGB) (string, error) {
+	// Ensure RGB values are within the valid range
+	if rgb.R < 0 || rgb.R > 255 || rgb.G < 0 || rgb.G > 255 || rgb.B < 0 || rgb.B > 255 {
+		return "", fmt.Errorf("RGB values must be in the range [0, 255]")
+	}
+
+	// Convert RGB to hex string
+	hex := fmt.Sprintf("#%02X%02X%02X", int(rgb.R), int(rgb.G), int(rgb.B))
+	return hex, nil
+}
+
+// getAccentColor retrieves the accent color from the system settings using D-Bus. It reads the "accent-color" property from the "org.freedesktop.appearance" interface. If successful, it converts the retrieved XYZ color to RGB and then to a hexadecimal string. If any step fails, it defaults to returning "blue".
+func getAccentColor() string {
+
+	// Read the accent color from D-Bus
+	xyzValue, err := settings.ReadOne("org.freedesktop.appearance", "accent-color")
 	if err != nil {
-		return defaultColor
+		return "blue"
 	}
-	accent := strings.Trim(strings.TrimSpace(string(output)), "'")
-	if color, ok := colorMap[accent]; ok {
-		return color
+
+	// Convert the XYZ value to RGB
+	rgbValue, err := xyzToRgb(xyzValue)
+	if err != nil {
+		fmt.Printf("Error occurred while converting XYZ to RGB: %v\n", err)
+		return "blue"
 	}
-	return defaultColor
+
+	// Convert the RGB value to Hex
+	hexValue, err := rgbToHex(rgbValue)
+	if err != nil {
+		fmt.Printf("Error occurred while converting RGB to Hex: %v\n", err)
+		return "blue"
+	}
+
+	return hexValue
 }
 
-func getColorizedStyle(color map[string]string) ansi.StyleConfig {
-	accent := color["accent"]
-	link := color["link"]
+// getColorizedStyle returns a custom ANSI style configuration based on the provided accent color. It defines styles for various Markdown elements, including headings, blockquotes, lists, links, and code blocks. The accent color is applied to headings, strong text, links, and horizontal rules to create a visually appealing output.
+func getColorizedStyle(accent string) ansi.StyleConfig {
 
 	return ansi.StyleConfig{
 		Document: ansi.StyleBlock{
 			StylePrimitive: ansi.StylePrimitive{
-				// BlockPrefix: "\n",
 				BlockSuffix: "\n",
 			},
 			Margin: new(defaultMargin),
@@ -140,7 +205,7 @@ func getColorizedStyle(color map[string]string) ansi.StyleConfig {
 			Unticked: "[ ] ",
 		},
 		Link: ansi.StylePrimitive{
-			Color:     new(link),
+			Color:     new(accent),
 			Underline: new(true),
 		},
 		LinkText: ansi.StylePrimitive{Bold: new(true)},
