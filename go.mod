@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/x/term v0.2.2
 	github.com/leonelquinteros/gotext v1.7.2
 	github.com/rymdport/portal v0.4.2
-	golang.org/x/text v0.40.0
+	golang.org/x/text v0.41.0
 )
 
 require (
