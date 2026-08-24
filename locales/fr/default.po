@@ -1,12 +1,16 @@
-#
+# French translation for uWelcome
+# Copyright (C) 2026, The Project Bluefin Contributors
+# This file is distributed under the same license as the uWelcome package.
 # Mimolet <themimolet@proton.me>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: uwelcome\n"
-"PO-Revision-Date: 2026-08-02 18:47+0200\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-24 21:28+0200\n"
+"PO-Revision-Date: 2026-08-24 21:57+0200\n"
 "Last-Translator: Mimolet <themimolet@proton.me>\n"
-"Language-Team: French <gnomefr@traduc.org>\n"
+"Language-Team: French <international-french@discourse.gnome.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,13 +18,56 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Gtranslator 50.0\n"
 
-#: main.go:168
-msgid "Bluesky"
-msgstr "Bluesky"
+#: internal/state/state.go:21
+msgid "Failed to enable the banner."
+msgstr "Échec de l'activation de la bannière."
+
+#: internal/state/state.go:22 internal/state/state.go:32
+#: internal/state/state.go:38
+#, go-format
+msgid "Error ~> %s"
+msgstr "Erreur ~> %s"
+
+#: internal/state/state.go:25
+msgid "The banner has been enabled."
+msgstr "La bannière a été activé."
+
+#: internal/state/state.go:31 internal/state/state.go:37
+msgid "Failed to disable the banner."
+msgstr "Échec de la désactivation de la bannière."
+
+#: internal/state/state.go:41
+msgid "The banner has been disabled."
+msgstr "La bannière a été désactivé."
+
+#: main.go:59
+msgid "The banner is already enabled."
+msgstr "La bannière est déjà activée."
+
+#: main.go:66
+msgid "The banner is already disabled."
+msgstr "La bannière est déjà désactivée."
+
+#: main.go:78
+msgid "Invalid command"
+msgstr "Commande invalide"
+
+#: main.go:102
+#, go-format
+msgid "Welcome to %s"
+msgstr "Bienvenue sur %s"
+
+#: main.go:113
+msgid "Unknown system"
+msgstr "Système inconnu"
 
 #: main.go:119
 msgid "Boot Status"
 msgstr "État du démarrage"
+
+#: main.go:121
+msgid "Healthy"
+msgstr "Sain"
 
 #: main.go:131
 msgid "Command"
@@ -30,107 +77,70 @@ msgstr "Commande"
 msgid "Description"
 msgstr "Description"
 
-#: main.go:174
-msgid "Discord"
-msgstr "Discord"
-
-#: main.go:176
-msgid "Discuss"
-msgstr "Discussions"
-
-#: main.go:170
-msgid "Documentation"
-msgstr "Documentation"
-
-#: main.go:172
-msgid "Donate"
-msgstr "Faire un don"
-
-#: main.go:141
-msgid "Enable terminal bling"
-msgstr "Active le bling du terminal"
-
-#: internal/state/state.go:22 internal/state/state.go:32
-#: internal/state/state.go:38
-msgid "Error ~> %s"
-msgstr "Erreur ~> %s"
-
-#: internal/state/state.go:31 internal/state/state.go:37
-msgid "Failed to disable the banner."
-msgstr "Échec de la désactivation de la bannière."
-
-#: internal/state/state.go:21
-msgid "Failed to enable the banner."
-msgstr "Échec de l'activation de la bannière."
-
-#: main.go:121
-msgid "Healthy"
-msgstr "Sain"
-
-#: main.go:78
-msgid "Invalid command"
-msgstr "Commande invalide"
-
 #: main.go:137
 msgid "List all available commands"
 msgstr "Liste toutes les commandes disponibles"
 
 #: main.go:139
+msgid "Report an issue to the contributors"
+msgstr "Signale un problème aux contributeurs"
+
+#: main.go:141
 msgid "Manage command line packages"
 msgstr "Gère les paquets via le terminal"
 
-#: main.go:147
-msgid "Manually update the system"
-msgstr "Met à jour le système manuellement"
-
-#: main.go:180
-msgid "Mastodon"
-msgstr "Mastodon"
-
-#: main.go:182
-msgid "Matrix"
-msgstr "Matrix"
-
-#: main.go:178
-msgid "Report an issue"
-msgstr "Signaler un problème"
-
-#: main.go:184
-msgid "Source code"
-msgstr "Code source"
-
-#: internal/state/state.go:41
-msgid "The banner has been disabled."
-msgstr "La bannière a été désactivé."
-
-#: internal/state/state.go:25
-msgid "The banner has been enabled."
-msgstr "La bannière a été activé."
-
-#: main.go:66
-msgid "The banner is already disabled."
-msgstr "La bannière est déjà désactivée."
-
-#: main.go:59
-msgid "The banner is already enabled."
-msgstr "La bannière est déjà activée."
-
 #: main.go:143
+msgid "Enable terminal bling"
+msgstr "Active le bling du terminal"
+
+#: main.go:145
 msgid "Toggle this banner on/off"
 msgstr "Active/désactive ce panneau"
 
-#: main.go:113
-msgid "Unknown system"
-msgstr "Système inconnu"
-
-#: main.go:145
+#: main.go:147
 msgid "View system information"
 msgstr "Affiche les informations système"
 
+#: main.go:149
+msgid "Manually update the system"
+msgstr "Met à jour le système manuellement"
+
+#: main.go:170
+msgid "Bluesky"
+msgstr "Bluesky"
+
+#: main.go:172
+msgid "Documentation"
+msgstr "Documentation"
+
+#: main.go:174
+msgid "Donate"
+msgstr "Faire un don"
+
+#: main.go:176
+msgid "Discord"
+msgstr "Discord"
+
+#: main.go:178
+msgid "Discuss"
+msgstr "Discussions"
+
+#: main.go:180
+msgid "Report an issue"
+msgstr "Signaler un problème"
+
+#: main.go:182
+msgid "Mastodon"
+msgstr "Mastodon"
+
+#: main.go:184
+msgid "Matrix"
+msgstr "Matrix"
+
 #: main.go:186
+msgid "Source code"
+msgstr "Code source"
+
+#: main.go:188
 msgid "Website"
 msgstr "Site Web"
-
-#: main.go:102
-msgid "Welcome to %s"
-msgstr "Bienvenue sur %s"
