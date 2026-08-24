@@ -7,7 +7,6 @@ To translate and test uWelcome, you'll need to have the following tools installe
 
 - [`go`](https://repology.org/project/go/versions)
 - [`gettext`](https://repology.org/project/gettext/versions)
-- [`xgotext`](https://pkg.go.dev/github.com/leonelquinteros/gotext/cli/xgotext) (it should be installed automatically when you use `just translate <lang>`)
 
 ## Usage
 
