@@ -15,6 +15,10 @@
     {
       "cmd": "brew help",
       "desc": "cli_pkg"
+    },
+    {
+      "cmd": "ujust report",
+      "desc": "cmd_report"
     }
   ],
   "links": [

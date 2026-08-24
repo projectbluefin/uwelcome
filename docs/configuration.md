@@ -67,6 +67,7 @@ Here are the unique codes you can use to get translated strings for command desc
 | Strings | English Display (translated) |
 | --- | --- |
 | `cmd_list` | "List of available commands" |
+| `cmd_report` | "Report an issue to the contributors" |
 | `cli_pkg` | "Manage command line packages" |
 | `term_bling` | "Enable terminal bling" |
 | `banner_toggle` | "Toggle this banner on/off" (there are built-in commands for this) |

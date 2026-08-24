@@ -135,6 +135,8 @@ func main() {
 			switch cmd.Desc {
 			case "cmd_list":
 				commandDesc = l.Get("List all available commands")
+			case "cmd_report":
+				commandDesc = l.Get("Report an issue to the contributors")
 			case "cli_pkg":
 				commandDesc = l.Get("Manage command line packages")
 			case "term_bling":
