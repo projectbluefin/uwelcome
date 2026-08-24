@@ -4,7 +4,7 @@
 
 **WIP**: Some features still need testing.
 
-**Contributions are welcome!** If you want to contribute, you're welcome to submit a pull request or [open an issue](https://github.com/theMimolet/uwelcome/issues) - it's very much appreciated ❤️
+**Contributions are welcome!** If you want to contribute, you're welcome to submit a pull request or [open an issue](https://github.com/projectbluefin/uwelcome/issues) - it's very much appreciated ❤️
 
 Want to configure or contribute to uWelcome ? Take a look at the [documentation](https://github.com/projectbluefin/uwelcome/tree/main/docs) !
 
