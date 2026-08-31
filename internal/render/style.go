@@ -3,6 +3,7 @@ package render
 import (
 	"fmt"
 	"math"
+	"time"
 
 	"charm.land/glamour/v2"
 	"charm.land/glamour/v2/ansi"
@@ -107,12 +108,37 @@ func rgbToHex(rgb RGB) (string, error) {
 	return hex, nil
 }
 
-// getAccentColor retrieves the accent color from the system settings using D-Bus. It reads the "accent-color" property from the "org.freedesktop.appearance" interface. If successful, it converts the retrieved XYZ color to RGB and then to a hexadecimal string. If any step fails, it defaults to returning "blue".
+// accentColorTimeout bounds the portal read. When xdg-desktop-portal cannot
+// start (root shells, TTY logins, a session that has not reached
+// graphical-session.target), the D-Bus activation blocks for its full
+// 120-second timeout instead of failing fast; a greeting must never hold a
+// login hostage that long.
+const accentColorTimeout = 2 * time.Second
+
+// getAccentColor retrieves the accent color from the system settings using D-Bus. It reads the "accent-color" property from the "org.freedesktop.appearance" interface. If successful, it converts the retrieved XYZ color to RGB and then to a hexadecimal string. If any step fails or the portal does not answer within accentColorTimeout, it defaults to returning "blue".
 func getAccentColor() string {
 
-	// Read the accent color from D-Bus
-	xyzValue, err := settings.ReadOne("org.freedesktop.appearance", "accent-color")
-	if err != nil {
+	// Read the accent color from D-Bus, bounded by accentColorTimeout.
+	// The goroutine is leaked if the portal never answers; the process
+	// is short-lived so that is acceptable.
+	type readResult struct {
+		value any
+		err   error
+	}
+	resultCh := make(chan readResult, 1)
+	go func() {
+		value, err := settings.ReadOne("org.freedesktop.appearance", "accent-color")
+		resultCh <- readResult{value, err}
+	}()
+
+	var xyzValue any
+	select {
+	case result := <-resultCh:
+		if result.err != nil {
+			return "blue"
+		}
+		xyzValue = result.value
+	case <-time.After(accentColorTimeout):
 		return "blue"
 	}
 
