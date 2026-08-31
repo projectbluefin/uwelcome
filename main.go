@@ -17,7 +17,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-const version = "0.3.4"
+const version = "0.3.5"
 
 //go:embed all:locales
 var localesFS embed.FS
