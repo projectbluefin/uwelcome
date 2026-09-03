@@ -1,0 +1,47 @@
+{
+  "commands": [
+    {
+      "cmd": "ujust --choose",
+      "desc": "cmd_list"
+    },
+    {
+      "cmd": "uwelcome toggle",
+      "desc": "banner_toggle"
+    },
+    {
+      "cmd": "ujust aurora-cli",
+      "desc": "term_bling"
+    },
+    {
+      "cmd": "brew help",
+      "desc": "cli_pkg"
+    }
+  ],
+  "links": [
+    {
+      "name": "issues",
+      "url": "https://github.com/ublue-os/aurora/issues"
+    },
+    {
+      "name": "docs",
+      "url": "https://docs.getaurora.dev/guides/basic-usage"
+    },
+    {
+      "name": "discuss",
+      "url": "https://github.com/ublue-os/aurora/discussions"
+    },
+    {
+      "name": "discord",
+      "url": "https://discord.getaurora.dev/"
+    }
+  ],
+  "greeting": {
+    "prefix": "🔭 "
+  },
+  "motd": {
+    "commands": [
+      "umotd"
+    ]
+  },
+  "color": "auto"
+}
