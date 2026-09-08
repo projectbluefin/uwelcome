@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/x/term v0.2.2
 	github.com/leonelquinteros/gotext v1.7.2
 	github.com/rymdport/portal v0.4.2
-	golang.org/x/text v0.41.0
+	golang.org/x/text v0.42.0
 )
 
 require (
@@ -34,6 +34,6 @@ require (
 	github.com/yuin/goldmark v1.8.5 // indirect
 	github.com/yuin/goldmark-emoji v1.0.6 // indirect
 	golang.org/x/net v0.58.0 // indirect
-	golang.org/x/sync v0.22.0 // indirect
+	golang.org/x/sync v0.23.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 )
