@@ -11,14 +11,16 @@ nerdFontSymbols is a map of symbols that are available in Nerd Fonts Symbols.
 https://nerdfonts.ytyng.com/
 */
 var nerdFontSymbols = map[string]string{
+	"arrow":           "",
 	"bluesky":         "",
 	"boot":            "󰟀",
+	"checkmark":       "󰄳",
 	"command_palette": " ",
 	"discord":         "󰙯",
 	"discuss":         "󰊌",
 	"docs":            "󰈙",
 	"donate":          "󱢏",
-	"healthy":         "󰄳",
+	"error":           "󰅙",
 	"info":            "󰋼",
 	"issues":          "",
 	"link":            "󰌹",
@@ -26,29 +28,36 @@ var nerdFontSymbols = map[string]string{
 	"matrix":          "󰊌",
 	"oci":             "󱋩",
 	"source":          "󰊢",
+	"warning":         "",
 	"website":         "󰖟",
 }
 
 // asciiSymbols is a map of symbols that are available in ASCII.
 var asciiSymbols = map[string]string{
+	"arrow":           "~>",
+	"checkmark":       "✓",
 	"command_palette": ">_",
-	"oci":             "[Ci]",
-	"healthy":         "✓",
+	"error":           "×",
+	"oci":             "Oci:",
 	"info":            "(i)",
+	"warning":         "/!\\",
 }
 
 // hasNerdFontSymbols checks if the system has Nerd Fonts Symbols installed.
 func hasNerdFontSymbols() bool {
-	out, err := exec.Command("fc-list").Output()
+	fontList, err := exec.Command("fc-list").Output()
 	if err != nil {
 		return false
 	}
-	lower := strings.ToLower(string(out))
-	return strings.Contains(lower, "symbolsnerdfont") ||
-		strings.Contains(lower, "nerdfontssymbolsonly")
+	lower := strings.ToLower(string(fontList))
+	return strings.Contains(lower, "nerdfont") // Trying something out with the nerd fonts
 }
 
-// GetSymbol returns the symbol for the given symbol name. If the system has Nerd Fonts Symbols installed, it will return the Nerd Fonts Symbols version of the symbol. Otherwise, it will return the ASCII version of the symbol.
+/*
+GetSymbol returns the symbol for the given symbol name.
+
+If the system has a Nerd Font installed, it will return the symbol embedded in the font. Otherwise, it will return the ASCII version of the symbol.
+*/
 func GetSymbol(symbolName string) string {
 	if hasNerdFontSymbols() {
 		if symbol, ok := nerdFontSymbols[symbolName]; ok {

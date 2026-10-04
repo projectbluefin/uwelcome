@@ -6,6 +6,8 @@ import (
 	"os/exec"
 	"regexp"
 	"strings"
+
+	"github.com/leonelquinteros/gotext"
 )
 
 type ImageInfo struct {
@@ -25,8 +27,8 @@ func GetDesktop() string {
 
 // GetGreenbootInfo is a command to greenboot status
 func GetGreenbootInfo() string {
-	cmdGrep := exec.Command("grep", "-q", "status is GREEN", "/etc/motd.d/boot-status")
-	err := cmdGrep.Run()
+	grep := exec.Command("grep", "-q", "status is GREEN", "/etc/motd.d/boot-status")
+	err := grep.Run()
 	if err != nil {
 		return ""
 	}
@@ -49,15 +51,17 @@ func GetGreenbootInfo() string {
 // GetImageInfo is a Universal Blue focused command that retrieves the system image reference from their image-info file
 func GetImageInfo() ImageInfo {
 
+	defaultInfo := ImageInfo{"", ""}
+
 	data, err := os.ReadFile(infoFile)
 	if err != nil {
-		return ImageInfo{"", ""}
+		return defaultInfo
 	}
 
 	var info ImageInfo
 	err = json.Unmarshal(data, &info)
 	if err != nil {
-		return ImageInfo{}
+		return defaultInfo
 	}
 
 	// strip the ostree prefix, same as the sed in bash
@@ -67,7 +71,7 @@ func GetImageInfo() ImageInfo {
 }
 
 // GetOSName gets the OS name from /etc/os-release
-func GetOSName() string {
+func GetOSName(l *gotext.Locale) string {
 	data, err := os.ReadFile("/etc/os-release")
 	if err != nil {
 		return ""
@@ -77,7 +81,7 @@ func GetOSName() string {
 	if len(match) > 1 {
 		return match[1]
 	}
-	return "Your System"
+	return l.Get("Your System")
 }
 
 func IsBootcSystem() bool {

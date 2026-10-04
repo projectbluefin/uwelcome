@@ -1,44 +1,38 @@
 package state
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
+	i "uwelcome/internal"
 
 	"github.com/leonelquinteros/gotext"
 )
 
-var disabledFile = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
+var DisabledFile string = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
 
-func IsDisabled() bool {
-	_, err := os.Stat(disabledFile)
-	return err == nil
-}
-
+// Enable is a wrapper for os.remove
 func Enable(l *gotext.Locale) {
-	err := os.Remove(disabledFile)
+	err := os.Remove(DisabledFile)
 	if err != nil && !os.IsNotExist(err) {
-		fmt.Println(l.Get("Failed to enable the banner."))
-		println(l.Get("Error ~> %s", err.Error()))
+		i.Error(l.Get("Failed to enable the banner."), err)
 		return
 	}
-	fmt.Println(l.Get("The banner has been enabled."))
+	i.Success(l.Get("The banner has been enabled."))
 }
 
+// Disable is a wrapper for os.MkdirAll
 func Disable(l *gotext.Locale) {
-	err := os.MkdirAll(filepath.Dir(disabledFile), 0755)
+	err := os.MkdirAll(filepath.Dir(DisabledFile), 0755)
 	if err != nil {
-		fmt.Println(l.Get("Failed to disable the banner."))
-		println(l.Get("Error ~> %s", err.Error()))
+		i.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
-	disabledFile, err := os.Create(disabledFile)
+	disabledFile, err := os.Create(DisabledFile)
 	if err != nil {
-		fmt.Println(l.Get("Failed to disable the banner."))
-		println(l.Get("Error ~> %s", err.Error()))
+		i.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
-	fmt.Println(l.Get("The banner has been disabled."))
+	i.Success(l.Get("The banner has been disabled."))
 	err = disabledFile.Close()
 	if err != nil {
 		return

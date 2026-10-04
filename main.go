@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	i "uwelcome/internal"
 	"uwelcome/internal/config"
 	"uwelcome/internal/locale"
 	"uwelcome/internal/motd"
@@ -17,7 +18,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-const version = "0.3.5"
+const version = "0.4.0"
 
 //go:embed all:locales
 var localesFS embed.FS
@@ -29,7 +30,7 @@ func main() {
 	l := gotext.NewLocaleFSWithPath(currentLocale, localesFS, "locales")
 	l.AddDomain("default")
 
-	isDisabled := state.IsDisabled()
+	isDisabled, _ := i.DoesFileExist(state.DisabledFile)
 
 	// Handles command line arguments
 	if len(os.Args) > 1 {
@@ -56,26 +57,38 @@ func main() {
 				state.Enable(l)
 				return
 			} else {
-				fmt.Println(l.Get("The banner is already enabled."))
+				i.Info(l.Get("The banner is already enabled."))
 				return
 			}
 
 		// Disables the banner
 		case "disable":
 			if isDisabled {
-				fmt.Println(l.Get("The banner is already disabled."))
+				i.Info(l.Get("The banner is already disabled."))
 				return
 			} else {
 				state.Disable(l)
 				return
 			}
 
-		// Returns the path to the current file
-		case "config-path":
-			fmt.Println(config.GetPath())
+		// Shows the path and state of the config file
+		case "status":
+			config.CheckWrapper(l)
 			return
+
+		// Opens the default editor to the config file
+		case "edit":
+			config.Edit(l)
+			return
+
+		// Resets the config file
+		case "reset":
+			config.Reset(l)
+			return
+
+		// Default output
 		default:
-			fmt.Println(l.Get("Invalid command"))
+			i.Warn("Invalid command", nil)
 			return
 		}
 	}
@@ -88,18 +101,18 @@ func main() {
 
 	// Loads the configuration from the system's config file
 
-	cfg := config.GetConfig()
-
-	// Greets the user
+	cfg, _ := config.GetConfig()
 
 	var out strings.Builder
+
+	// Greets the user
 
 	fmt.Fprintf(&out, "# %s", cfg.Greeting.Prefix)
 
 	if len(cfg.Greeting.Message) > 0 {
 		out.WriteString(cfg.Greeting.Message)
 	} else {
-		out.WriteString(l.Get("Welcome to %s", system.GetOSName()))
+		out.WriteString(l.Get("Welcome to %s", system.GetOSName(l)))
 	}
 
 	out.WriteString(cfg.Greeting.Suffix)
@@ -108,7 +121,7 @@ func main() {
 	// Gets the image info
 
 	if imageInfo := system.GetImageInfo(); imageInfo.ImageRef != "" || imageInfo.ImageTag != "" {
-		fmt.Fprintf(&out, " %s `%s:%s` \n", symbols.GetSymbol("oci"), imageInfo.ImageRef, imageInfo.ImageTag)
+		fmt.Fprintf(&out, " %s `%s:%s` \n\n", symbols.GetSymbol("oci"), imageInfo.ImageRef, imageInfo.ImageTag)
 	} else if system.IsBootcSystem() {
 		fmt.Fprintf(&out, " %s `%s` \n", symbols.GetSymbol("oci"), l.Get("Unknown system"))
 	}
@@ -118,7 +131,7 @@ func main() {
 	if greenboot := system.GetGreenbootInfo(); greenboot != "" {
 		fmt.Fprintf(&out, "\n %s %s:", symbols.GetSymbol("boot"), l.Get("Boot Status"))
 		if greenboot == "healthy" {
-			fmt.Fprintf(&out, "%s", "`"+l.Get("Healthy")+" "+symbols.GetSymbol("healthy")+"`")
+			fmt.Fprintf(&out, "%s", "`"+l.Get("Healthy")+" "+symbols.GetSymbol("checkmark")+"`")
 		} else {
 			fmt.Fprintf(&out, "%s", "`"+greenboot+"`")
 		}
@@ -131,7 +144,7 @@ func main() {
 		fmt.Fprintf(&out, " | %s %s | %s | \n", symbols.GetSymbol("command_palette"), l.Get("Command"), l.Get("Description"))
 		fmt.Fprintf(&out, "| ------------ | ----------- |\n")
 		for _, cmd := range cfg.Commands {
-			commandDesc := cmd.Desc
+			var commandDesc string
 			switch cmd.Desc {
 			case "cmd_list":
 				commandDesc = l.Get("List all available commands")
@@ -147,6 +160,8 @@ func main() {
 				commandDesc = l.Get("View system information")
 			case "man_upd":
 				commandDesc = l.Get("Manually update the system")
+			default:
+				commandDesc = cmd.Desc
 			}
 			fmt.Fprintf(&out, "| `%s` | %s |\n", cmd.Cmd, commandDesc)
 		}
@@ -164,7 +179,7 @@ func main() {
 
 	if len(cfg.Links) > 0 {
 		for _, link := range cfg.Links {
-			linkLabel := link.Name
+			var linkLabel string
 			switch link.Name {
 			case "bluesky":
 				linkLabel = symbols.GetSymbol("bluesky") + " [" + l.Get("Bluesky") + "]"
