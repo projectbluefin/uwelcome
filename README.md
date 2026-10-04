@@ -1,8 +1,10 @@
 # uWelcome
 
+![Screenshot of uWelcome using a slightly modified Bluefin configuration.](docs/screenshot-260930.png)
+
 *uWelcome is a configurable CLI Banner made for your favorite Linux systems!*
 
-**WIP**: Some features still need testing.
+⚠️ **WIP**: Some features still need feedback and testing.
 
 **Contributions are welcome!** If you want to contribute, you're welcome to submit a pull request or [open an issue](https://github.com/projectbluefin/uwelcome/issues) - it's very much appreciated ❤️
 
@@ -46,11 +48,14 @@ You'll then have the `uwelcome` binary in the current directory, which you can j
 
 uWelcome supports the following commands (for now):
 
-```txt
-toggle  - Toggles the MOTD on or off for the current user
-enable  - Always enables the MOTD for the current user
-disable - Always disables the MOTD for the current user
-version - Displays the version of uWelcome currently in use
+```yml
+disable:    Disables the MOTD for the user
+edit:       Opens the config file with the default terminal editor
+enable:     Enables the MOTD for the user
+reset:      Resets the config file to the default/system config
+status:     Prints the config file currently in use
+toggle:     Toggles the MOTD on/off for the current user
+version:    Displays the version of uWelcome currently in use
 ```
 
 Learn more in the [docs folder](https://github.com/projectbluefin/uwelcome/tree/main/docs) !
