@@ -1,13 +1,13 @@
-# French translation for uWelcome
-# Copyright (C) 2026, The Project Bluefin Contributors
-# This file is distributed under the same license as the uWelcome package.
+# French translations for uwelcome package.
+# Copyright (C) 2026 The Project Bluefin Contributors
+# This file is distributed under the same license as the uwelcome package.
 # Mimolet <themimolet@proton.me>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: uwelcome\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 18:16+0200\n"
+"Project-Id-Version: uwelcome 0.4.0\n"
+"Report-Msgid-Bugs-To: themimolet@proton.me\n"
+"POT-Creation-Date: 2026-10-05 20:57+0200\n"
 "PO-Revision-Date: 2026-10-05 18:31+0200\n"
 "Last-Translator: Mimolet <themimolet@proton.me>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
@@ -116,106 +116,103 @@ msgctxt "Before a warning message"
 msgid "Warning:"
 msgstr "Attention :"
 
-#: main.go:62
+#: main.go:57
 msgid "The banner is already enabled."
 msgstr "La bannière est déjà activée."
 
-#: main.go:69
+#: main.go:64
 msgid "The banner is already disabled."
 msgstr "La bannière est déjà désactivée."
 
-#: main.go:117
+#: main.go:112
 #, go-format
 msgid "Welcome to %s"
 msgstr "Bienvenue sur %s"
 
-#: main.go:119
+#: main.go:114
 msgid "your system"
 msgstr "votre système"
 
-#: main.go:135
+#: main.go:130
 msgid "Boot Status"
 msgstr "État du démarrage"
 
-#: main.go:137
+#: main.go:132
 msgid "Healthy"
 msgstr "Sain"
 
-#: main.go:147
+#: main.go:142
 msgid "Command"
 msgstr "Commande"
 
-#: main.go:147
+#: main.go:142
 msgid "Description"
 msgstr "Description"
 
-#: main.go:153
+#: main.go:148
 msgid "List all available commands"
 msgstr "Liste toutes les commandes disponibles"
 
-#: main.go:155
+#: main.go:150
 msgid "Report an issue to the contributors"
 msgstr "Signale un problème aux contributeurs"
 
-#: main.go:157
+#: main.go:152
 msgid "Manage command line packages"
 msgstr "Gère les paquets via le terminal"
 
-#: main.go:159
+#: main.go:154
 msgid "Enable terminal bling"
 msgstr "Active le bling du terminal"
 
-#: main.go:161
+#: main.go:156
 msgid "Toggle this banner on/off"
 msgstr "Active/désactive ce panneau"
 
-#: main.go:163
+#: main.go:158
 msgid "View system information"
 msgstr "Affiche les informations système"
 
-#: main.go:165
+#: main.go:160
 msgid "Manually update the system"
 msgstr "Met à jour le système manuellement"
 
-#: main.go:188
+#: main.go:183
 msgid "Bluesky"
 msgstr "Bluesky"
 
-#: main.go:190
+#: main.go:185
 msgid "Documentation"
 msgstr "Documentation"
 
-#: main.go:192
+#: main.go:187
 msgid "Donate"
 msgstr "Faire un don"
 
-#: main.go:194
+#: main.go:189
 msgid "Discord"
 msgstr "Discord"
 
-#: main.go:196
+#: main.go:191
 msgid "Discuss"
 msgstr "Discussions"
 
-#: main.go:198
+#: main.go:193
 msgid "Report an issue"
 msgstr "Signaler un problème"
 
-#: main.go:200
+#: main.go:195
 msgid "Mastodon"
 msgstr "Mastodon"
 
-#: main.go:202
+#: main.go:197
 msgid "Matrix"
 msgstr "Matrix"
 
-#: main.go:204
+#: main.go:199
 msgid "Source code"
 msgstr "Code source"
 
-#: main.go:206
+#: main.go:201
 msgid "Website"
 msgstr "Site Web"
-
-#~ msgid "Invalid command"
-#~ msgstr "Commande invalide"
