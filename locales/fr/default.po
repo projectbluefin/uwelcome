@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: uwelcome\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-24 21:28+0200\n"
-"PO-Revision-Date: 2026-08-24 21:57+0200\n"
+"POT-Creation-Date: 2026-10-05 18:16+0200\n"
+"PO-Revision-Date: 2026-10-05 18:31+0200\n"
 "Last-Translator: Mimolet <themimolet@proton.me>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
 "Language: fr\n"
@@ -16,131 +16,206 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Gtranslator 51.0\n"
 
-#: internal/state/state.go:21
+#: internal/config/handling.go:81
+msgid "The config file is good to go."
+msgstr "Le fichier de configuration est bon."
+
+#: internal/config/handling.go:83
+msgid ""
+"The config file doesn't exist (yet). uWelcome will use either your system's "
+"config or the default."
+msgstr ""
+"Le fichier de configuration n'existe pas (encore). uWelcome va utiliser la "
+"configuration du système ou la configuration par défaut."
+
+#: internal/config/handling.go:85
+msgid ""
+"There is something wrong with the config file. uWelcome will use either your "
+"system's config or the default."
+msgstr ""
+"Quelque chose cloche avec le fichier de configuration. uWelcome va utiliser "
+"la configuration du système ou la configuration par défaut."
+
+#: internal/config/handling.go:134
+msgid "Failed to access the config path."
+msgstr "Impossible d'accéder au chemin du fichier de configuration."
+
+#: internal/config/handling.go:138
+msgid "Failed to create the default config."
+msgstr "Échec de la création de la configuration par défaut."
+
+#: internal/config/handling.go:155
+msgid "Failed to edit the config file."
+msgstr "Échec de l'édition du fichier de configuration."
+
+#: internal/config/handling.go:166
+#, go-format
+msgid "Are you sure? This will reset your configuration file (%s) (yes/NO)"
+msgstr ""
+"Êtes-vous sûr ? Cela va réinitialiser votre fichier de configuration (%s) "
+"(oui/NON)"
+
+#: internal/config/handling.go:169
+msgid "There was an error in processing your answer"
+msgstr "Une erreur s'est produite lors du traitement de votre réponse"
+
+#: internal/config/handling.go:184
+msgctxt ""
+"Single word affirmative response in response to a question (lower case only)"
+msgid "yes"
+msgstr "oui"
+
+#: internal/config/handling.go:185
+msgctxt ""
+"First letter of the single word affirmative response in response to a "
+"question (lower case only)"
+msgid "y"
+msgstr "o"
+
+#: internal/config/handling.go:190
+msgid "Failed to reset the configuration file."
+msgstr "Échec de la réinitialisation du fichier de configuration. "
+
+#: internal/config/handling.go:192
+msgid "Config file reset successfully."
+msgstr "Fichier de configuration réinitialisé avec succès."
+
+#: internal/render/render.go:75 internal/render/render.go:89
+msgid "An error occured while rendering the banner."
+msgstr "Une erreur s'est produite lors du rendu de la bannière."
+
+#: internal/render/render.go:83
+msgid "An error occured while loading the renderer."
+msgstr "Une erreur s'est produite lors du chargement du moteur de rendu."
+
+#: internal/state/state.go:18
 msgid "Failed to enable the banner."
 msgstr "Échec de l'activation de la bannière."
 
-#: internal/state/state.go:22 internal/state/state.go:32
-#: internal/state/state.go:38
-#, go-format
-msgid "Error ~> %s"
-msgstr "Erreur ~> %s"
-
-#: internal/state/state.go:25
+#: internal/state/state.go:21
 msgid "The banner has been enabled."
 msgstr "La bannière a été activé."
 
-#: internal/state/state.go:31 internal/state/state.go:37
+#: internal/state/state.go:28 internal/state/state.go:33
 msgid "Failed to disable the banner."
 msgstr "Échec de la désactivation de la bannière."
 
-#: internal/state/state.go:41
+#: internal/state/state.go:36
 msgid "The banner has been disabled."
 msgstr "La bannière a été désactivé."
 
-#: main.go:59
+#: internal/internal.go:16
+msgctxt "Before an error message"
+msgid "Error:"
+msgstr "Erreur :"
+
+#: internal/internal.go:17
+msgctxt "Before a warning message"
+msgid "Warning:"
+msgstr "Attention :"
+
+#: main.go:62
 msgid "The banner is already enabled."
 msgstr "La bannière est déjà activée."
 
-#: main.go:66
+#: main.go:69
 msgid "The banner is already disabled."
 msgstr "La bannière est déjà désactivée."
 
-#: main.go:78
-msgid "Invalid command"
-msgstr "Commande invalide"
-
-#: main.go:102
+#: main.go:117
 #, go-format
 msgid "Welcome to %s"
 msgstr "Bienvenue sur %s"
 
-#: main.go:113
-msgid "Unknown system"
-msgstr "Système inconnu"
-
 #: main.go:119
+msgid "your system"
+msgstr "votre système"
+
+#: main.go:135
 msgid "Boot Status"
 msgstr "État du démarrage"
 
-#: main.go:121
+#: main.go:137
 msgid "Healthy"
 msgstr "Sain"
 
-#: main.go:131
+#: main.go:147
 msgid "Command"
 msgstr "Commande"
 
-#: main.go:131
+#: main.go:147
 msgid "Description"
 msgstr "Description"
 
-#: main.go:137
+#: main.go:153
 msgid "List all available commands"
 msgstr "Liste toutes les commandes disponibles"
 
-#: main.go:139
+#: main.go:155
 msgid "Report an issue to the contributors"
 msgstr "Signale un problème aux contributeurs"
 
-#: main.go:141
+#: main.go:157
 msgid "Manage command line packages"
 msgstr "Gère les paquets via le terminal"
 
-#: main.go:143
+#: main.go:159
 msgid "Enable terminal bling"
 msgstr "Active le bling du terminal"
 
-#: main.go:145
+#: main.go:161
 msgid "Toggle this banner on/off"
 msgstr "Active/désactive ce panneau"
 
-#: main.go:147
+#: main.go:163
 msgid "View system information"
 msgstr "Affiche les informations système"
 
-#: main.go:149
+#: main.go:165
 msgid "Manually update the system"
 msgstr "Met à jour le système manuellement"
 
-#: main.go:170
+#: main.go:188
 msgid "Bluesky"
 msgstr "Bluesky"
 
-#: main.go:172
+#: main.go:190
 msgid "Documentation"
 msgstr "Documentation"
 
-#: main.go:174
+#: main.go:192
 msgid "Donate"
 msgstr "Faire un don"
 
-#: main.go:176
+#: main.go:194
 msgid "Discord"
 msgstr "Discord"
 
-#: main.go:178
+#: main.go:196
 msgid "Discuss"
 msgstr "Discussions"
 
-#: main.go:180
+#: main.go:198
 msgid "Report an issue"
 msgstr "Signaler un problème"
 
-#: main.go:182
+#: main.go:200
 msgid "Mastodon"
 msgstr "Mastodon"
 
-#: main.go:184
+#: main.go:202
 msgid "Matrix"
 msgstr "Matrix"
 
-#: main.go:186
+#: main.go:204
 msgid "Source code"
 msgstr "Code source"
 
-#: main.go:188
+#: main.go:206
 msgid "Website"
 msgstr "Site Web"
+
+#~ msgid "Invalid command"
+#~ msgstr "Commande invalide"
