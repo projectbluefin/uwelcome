@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR The Project Bluefin Contributors
+# This file is distributed under the same license as the uwelcome package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: uwelcome 0.4.0\n"
+"Report-Msgid-Bugs-To: themimolet@proton.me\n"
+"POT-Creation-Date: 2026-10-05 20:57+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: internal/config/handling.go:81
+msgid "The config file is good to go."
+msgstr ""
+
+#: internal/config/handling.go:83
+msgid ""
+"The config file doesn't exist (yet). uWelcome will use either your system's "
+"config or the default."
+msgstr ""
+
+#: internal/config/handling.go:85
+msgid ""
+"There is something wrong with the config file. uWelcome will use either your "
+"system's config or the default."
+msgstr ""
+
+#: internal/config/handling.go:134
+msgid "Failed to access the config path."
+msgstr ""
+
+#: internal/config/handling.go:138
+msgid "Failed to create the default config."
+msgstr ""
+
+#: internal/config/handling.go:155
+msgid "Failed to edit the config file."
+msgstr ""
+
+#: internal/config/handling.go:166
+#, go-format
+msgid "Are you sure? This will reset your configuration file (%s) (yes/NO)"
+msgstr ""
+
+#: internal/config/handling.go:169
+msgid "There was an error in processing your answer"
+msgstr ""
+
+#: internal/config/handling.go:184
+msgctxt ""
+"Single word affirmative response in response to a question (lower case only)"
+msgid "yes"
+msgstr ""
+
+#: internal/config/handling.go:185
+msgctxt ""
+"First letter of the single word affirmative response in response to a "
+"question (lower case only)"
+msgid "y"
+msgstr ""
+
+#: internal/config/handling.go:190
+msgid "Failed to reset the configuration file."
+msgstr ""
+
+#: internal/config/handling.go:192
+msgid "Config file reset successfully."
+msgstr ""
+
+#: internal/render/render.go:75 internal/render/render.go:89
+msgid "An error occured while rendering the banner."
+msgstr ""
+
+#: internal/render/render.go:83
+msgid "An error occured while loading the renderer."
+msgstr ""
+
+#: internal/state/state.go:18
+msgid "Failed to enable the banner."
+msgstr ""
+
+#: internal/state/state.go:21
+msgid "The banner has been enabled."
+msgstr ""
+
+#: internal/state/state.go:28 internal/state/state.go:33
+msgid "Failed to disable the banner."
+msgstr ""
+
+#: internal/state/state.go:36
+msgid "The banner has been disabled."
+msgstr ""
+
+#: internal/internal.go:16
+msgctxt "Before an error message"
+msgid "Error:"
+msgstr ""
+
+#: internal/internal.go:17
+msgctxt "Before a warning message"
+msgid "Warning:"
+msgstr ""
+
+#: main.go:57
+msgid "The banner is already enabled."
+msgstr ""
+
+#: main.go:64
+msgid "The banner is already disabled."
+msgstr ""
+
+#: main.go:112
+#, go-format
+msgid "Welcome to %s"
+msgstr ""
+
+#: main.go:114
+msgid "your system"
+msgstr ""
+
+#: main.go:130
+msgid "Boot Status"
+msgstr ""
+
+#: main.go:132
+msgid "Healthy"
+msgstr ""
+
+#: main.go:142
+msgid "Command"
+msgstr ""
+
+#: main.go:142
+msgid "Description"
+msgstr ""
+
+#: main.go:148
+msgid "List all available commands"
+msgstr ""
+
+#: main.go:150
+msgid "Report an issue to the contributors"
+msgstr ""
+
+#: main.go:152
+msgid "Manage command line packages"
+msgstr ""
+
+#: main.go:154
+msgid "Enable terminal bling"
+msgstr ""
+
+#: main.go:156
+msgid "Toggle this banner on/off"
+msgstr ""
+
+#: main.go:158
+msgid "View system information"
+msgstr ""
+
+#: main.go:160
+msgid "Manually update the system"
+msgstr ""
+
+#: main.go:183
+msgid "Bluesky"
+msgstr ""
+
+#: main.go:185
+msgid "Documentation"
+msgstr ""
+
+#: main.go:187
+msgid "Donate"
+msgstr ""
+
+#: main.go:189
+msgid "Discord"
+msgstr ""
+
+#: main.go:191
+msgid "Discuss"
+msgstr ""
+
+#: main.go:193
+msgid "Report an issue"
+msgstr ""
+
+#: main.go:195
+msgid "Mastodon"
+msgstr ""
+
+#: main.go:197
+msgid "Matrix"
+msgstr ""
+
+#: main.go:199
+msgid "Source code"
+msgstr ""
+
+#: main.go:201
+msgid "Website"
+msgstr ""

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"embed"
 	"fmt"
 	"os"
 	"strings"
@@ -20,14 +19,10 @@ import (
 
 const version = "0.4.0"
 
-//go:embed all:locales
-var localesFS embed.FS
-
 func main() {
 
 	// Loads the locale based on the system's locale
-	currentLocale := locale.DetectLocale(localesFS)
-	l := gotext.NewLocaleFSWithPath(currentLocale, localesFS, "locales")
+	l := gotext.NewLocale("locales", locale.DetectLocale())
 	l.AddDomain("default")
 
 	i.InitCommonStrings(l)
