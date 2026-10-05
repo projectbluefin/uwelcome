@@ -16,8 +16,7 @@ Want to configure or contribute to uWelcome ? Take a look at the [documentation]
 
 Here are features that are planned for the future:
 
-- System message slot for displaying a message following a script or such (not randomized) [0.3.x]
-- Add CLI commands to customize the banner without touching the config file itself [0.4]
+- System message slot for displaying a message following a script or such (not randomized) [Maybe ?]
 
 ## How to try
 
