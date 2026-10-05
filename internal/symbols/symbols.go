@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+var hasNerdFonts bool = checkNerdFonts()
+
 /*
 nerdFontSymbols is a map of symbols that are available in Nerd Fonts Symbols.
 
@@ -16,7 +18,7 @@ var nerdFontSymbols = map[string]string{
 	"boot":            "󰟀",
 	"checkmark":       "󰄳",
 	"command_palette": " ",
-	"discord":         "󰙯",
+	"discord":         "",
 	"discuss":         "󰊌",
 	"docs":            "󰈙",
 	"donate":          "󱢏",
@@ -27,7 +29,7 @@ var nerdFontSymbols = map[string]string{
 	"mastodon":        "󰫑",
 	"matrix":          "󰊌",
 	"oci":             "󱋩",
-	"source":          "󰊢",
+	"source":          "",
 	"warning":         "",
 	"website":         "󰖟",
 }
@@ -43,14 +45,13 @@ var asciiSymbols = map[string]string{
 	"warning":         "/!\\",
 }
 
-// hasNerdFontSymbols checks if the system has Nerd Fonts Symbols installed.
-func hasNerdFontSymbols() bool {
+// checkNerdFonts checks if the system has Nerd Fonts Symbols installed.
+func checkNerdFonts() bool {
 	fontList, err := exec.Command("fc-list").Output()
 	if err != nil {
 		return false
 	}
-	lower := strings.ToLower(string(fontList))
-	return strings.Contains(lower, "nerdfont") // Trying something out with the nerd fonts
+	return strings.Contains(strings.ToLower(string(fontList)), "nerdfont")
 }
 
 /*
@@ -59,7 +60,7 @@ GetSymbol returns the symbol for the given symbol name.
 If the system has a Nerd Font installed, it will return the symbol embedded in the font. Otherwise, it will return the ASCII version of the symbol.
 */
 func GetSymbol(symbolName string) string {
-	if hasNerdFontSymbols() {
+	if hasNerdFonts {
 		if symbol, ok := nerdFontSymbols[symbolName]; ok {
 			return symbol
 		}
