@@ -28,7 +28,7 @@ func main() {
 	// Loads the locale based on the system's locale
 	currentLocale := locale.DetectLocale(localesFS)
 	l := gotext.NewLocaleFSWithPath(currentLocale, localesFS, "locales")
-	l.AddDomain("uwelcome")
+	l.AddDomain("default")
 
 	i.InitCommonStrings(l)
 
