@@ -5,17 +5,21 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
-	"strings"
 
-	"github.com/leonelquinteros/gotext"
+	i "uwelcome/internal"
 )
 
 type ImageInfo struct {
-	ImageRef string `json:"image-ref"`
-	ImageTag string `json:"image-tag"`
+	ImageName   string `json:"image-name"`
+	ImageRef    string `json:"image-ref"`
+	ImageFlavor string `json:"image-flavor"`
+	ImageVendor string `json:"image-vendor"`
+	ImageTag    string `json:"image-tag"`
 }
 
-var infoFile = "/usr/share/ublue-os/image-info.json"
+const infoFile = "/usr/share/ublue-os/image-info.json"
+
+var OSName = getOSName()
 
 func GetDesktop() string {
 	desktop := os.Getenv("XDG_CURRENT_DESKTOP")
@@ -27,11 +31,10 @@ func GetDesktop() string {
 
 // GetGreenbootInfo is a command to greenboot status
 func GetGreenbootInfo() string {
-	grep := exec.Command("grep", "-q", "status is GREEN", "/etc/motd.d/boot-status")
-	err := grep.Run()
-	if err != nil {
+	if exists, err := i.DoesFileExist("/etc/motd.d/boot-status"); !exists || err != nil {
 		return ""
 	}
+
 	re := regexp.MustCompile(`status is GREEN`)
 
 	isGreen := re.FindString("status is GREEN")
@@ -48,10 +51,14 @@ func GetGreenbootInfo() string {
 
 }
 
+// func IsSignedImage(info ImageInfo) bool {
+// 	return strings.Contains(info.ImageRef, "ostree-image-signed:docker://")
+// }
+
 // GetImageInfo is a Universal Blue focused command that retrieves the system image reference from their image-info file
 func GetImageInfo() ImageInfo {
 
-	defaultInfo := ImageInfo{"", ""}
+	defaultInfo := ImageInfo{}
 
 	data, err := os.ReadFile(infoFile)
 	if err != nil {
@@ -64,14 +71,11 @@ func GetImageInfo() ImageInfo {
 		return defaultInfo
 	}
 
-	// strip the ostree prefix, same as the sed in bash
-	info.ImageRef = strings.TrimPrefix(info.ImageRef, "ostree-image-signed:docker://")
-
 	return info
 }
 
-// GetOSName gets the OS name from /etc/os-release
-func GetOSName(l *gotext.Locale) string {
+// getOSName gets the OS name from /etc/os-release
+func getOSName() string {
 	data, err := os.ReadFile("/etc/os-release")
 	if err != nil {
 		return ""
@@ -81,10 +85,5 @@ func GetOSName(l *gotext.Locale) string {
 	if len(match) > 1 {
 		return match[1]
 	}
-	return l.Get("Your System")
-}
-
-func IsBootcSystem() bool {
-	_, err := os.Stat("/run/ostree-booted")
-	return err == nil
+	return ""
 }

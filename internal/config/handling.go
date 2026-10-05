@@ -78,7 +78,7 @@ func CheckWrapper(l *gotext.Locale) {
 	path, _ := target()
 	fmt.Println(path)
 	if err := check(path); err == nil {
-		i.Success(l.Get("The config file is good to go."))
+		fmt.Println(l.Get("The config file is good to go."))
 	} else if errors.Is(err, fs.ErrNotExist) {
 		i.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
 	} else {
@@ -189,7 +189,7 @@ func Reset(l *gotext.Locale) {
 		if err := create(); err != nil {
 			i.Error(l.Get("Failed to reset the configuration file."), err)
 		} else {
-			i.Success(l.Get("Config file reset successfully."))
+			fmt.Println(l.Get("Config file reset successfully."))
 		}
 	}
 }

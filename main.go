@@ -28,7 +28,9 @@ func main() {
 	// Loads the locale based on the system's locale
 	currentLocale := locale.DetectLocale(localesFS)
 	l := gotext.NewLocaleFSWithPath(currentLocale, localesFS, "locales")
-	l.AddDomain("default")
+	l.AddDomain("uwelcome")
+
+	i.InitCommonStrings(l)
 
 	isDisabled, _ := i.DoesFileExist(state.DisabledFile)
 
@@ -57,14 +59,14 @@ func main() {
 				state.Enable(l)
 				return
 			} else {
-				i.Info(l.Get("The banner is already enabled."))
+				fmt.Println(l.Get("The banner is already enabled."))
 				return
 			}
 
 		// Disables the banner
 		case "disable":
 			if isDisabled {
-				i.Info(l.Get("The banner is already disabled."))
+				fmt.Println(l.Get("The banner is already disabled."))
 				return
 			} else {
 				state.Disable(l)
@@ -112,7 +114,10 @@ func main() {
 	if len(cfg.Greeting.Message) > 0 {
 		out.WriteString(cfg.Greeting.Message)
 	} else {
-		out.WriteString(l.Get("Welcome to %s", system.GetOSName(l)))
+		out.WriteString(l.Get("Welcome to %s", system.OSName))
+		if system.OSName == "" {
+			l.Get("your system")
+		}
 	}
 
 	out.WriteString(cfg.Greeting.Suffix)
@@ -121,9 +126,7 @@ func main() {
 	// Gets the image info
 
 	if imageInfo := system.GetImageInfo(); imageInfo.ImageRef != "" || imageInfo.ImageTag != "" {
-		fmt.Fprintf(&out, " %s `%s:%s` \n\n", symbols.GetSymbol("oci"), imageInfo.ImageRef, imageInfo.ImageTag)
-	} else if system.IsBootcSystem() {
-		fmt.Fprintf(&out, " %s `%s` \n", symbols.GetSymbol("oci"), l.Get("Unknown system"))
+		fmt.Fprintf(&out, " %s `%s/%s:%s`\n\n", symbols.GetSymbol("oci"), imageInfo.ImageVendor, imageInfo.ImageName, imageInfo.ImageTag)
 	}
 
 	// Gets the Greenboot status
@@ -168,10 +171,10 @@ func main() {
 		fmt.Fprintf(&out, "\n")
 	}
 
-	// Gets a random tip
+	// Gets a random motd
 
 	if len(cfg.Motd.Messages) > 0 || len(cfg.Motd.Commands) > 0 {
-		fmt.Fprintf(&out, "%s", motd.GetRandomMessage(cfg))
+		fmt.Fprintf(&out, "%s", motd.GetRandomMotd(cfg))
 		fmt.Fprintf(&out, "\n\n")
 	}
 
@@ -211,5 +214,5 @@ func main() {
 
 	// Renders the output
 
-	fmt.Print(render.GetRender(cfg.Color, out.String()))
+	fmt.Print(render.GetRender(cfg.Color, out.String(), l))
 }

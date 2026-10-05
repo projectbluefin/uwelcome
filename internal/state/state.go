@@ -1,6 +1,7 @@
 package state
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	i "uwelcome/internal"
@@ -17,7 +18,7 @@ func Enable(l *gotext.Locale) {
 		i.Error(l.Get("Failed to enable the banner."), err)
 		return
 	}
-	i.Success(l.Get("The banner has been enabled."))
+	fmt.Println(l.Get("The banner has been enabled."))
 }
 
 // Disable is a wrapper for os.MkdirAll
@@ -32,7 +33,7 @@ func Disable(l *gotext.Locale) {
 		i.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
-	i.Success(l.Get("The banner has been disabled."))
+	fmt.Println(l.Get("The banner has been disabled."))
 	err = disabledFile.Close()
 	if err != nil {
 		return

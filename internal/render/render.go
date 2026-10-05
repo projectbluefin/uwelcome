@@ -175,14 +175,12 @@ func getAccentColor() string {
 	// Convert the XYZ value to RGB
 	rgbValue, err := xyzToRgb(xyzValue)
 	if err != nil {
-		fmt.Printf("Error occurred while converting XYZ to RGB: %v\n", err)
 		return "blue"
 	}
 
 	// Convert the RGB value to Hex
 	hexValue, err := rgbToHex(rgbValue)
 	if err != nil {
-		fmt.Printf("Error occurred while converting RGB to Hex: %v\n", err)
 		return "blue"
 	}
 
