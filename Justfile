@@ -1,5 +1,5 @@
 package := "uwelcome"
-version := `go run . version`
+version := "0.4.0"
 
 # This returns the current version of uwelcome. It is used in the build command to set the version of the binary.
 version :
@@ -15,14 +15,17 @@ build :
     @echo "Built {{package}} v{{version}} for Linux on x86_64 and arm64"
 
 # This checks if the dependencies are on the user's system
-check-deps:
-    @echo "Checking dependencies..."
-    @which go >/dev/null 2>&1 || (echo "You don't have \`go\` installed :(" && exit 1)
-    @which gettext >/dev/null 2>&1 || (echo "You don't have \`gettext\` installed :(" && exit 1)
+check-deps: check-deps-go check-deps-gettext
     @echo "All dependencies are installed ✅️"
 
+check-deps-go:
+    @which go >/dev/null 2>&1 || (echo "You don't have \`go\` installed :(" && exit 1)
+
+check-deps-gettext:
+    @which gettext >/dev/null 2>&1 || (echo "You don't have \`gettext\` installed :(" && exit 1)
+
 # This extracts the strings from uwelcome and makes a potfile with them
-extract-translations: check-deps
+extract-translations: check-deps-gettext
     #!/bin/bash
     echo "Extracting translations..."
     find . -type f -name '*.go' -not -path './vendor/*' -print0 |
@@ -35,12 +38,12 @@ extract-translations: check-deps
             --package-version="{{version}}" \
             --package-name="{{package}}" \
             --output=locales/default.pot \
-            || (echo "An error occurred while running extracting translations :(" \
+            || (echo "An error occurred while extracting translations :(" \
             && exit 1);
     echo "Translations extracted ✅️"
 
 # This generates the translation files for the specified language.
-translate lang: extract-translations
+translate lang: check-deps-go extract-translations
     #!/bin/bash
     # If the language already exists, update it
     if [ -f "locales/{{lang}}/default.po" ]; then \
