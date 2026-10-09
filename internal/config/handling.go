@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	i "uwelcome/internal"
+	"uwelcome/internal/symbols"
 
 	"github.com/leonelquinteros/gotext"
 )
@@ -78,7 +79,7 @@ func CheckWrapper(l *gotext.Locale) {
 	path, _ := target()
 	fmt.Println(path)
 	if err := check(path); err == nil {
-		fmt.Println(l.Get("The config file is good to go."))
+		fmt.Println(l.Get("The config file is OK.") + " " + symbols.GetSymbol("checkmark"))
 	} else if errors.Is(err, fs.ErrNotExist) {
 		i.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
 	} else {

@@ -17,7 +17,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-const version = "0.4.0"
+const version = "0.4.1"
 
 func main() {
 
@@ -83,9 +83,14 @@ func main() {
 			config.Reset(l)
 			return
 
+		case "help":
+			i.Usage(l)
+			return
+
 		// Default output
 		default:
-			i.Warn("Invalid command", nil)
+			i.Warn(l.Get("Invalid command."), nil)
+			i.Usage(l)
 			return
 		}
 	}
