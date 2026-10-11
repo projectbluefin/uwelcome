@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uwelcome 0.4.1\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-10-09 18:01+0200\n"
+"POT-Creation-Date: 2026-10-11 14:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,7 +175,7 @@ msgid "your system"
 msgstr ""
 
 #: main.go:135
-msgid "Boot Status"
+msgid "Boot Status:"
 msgstr ""
 
 #: main.go:137
@@ -191,11 +191,11 @@ msgid "Description"
 msgstr ""
 
 #: main.go:153
-msgid "List all available commands"
+msgid "Toggle this banner on/off"
 msgstr ""
 
 #: main.go:155
-msgid "Report an issue to the contributors"
+msgid "Launch Bootloader Restoring tool"
 msgstr ""
 
 #: main.go:157
@@ -203,57 +203,65 @@ msgid "Manage command line packages"
 msgstr ""
 
 #: main.go:159
-msgid "Enable terminal bling"
+msgid "Launch Installer"
 msgstr ""
 
 #: main.go:161
-msgid "Toggle this banner on/off"
+msgid "List all available commands"
 msgstr ""
 
 #: main.go:163
-msgid "View system information"
+msgid "Report an issue to the contributors"
 msgstr ""
 
 #: main.go:165
 msgid "Manually update the system"
 msgstr ""
 
-#: main.go:188
-msgid "Bluesky"
+#: main.go:167
+msgid "View system information"
 msgstr ""
 
-#: main.go:190
-msgid "Documentation"
+#: main.go:169
+msgid "Enable terminal bling"
 msgstr ""
 
 #: main.go:192
-msgid "Donate"
+msgid "Bluesky"
 msgstr ""
 
 #: main.go:194
-msgid "Discord"
+msgid "Documentation"
 msgstr ""
 
 #: main.go:196
-msgid "Discuss"
+msgid "Donate"
 msgstr ""
 
 #: main.go:198
-msgid "Report an issue"
+msgid "Discord"
 msgstr ""
 
 #: main.go:200
-msgid "Mastodon"
+msgid "Discuss"
 msgstr ""
 
 #: main.go:202
-msgid "Matrix"
+msgid "Report an issue"
 msgstr ""
 
 #: main.go:204
-msgid "Source code"
+msgid "Mastodon"
 msgstr ""
 
 #: main.go:206
+msgid "Matrix"
+msgstr ""
+
+#: main.go:208
+msgid "Source code"
+msgstr ""
+
+#: main.go:210
 msgid "Website"
 msgstr ""

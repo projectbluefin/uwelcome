@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: uwelcome 0.4.0\n"
+"Project-Id-Version: uwelcome 0.4.1\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-10-09 18:01+0200\n"
+"POT-Creation-Date: 2026-10-11 14:10+0200\n"
 "PO-Revision-Date: 2026-10-09 18:02+0200\n"
 "Last-Translator: Mimolet <themimolet@proton.me>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
@@ -181,8 +181,8 @@ msgid "your system"
 msgstr "votre système"
 
 #: main.go:135
-msgid "Boot Status"
-msgstr "État du démarrage"
+msgid "Boot Status:"
+msgstr "État du démarrage :"
 
 #: main.go:137
 msgid "Healthy"
@@ -197,69 +197,77 @@ msgid "Description"
 msgstr "Description"
 
 #: main.go:153
-msgid "List all available commands"
-msgstr "Liste toutes les commandes disponibles"
+msgid "Toggle this banner on/off"
+msgstr "Active/désactive cette bannière"
 
 #: main.go:155
-msgid "Report an issue to the contributors"
-msgstr "Signale un problème aux contributeurs"
+msgid "Launch Bootloader Restoring tool"
+msgstr "Lancer l'outil de restauration du Bootloader"
 
 #: main.go:157
 msgid "Manage command line packages"
 msgstr "Gère les paquets via le terminal"
 
 #: main.go:159
-msgid "Enable terminal bling"
-msgstr "Active le bling du terminal"
+msgid "Launch Installer"
+msgstr "Lancer l'installateur"
 
 #: main.go:161
-msgid "Toggle this banner on/off"
-msgstr "Active/désactive la bannière"
+msgid "List all available commands"
+msgstr "Liste toutes les commandes disponibles"
 
 #: main.go:163
-msgid "View system information"
-msgstr "Affiche les informations système"
+msgid "Report an issue to the contributors"
+msgstr "Signale un problème aux contributeurs"
 
 #: main.go:165
 msgid "Manually update the system"
 msgstr "Met à jour le système manuellement"
 
-#: main.go:188
+#: main.go:167
+msgid "View system information"
+msgstr "Affiche les informations système"
+
+#: main.go:169
+msgid "Enable terminal bling"
+msgstr "Active le bling du terminal"
+
+#: main.go:192
 msgid "Bluesky"
 msgstr "Bluesky"
 
-#: main.go:190
+#: main.go:194
 msgid "Documentation"
 msgstr "Documentation"
 
-#: main.go:192
+#: main.go:196
 msgid "Donate"
 msgstr "Faire un don"
 
-#: main.go:194
+#: main.go:198
 msgid "Discord"
 msgstr "Discord"
 
-#: main.go:196
+#: main.go:200
 msgid "Discuss"
 msgstr "Discussions"
 
-#: main.go:198
+#: main.go:202
 msgid "Report an issue"
 msgstr "Signaler un problème"
 
-#: main.go:200
+#: main.go:204
 msgid "Mastodon"
 msgstr "Mastodon"
 
-#: main.go:202
+#: main.go:206
 msgid "Matrix"
 msgstr "Matrix"
 
-#: main.go:204
+#: main.go:208
 msgid "Source code"
 msgstr "Code source"
 
-#: main.go:206
+#: main.go:210
 msgid "Website"
 msgstr "Site Web"
