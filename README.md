@@ -51,8 +51,9 @@ uWelcome supports the following commands (for now):
 disable:    Disables the MOTD for the user
 edit:       Opens the config file with the default terminal editor
 enable:     Enables the MOTD for the user
+help:       Shows the available commands
 reset:      Resets the config file to the default/system config
-status:     Prints the config file currently in use
+status:     Shows the config path and status
 toggle:     Toggles the MOTD on/off for the current user
 version:    Displays the version of uWelcome currently in use
 ```
