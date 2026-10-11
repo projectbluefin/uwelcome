@@ -36,7 +36,7 @@
     }
   ],
   "greeting": {
-    "prefix": "󰊴 "
+    "suffix": " 󰊴"
   },
   "motd": {
     "commands": [
