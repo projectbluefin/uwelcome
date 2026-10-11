@@ -47,7 +47,7 @@ func GetGreenbootInfo() string {
 	if err != nil {
 		return ""
 	}
-	return "`" + string(output) + "`"
+	return string(output)
 
 }
 

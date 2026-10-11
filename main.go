@@ -17,7 +17,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-const version = "0.4.1"
+const version = "0.4.2"
 
 func main() {
 
@@ -132,13 +132,13 @@ func main() {
 	// Gets the Greenboot status
 
 	if greenboot := system.GetGreenbootInfo(); greenboot != "" {
-		fmt.Fprintf(&out, "\n %s %s:", symbols.GetSymbol("boot"), l.Get("Boot Status"))
+		fmt.Fprintf(&out, "\n %s `%s", symbols.GetSymbol("boot"), l.Get("Boot Status:"))
 		if greenboot == "healthy" {
-			fmt.Fprintf(&out, "%s", "`"+l.Get("Healthy")+" "+symbols.GetSymbol("checkmark")+"`")
+			fmt.Fprintf(&out, "%s", l.Get("Healthy")+" "+symbols.GetSymbol("checkmark"))
 		} else {
-			fmt.Fprintf(&out, "%s", "`"+greenboot+"`")
+			fmt.Fprintf(&out, "%s", greenboot)
 		}
-		fmt.Fprintf(&out, " \n")
+		fmt.Fprintf(&out, "`\n")
 	}
 
 	// Command list
@@ -149,20 +149,24 @@ func main() {
 		for _, cmd := range cfg.Commands {
 			var commandDesc string
 			switch cmd.Desc {
+			case "banner_toggle":
+				commandDesc = l.Get("Toggle this banner on/off")
+			case "boot-restore":
+				commandDesc = l.Get("Launch Bootloader Restoring tool")
+			case "cli_pkg":
+				commandDesc = l.Get("Manage command line packages")
+			case "cmd_inst":
+				commandDesc = l.Get("Launch Installer")
 			case "cmd_list":
 				commandDesc = l.Get("List all available commands")
 			case "cmd_report":
 				commandDesc = l.Get("Report an issue to the contributors")
-			case "cli_pkg":
-				commandDesc = l.Get("Manage command line packages")
-			case "term_bling":
-				commandDesc = l.Get("Enable terminal bling")
-			case "banner_toggle":
-				commandDesc = l.Get("Toggle this banner on/off")
-			case "sys_info":
-				commandDesc = l.Get("View system information")
 			case "man_upd":
 				commandDesc = l.Get("Manually update the system")
+			case "sys_info":
+				commandDesc = l.Get("View system information")
+			case "term_bling":
+				commandDesc = l.Get("Enable terminal bling")
 			default:
 				commandDesc = cmd.Desc
 			}
