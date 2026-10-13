@@ -12,13 +12,11 @@ Want to configure or contribute to uWelcome ? Take a look at the [documentation]
 
 > Interessed in the translatable system MOTD instead ? Check [umotd](https://github.com/projectbluefin/umotd)
 
-## Roadmap
-
-Here are features that are planned for the future:
-
-- System message slot for displaying a message following a script or such (not randomized) [Maybe ?]
-
 ## How to try
+
+### Universal Blue system images
+
+uWelcome is currently featured in Bluefin Dakota!
 
 ### Download it from the releases page
 
