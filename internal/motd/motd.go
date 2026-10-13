@@ -3,6 +3,7 @@ package motd
 import (
 	"math/rand"
 	"os/exec"
+	"strings"
 	"uwelcome/internal/config"
 )
 
@@ -33,7 +34,9 @@ func getRandomMessage(cfg config.Config, size int) string {
 }
 
 func getRandomCommand(cfg config.Config, size int) string {
-	out, err := exec.Command(cfg.Motd.Commands[rand.Intn(size)]).Output()
+	parts := strings.Fields(cfg.Motd.Commands[rand.Intn(size)])
+	cmd := exec.Command(parts[0], parts[1:]...)
+	out, err := cmd.Output()
 	if err != nil {
 		return err.Error()
 	}
