@@ -5,7 +5,7 @@ go 1.27.2
 require (
 	charm.land/glamour/v2 v2.0.1
 	charm.land/lipgloss/v2 v2.0.6
-	github.com/leonelquinteros/gotext v1.7.2
+	github.com/leonelquinteros/gotext v1.8.0
 	github.com/rymdport/portal v0.4.2
 	golang.org/x/text v0.43.0
 )
