@@ -14,9 +14,22 @@ Want to configure or contribute to uWelcome ? Take a look at the [documentation]
 
 ## How to try
 
+### Homebrew
+
+uWelcome is available on Mimolet's personal tap, mainly for testing purposes.
+You can download it on your system with:
+
+```sh
+brew tap themimolet/tap
+brew trust themimolet/tap
+brew install uwelcome
+```
+
+Homebrew allows you to update uWelcome easily.
+
 ### Universal Blue system images
 
-uWelcome is currently featured in Bluefin Dakota!
+uWelcome is currently featured in Bluefin Dakota and Bluefin Utah!
 
 ### Download it from the releases page
 
@@ -45,15 +58,15 @@ You'll then have the `uwelcome` binary in the current directory, which you can j
 
 uWelcome supports the following commands (for now):
 
-```yml
-disable:    Disables the MOTD for the user
-edit:       Opens the config file with the default terminal editor
-enable:     Enables the MOTD for the user
-help:       Shows the available commands
-reset:      Resets the config file to the default/system config
-status:     Shows the config path and status
-toggle:     Toggles the MOTD on/off for the current user
-version:    Displays the version of uWelcome currently in use
+```sh
+disable     # Disables the MOTD for the user
+edit        # Opens the config file with the default terminal editor
+enable      # Enables the MOTD for the user
+help        # Shows the available commands
+reset       # Resets the config file to the default/system config
+status      # Shows the config path and status
+toggle      # Toggles the MOTD on/off for the current user
+version     # Displays the version of uWelcome currently in use
 ```
 
 Learn more in the [docs folder](https://github.com/projectbluefin/uwelcome/tree/main/docs) !
