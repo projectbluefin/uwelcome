@@ -12,12 +12,22 @@ Want to configure or contribute to uWelcome ? Take a look at the [documentation]
 
 > Interessed in the translatable system MOTD instead ? Check [umotd](https://github.com/projectbluefin/umotd)
 
-## How to try
+## Installation
+
+There are multiple ways to get uWelcome on your machine:
+
+### Universal Blue systems
+
+uWelcome is built in Universal Blue systems! It's currently featured in:
+
+- Bluefin Dakota
+- Bluefin Utah
+
+uWelcome will get updated with your system.
 
 ### Homebrew
 
-uWelcome is available on Mimolet's personal tap, mainly for testing purposes.
-You can download it on your system with:
+uWelcome is available on Mimolet's personal tap, you can download it on your system with:
 
 ```sh
 brew tap themimolet/tap
@@ -25,11 +35,7 @@ brew trust themimolet/tap
 brew install uwelcome
 ```
 
-Homebrew allows you to update uWelcome easily.
-
-### Universal Blue system images
-
-uWelcome is currently featured in Bluefin Dakota and Bluefin Utah!
+Homebrew allows you to update uWelcome easily, the tap will always feature the latest version.
 
 ### Download it from the releases page
 
@@ -41,9 +47,8 @@ You can then rename it to `uwelcome` and place it in your usual `/bin` folder.
 
 ### Compile from source
 
-You'll need to have [`go`](https://repology.org/project/go/versions) installed on your system to compile uWelcome from source.
-
-Then you'll have to simply clone the repository and then build the binary:
+You'll need to have [`go`](https://repology.org/project/go/versions) installed on your system first.
+Then you'll have clone the repository and then build the binary like this:
 
 ```sh
 git clone https://github.com/projectbluefin/uwelcome
@@ -54,9 +59,18 @@ go build
 
 You'll then have the `uwelcome` binary in the current directory, which you can just drop into your usual `/bin` folder and it will work without any further setup (except for the configuration file if you want to customize it).
 
+## Getting started
+
+### How to edit uWelcome
+
+Once you have it installed on your system, you'll most likely meet our default configuration or the system configuration when running `uwelcome`.
+You can edit the configuration in the terminal with `uwelcome edit` which will open the configuration file with your default terminal editor.
+
+If you want to know more about the configuration file, check [this page](https://github.com/projectbluefin/uwelcome/tree/main/docs/configuration.md) out.
+
 ## Commands
 
-uWelcome supports the following commands (for now):
+uWelcome supports the following commands:
 
 ```sh
 disable     # Disables the MOTD for the user

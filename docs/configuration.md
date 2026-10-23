@@ -17,37 +17,39 @@ Any other option not listed won't be translated.
 
 ## Breaking down the configuration file
 
-Here's a breakdown of the config file options - there's also the example folder if you want to see concrete use cases.
+Here's a breakdown of the config file options - there's also the [example folder](https://github.com/projectbluefin/uwelcome/tree/main/docs/examples) if you want to see concrete use cases.
 
-## Greeting
+### Greeting
 
 These options allow to customize the welcome message.
-You can just add a prefix and a suffix to the existing localized welcome message, but you can also add a fully custom message.
+You can add a prefix and a suffix to the existing localized welcome message.
 
-This :
+So, this:
 
 ```json
 {
   "greeting": {
-    "prefix": "> ",
-    "suffix": " !"
+    "prefix": "Hey, ",
+    "suffix": "!"
   }
 }
 ```
 
-would result in :
+would result in:
 
 ```txt
-> Welcome to Bluefin !
+Hey, Welcome to Bluefin!
 ```
 
-And this :
+You can also add a fully custom welcome message.
+
+So this:
 
 ```json
 {
   "greeting": {
     "suffix": " :D",
-    "message": "Booper dooper"
+    "message": "Hello there"
   }
 }
 ```
@@ -55,10 +57,10 @@ And this :
 would result in :
 
 ```txt
-Booper dooper :D
+Hello there :D
 ```
 
-## Commands
+### Commands
 
 This option allows you to define a list of commands to display in the banner.
 
@@ -97,7 +99,7 @@ Here are the unique codes you can use to get translated strings for command desc
 }
 ```
 
-## Motd
+### Motd
 
 The `motd` option allows to add messages to the banner !
 They will get chosen at random and can both be straight up messages or the result of commands.
@@ -116,7 +118,7 @@ They will get chosen at random and can both be straight up messages or the resul
 }
 ```
 
-## Links
+### Links
 
 This option allows to add custom links to the banner.
 
@@ -166,11 +168,11 @@ There are unique names you can use to get a translated name for the link :
 }
 ```
 
-## Color
+### Color
 
 This option allows the banner to use an accent color.
 
-Not setting this option or setting it to something other than the options below will result in the banner using the default colors.
+The banner uses the default colors if this option is not set or if it doesn't recognise the value.
 
 Here are all the different options:
 
