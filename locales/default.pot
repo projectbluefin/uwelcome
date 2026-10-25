@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: uwelcome 0.4.1\n"
+"Project-Id-Version: uwelcome 0.4.2\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-10-11 14:10+0200\n"
+"POT-Creation-Date: 2026-10-25 22:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,115 +153,115 @@ msgstr ""
 msgid "print uwelcome version"
 msgstr ""
 
-#: main.go:57
+#: main.go:62
 msgid "The banner is already enabled."
 msgstr ""
 
-#: main.go:64
+#: main.go:69
 msgid "The banner is already disabled."
 msgstr ""
 
-#: main.go:92
+#: main.go:97
 msgid "Invalid command."
 msgstr ""
 
-#: main.go:117
+#: main.go:122
 #, go-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: main.go:119
+#: main.go:124
 msgid "your system"
 msgstr ""
 
-#: main.go:135
+#: main.go:140
 msgid "Boot Status:"
 msgstr ""
 
-#: main.go:137
+#: main.go:142
 msgid "Healthy"
 msgstr ""
 
-#: main.go:147
+#: main.go:152
 msgid "Command"
 msgstr ""
 
-#: main.go:147
+#: main.go:152
 msgid "Description"
 msgstr ""
 
-#: main.go:153
+#: main.go:158
 msgid "Toggle this banner on/off"
 msgstr ""
 
-#: main.go:155
+#: main.go:160
 msgid "Launch Bootloader Restoring tool"
 msgstr ""
 
-#: main.go:157
+#: main.go:162
 msgid "Manage command line packages"
 msgstr ""
 
-#: main.go:159
+#: main.go:164
 msgid "Launch Installer"
 msgstr ""
 
-#: main.go:161
+#: main.go:166
 msgid "List all available commands"
 msgstr ""
 
-#: main.go:163
+#: main.go:168
 msgid "Report an issue to the contributors"
 msgstr ""
 
-#: main.go:165
+#: main.go:170
 msgid "Manually update the system"
 msgstr ""
 
-#: main.go:167
+#: main.go:172
 msgid "View system information"
 msgstr ""
 
-#: main.go:169
+#: main.go:174
 msgid "Enable terminal bling"
 msgstr ""
 
-#: main.go:192
+#: main.go:197
 msgid "Bluesky"
 msgstr ""
 
-#: main.go:194
+#: main.go:199
 msgid "Documentation"
 msgstr ""
 
-#: main.go:196
+#: main.go:201
 msgid "Donate"
 msgstr ""
 
-#: main.go:198
+#: main.go:203
 msgid "Discord"
 msgstr ""
 
-#: main.go:200
+#: main.go:205
 msgid "Discuss"
 msgstr ""
 
-#: main.go:202
+#: main.go:207
 msgid "Report an issue"
 msgstr ""
 
-#: main.go:204
+#: main.go:209
 msgid "Mastodon"
 msgstr ""
 
-#: main.go:206
+#: main.go:211
 msgid "Matrix"
 msgstr ""
 
-#: main.go:208
+#: main.go:213
 msgid "Source code"
 msgstr ""
 
-#: main.go:210
+#: main.go:215
 msgid "Website"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uwelcome 0.4.1\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-10-11 14:10+0200\n"
+"POT-Creation-Date: 2026-10-25 22:03+0100\n"
 "PO-Revision-Date: 2026-10-09 18:02+0200\n"
 "Last-Translator: Mimolet <themimolet@proton.me>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
@@ -159,115 +159,115 @@ msgstr "active/désactive la bannière de terminal"
 msgid "print uwelcome version"
 msgstr "affiche la version de uwelcome"
 
-#: main.go:57
+#: main.go:62
 msgid "The banner is already enabled."
 msgstr "La bannière est déjà activée."
 
-#: main.go:64
+#: main.go:69
 msgid "The banner is already disabled."
 msgstr "La bannière est déjà désactivée."
 
-#: main.go:92
+#: main.go:97
 msgid "Invalid command."
 msgstr "Commande invalide."
 
-#: main.go:117
+#: main.go:122
 #, go-format
 msgid "Welcome to %s"
 msgstr "Bienvenue sur %s"
 
-#: main.go:119
+#: main.go:124
 msgid "your system"
 msgstr "votre système"
 
-#: main.go:135
+#: main.go:140
 msgid "Boot Status:"
 msgstr "État du démarrage :"
 
-#: main.go:137
+#: main.go:142
 msgid "Healthy"
 msgstr "Sain"
 
-#: main.go:147
+#: main.go:152
 msgid "Command"
 msgstr "Commande"
 
-#: main.go:147
+#: main.go:152
 msgid "Description"
 msgstr "Description"
 
-#: main.go:153
+#: main.go:158
 msgid "Toggle this banner on/off"
 msgstr "Active/désactive cette bannière"
 
-#: main.go:155
+#: main.go:160
 msgid "Launch Bootloader Restoring tool"
 msgstr "Lancer l'outil de restauration du Bootloader"
 
-#: main.go:157
+#: main.go:162
 msgid "Manage command line packages"
 msgstr "Gère les paquets via le terminal"
 
-#: main.go:159
+#: main.go:164
 msgid "Launch Installer"
 msgstr "Lancer l'installateur"
 
-#: main.go:161
+#: main.go:166
 msgid "List all available commands"
 msgstr "Liste toutes les commandes disponibles"
 
-#: main.go:163
+#: main.go:168
 msgid "Report an issue to the contributors"
 msgstr "Signale un problème aux contributeurs"
 
-#: main.go:165
+#: main.go:170
 msgid "Manually update the system"
 msgstr "Met à jour le système manuellement"
 
-#: main.go:167
+#: main.go:172
 msgid "View system information"
 msgstr "Affiche les informations système"
 
-#: main.go:169
+#: main.go:174
 msgid "Enable terminal bling"
 msgstr "Active le bling du terminal"
 
-#: main.go:192
+#: main.go:197
 msgid "Bluesky"
 msgstr "Bluesky"
 
-#: main.go:194
+#: main.go:199
 msgid "Documentation"
 msgstr "Documentation"
 
-#: main.go:196
+#: main.go:201
 msgid "Donate"
 msgstr "Faire un don"
 
-#: main.go:198
+#: main.go:203
 msgid "Discord"
 msgstr "Discord"
 
-#: main.go:200
+#: main.go:205
 msgid "Discuss"
 msgstr "Discussions"
 
-#: main.go:202
+#: main.go:207
 msgid "Report an issue"
 msgstr "Signaler un problème"
 
-#: main.go:204
+#: main.go:209
 msgid "Mastodon"
 msgstr "Mastodon"
 
-#: main.go:206
+#: main.go:211
 msgid "Matrix"
 msgstr "Matrix"
 
-#: main.go:208
+#: main.go:213
 msgid "Source code"
 msgstr "Code source"
 
-#: main.go:210
+#: main.go:215
 msgid "Website"
 msgstr "Site Web"
