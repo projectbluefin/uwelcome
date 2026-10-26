@@ -25,18 +25,6 @@ uWelcome is built in Universal Blue systems! It's currently featured in:
 
 uWelcome will get updated with your system.
 
-### Homebrew
-
-uWelcome is available on Mimolet's personal tap, you can download it on your system with:
-
-```sh
-brew tap themimolet/tap
-brew trust themimolet/tap
-brew install uwelcome
-```
-
-Homebrew allows you to update uWelcome easily, the tap will always feature the latest version.
-
 ### Download it from the releases page
 
 You can download the latest release from the [releases page](https://github.com/projectbluefin/uwelcome/releases).

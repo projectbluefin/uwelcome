@@ -1,5 +1,5 @@
 package := "uwelcome"
-version := "0.4.2"
+version := "0.4.3"
 
 # This returns the current version of uwelcome. It is used in the build command to set the version of the binary.
 version:
