@@ -6,7 +6,7 @@ If you're managing a custom system, it might interest you.
 
 ## Where to put your config
 
-You can create a custom config file at `/etc/uwelcome/config.json` (system-wide) or `~/.config/uwelcome/config.json` (user-specific).
+You can create a custom config file at `/etc/uwelcome/config.toml` (system-wide) or `~/.config/uwelcome/config.toml` (user-specific).
 
 ## Translations ?
 
@@ -26,13 +26,10 @@ You can add a prefix and a suffix to the existing localized welcome message.
 
 So, this:
 
-```json
-{
-  "greeting": {
-    "prefix": "Hey, ",
-    "suffix": "!"
-  }
-}
+```toml
+[greeting]
+prefix = "Hey, "
+suffix = "!"
 ```
 
 would result in:
@@ -45,13 +42,10 @@ You can also add a fully custom welcome message.
 
 So this:
 
-```json
-{
-  "greeting": {
-    "suffix": " :D",
-    "message": "Hello there"
-  }
-}
+```toml
+[greeting]
+suffix = " :D"
+message = "Hello there"
 ```
 
 would result in :
@@ -68,35 +62,32 @@ Here are the unique codes you can use to get translated strings for command desc
 
 | Strings | English Display (translated) |
 | --- | --- |
-| `cmd_list` | "List of available commands" |
-| `cmd_report` | "Report an issue to the contributors" |
-| `cli_pkg` | "Manage command line packages" |
-| `term_bling` | "Enable terminal bling" |
 | `banner_toggle` | "Toggle this banner on/off" (there are built-in commands for this) |
-| `sys_info` | "View system info" |
+| `boot-restore` | "Launch Bootloader Restoring tool" |
+| `cli_pkg` | "Manage command line packages" |
+| `cmd_inst` | "Launch Installer" |
+| `cmd_list` | "List all available commands" |
+| `cmd_report` | "Report an issue to the contributors" |
 | `man_upd` | "Manually update the system" |
+| `sys_info` | "View system info" |
+| `term_bling` | "Enable terminal bling" |
 
-```json
-{
-  "commands": [
-    {
-      "cmd": "uwelcome toggle",
-      "desc": "banner_toggle"
-    },
-    {
-      "cmd": "fastfetch",
-      "desc": "sys_info"
-    },
-    {
-      "cmd": "brew help",
-      "desc": "cli_pkg"
-    },
-    {
-      "cmd": "cowsay",
-      "desc": "Display a cow saying something"
-    }
-  ]
-}
+```toml
+[[commands]]
+cmd = "uwelcome toggle"
+desc = "banner_toggle"
+
+[[commands]]
+cmd = "fastfetch"
+desc = "sys_info"
+
+[[commands]]
+cmd = "brew help"
+desc = "cli_pkg"
+
+[[commands]]
+cmd = "cowsay"
+desc = "Display a cow saying something"
 ```
 
 ### Motd
@@ -104,18 +95,13 @@ Here are the unique codes you can use to get translated strings for command desc
 The `motd` option allows to add messages to the banner !
 They will get chosen at random and can both be straight up messages or the result of commands.
 
-```json
-{
-  "motd": {
-    "messages" : [
-      "This is a custom tip by yours truly ! :D",
-      "This is another custom tip (they won't get translated)"
-    ],
-    "commands" : [
-      "umotd"
-    ]
-  }
-}
+```toml
+[motd]
+commands = ["umotd"] # Prints the result of umotd or its error
+messages = [
+  "This is a custom tip by yours truly ! :D",
+  "This is another custom tip (they won't get translated)",
+]
 ```
 
 ### Links
@@ -137,35 +123,18 @@ There are unique names you can use to get a translated name for the link :
 | `source` | "Source Code" |
 | `website` | "Website" |
 
-```json
-{
-  "links": [
-    {
-      "name": "issues",
-      "url": "https://issues.bazzite.gg/"
-    },
-    {
-      "name": "docs",
-      "url": "https://docs.bazzite.gg/"
-    },
-    {
-      "name": "discord",
-      "url": "https://discord.gg/bazzite"
-    },
-    {
-      "name": "bluesky",
-      "url": "https://bluesky.bazzite.gg/"
-    },
-    {
-      "name": "discuss",
-      "url": "https://github.com/ublue-os/aurora/discussions"
-    },
-    {
-      "name": "Custom Link (it won't get translated)",
-      "url": "https://www.innersloth.com/games/among-us/"
-    }
-  ]
-}
+```toml
+[[links]]
+name = "issues"
+url = "https://issues.bazzite.gg/"
+
+[[links]]
+name = "docs"
+url = "https://docs.bazzite.gg/"
+
+[[links]]
+name = "Custom Link (it won't get translated)"
+url = "https://www.innersloth.com/games/among-us/"
 ```
 
 ### Color
@@ -192,8 +161,6 @@ Here are all the different options:
 
 > Those set the color to a predefined color. More could be added in the future.
 
-```json
-{
-  "color": "orange"
-}
+```toml
+color = "orange"
 ```
