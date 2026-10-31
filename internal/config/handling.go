@@ -2,7 +2,6 @@ package config
 
 import (
 	"bufio"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io/fs"
@@ -15,10 +14,11 @@ import (
 	i "uwelcome/internal"
 	"uwelcome/internal/symbols"
 
+	"github.com/BurntSushi/toml"
 	"github.com/leonelquinteros/gotext"
 )
 
-const etcPath = "/etc/uwelcome/config.json"
+const etcPath = "/etc/uwelcome/config.toml"
 
 var homePath = getHomePath()
 var isRoot = (os.Geteuid() == 0)
@@ -29,7 +29,7 @@ func getHomePath() string {
 	if err != nil {
 		return ""
 	}
-	return filepath.Join(dir, "uwelcome", "config.json")
+	return filepath.Join(dir, "uwelcome", "config.toml")
 }
 
 // createDefault create the default config to the given path
@@ -37,7 +37,7 @@ func createDefault(path string) error {
 	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 		return err
 	}
-	data, err := json.MarshalIndent(defaultConfig(), "", "  ")
+	data, err := toml.Marshal(defaultConfig())
 	if err != nil {
 		return err
 	}
@@ -74,17 +74,47 @@ func check(path string) error {
 	return err
 }
 
+// check returns any problem from the given config file
+func getConfigVersion(path string) int {
+	var fileVersion ConfigCheck
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return -1
+	}
+
+	_, decodeErr := toml.Decode(string(data), &fileVersion)
+	if decodeErr != nil {
+		return -1
+	}
+
+	return fileVersion.Version
+}
+
+func IsVersionSupported(path string) bool {
+	return ConfigVersion == getConfigVersion(path)
+}
+
 // CheckWrapper uses check() on a path and prints the status of the config of that path
 func CheckWrapper(l *gotext.Locale) {
-	path, _ := target()
+	path, _ := Target()
 	fmt.Println(path)
-	if err := check(path); err == nil {
-		fmt.Println(l.Get("The config file is OK.") + " " + symbols.GetSymbol("checkmark"))
-	} else if errors.Is(err, fs.ErrNotExist) {
-		i.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
-	} else {
-		i.Warn(l.Get("There is something wrong with the config file. uWelcome will use either your system's config or the default."), err)
+
+	if err := check(path); err != nil {
+		if errors.Is(err, fs.ErrNotExist) {
+			i.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
+			return
+		} else {
+			i.Warn(l.Get("There is something wrong with the config file. uWelcome will use either your system's config or the default."), err)
+			return
+		}
 	}
+
+	if !IsVersionSupported(path) {
+		i.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", ConfigVersion), nil)
+	}
+
+	fmt.Println(l.Get("The config file is OK.") + " " + symbols.GetSymbol("checkmark"))
 }
 
 // loadConfig loads the config at the given path or returns an error
@@ -94,7 +124,8 @@ func loadConfig(path string) (Config, error) {
 	if err != nil {
 		return c, err
 	}
-	return c, json.Unmarshal(data, &c)
+	_, decodeErr := toml.Decode(string(data), &c)
+	return c, decodeErr
 }
 
 // GetPath returns the path to a valid config file or a blank string if none is found
@@ -119,8 +150,8 @@ func GetConfig() (Config, string) {
 	return defaultConfig(), ""
 }
 
-// target detects if the current user is root and then returns the config path and the function to create the config file accordingly
-func target() (path string, create func() error) {
+// Target detects if the current user is root and then returns the config path and the function to create the config file accordingly
+func Target() (path string, create func() error) {
 	if isRoot {
 		return etcPath, createEtcConfig
 	}
@@ -129,7 +160,7 @@ func target() (path string, create func() error) {
 
 // Edit detects if the user has admin privileges and lets them edit the corresponding configuration file
 func Edit(l *gotext.Locale) {
-	configPath, create := target()
+	configPath, create := Target()
 
 	if exists, err := i.DoesFileExist(configPath); exists && err != nil {
 		i.Error(l.Get("Failed to access the config path."), err)
@@ -162,7 +193,7 @@ func Edit(l *gotext.Locale) {
 
 // Reset resets the config to the system/default configuration
 func Reset(l *gotext.Locale) {
-	configPath, create := target()
+	configPath, create := Target()
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println(l.Get("Are you sure? This will reset your configuration file (%s) (yes/NO)", configPath))
 	output, err := reader.ReadString('\n')

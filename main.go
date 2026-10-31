@@ -21,18 +21,15 @@ import (
 //go:embed all:locales
 var localesFS embed.FS
 
-const version = "0.4.3"
+const version = "0.5.0"
 
 func main() {
 
 	// Loads the locale based on the system's locale
-
 	l := gotext.NewLocaleFSWithPath(locale.GetLocale(localesFS), localesFS, "locales")
 	l.AddDomain("default")
 
 	i.InitCommonStrings(l)
-
-	isDisabled, _ := i.DoesFileExist(state.DisabledFile)
 
 	// Handles command line arguments
 	if len(os.Args) > 1 {
@@ -45,33 +42,18 @@ func main() {
 
 		// Toggles the banner
 		case "toggle":
-			if isDisabled {
-				state.Enable(l)
-				return
-			} else {
-				state.Disable(l)
-				return
-			}
+			state.Toggle(l)
+			return
 
 		// Enables the banner
 		case "enable":
-			if isDisabled {
-				state.Enable(l)
-				return
-			} else {
-				fmt.Println(l.Get("The banner is already enabled."))
-				return
-			}
+			state.Enable(l)
+			return
 
 		// Disables the banner
 		case "disable":
-			if isDisabled {
-				fmt.Println(l.Get("The banner is already disabled."))
-				return
-			} else {
-				state.Disable(l)
-				return
-			}
+			state.Disable(l)
+			return
 
 		// Shows the path and state of the config file
 		case "status":
@@ -101,8 +83,13 @@ func main() {
 	}
 
 	// Exits if the banner is disabled
+	if state.IsDisabled {
+		return
+	}
 
-	if isDisabled {
+	// Exists if the version is unsupported
+	if config.GetPath() != "" && !config.IsVersionSupported(config.GetPath()) {
+		i.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", config.ConfigVersion), nil)
 		return
 	}
 
@@ -195,14 +182,14 @@ func main() {
 			switch link.Name {
 			case "bluesky":
 				linkLabel = symbols.GetSymbol("bluesky") + " [" + l.Get("Bluesky") + "]"
-			case "docs":
-				linkLabel = symbols.GetSymbol("docs") + " [" + l.Get("Documentation") + "]"
-			case "donate":
-				linkLabel = symbols.GetSymbol("donate") + " [" + l.Get("Donate") + "]"
 			case "discord":
 				linkLabel = symbols.GetSymbol("discord") + " [" + l.Get("Discord") + "]"
 			case "discuss":
 				linkLabel = symbols.GetSymbol("discuss") + " [" + l.Get("Discuss") + "]"
+			case "docs":
+				linkLabel = symbols.GetSymbol("docs") + " [" + l.Get("Documentation") + "]"
+			case "donate":
+				linkLabel = symbols.GetSymbol("donate") + " [" + l.Get("Donate") + "]"
 			case "issues":
 				linkLabel = symbols.GetSymbol("issues") + " [" + l.Get("Report an issue") + "]"
 			case "mastodon":

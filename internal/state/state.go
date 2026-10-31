@@ -9,11 +9,36 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-var DisabledFile string = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
+var disabledFile string = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
+var IsDisabled, _ = i.DoesFileExist(disabledFile)
 
-// Enable is a wrapper for os.remove
+func Toggle(l *gotext.Locale) {
+	if IsDisabled {
+		setEnabled(l)
+	} else {
+		setDisabled(l)
+	}
+}
+
 func Enable(l *gotext.Locale) {
-	err := os.Remove(DisabledFile)
+	if IsDisabled {
+		setEnabled(l)
+	} else {
+		fmt.Println(l.Get("The banner is already enabled."))
+	}
+}
+
+func Disable(l *gotext.Locale) {
+	if IsDisabled {
+		fmt.Println(l.Get("The banner is already disabled."))
+	} else {
+		setDisabled(l)
+	}
+}
+
+// setEnabled is a wrapper for os.remove
+func setEnabled(l *gotext.Locale) {
+	err := os.Remove(disabledFile)
 	if err != nil && !os.IsNotExist(err) {
 		i.Error(l.Get("Failed to enable the banner."), err)
 		return
@@ -21,20 +46,20 @@ func Enable(l *gotext.Locale) {
 	fmt.Println(l.Get("The banner has been enabled."))
 }
 
-// Disable is a wrapper for os.MkdirAll
-func Disable(l *gotext.Locale) {
-	err := os.MkdirAll(filepath.Dir(DisabledFile), 0755)
+// setDisabled is a wrapper for os.MkdirAll
+func setDisabled(l *gotext.Locale) {
+	err := os.MkdirAll(filepath.Dir(disabledFile), 0755)
 	if err != nil {
 		i.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
-	disabledFile, err := os.Create(DisabledFile)
+	newDisabledFile, err := os.Create(disabledFile)
 	if err != nil {
 		i.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
 	fmt.Println(l.Get("The banner has been disabled."))
-	err = disabledFile.Close()
+	err = newDisabledFile.Close()
 	if err != nil {
 		return
 	}

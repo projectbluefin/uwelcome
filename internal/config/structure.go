@@ -1,53 +1,61 @@
 package config
 
+const ConfigVersion = 1
+
+type ConfigCheck struct {
+	Version int `toml:"version"`
+}
+
 type Config struct {
-	Color    string    `json:"color"`
-	Commands []Command `json:"commands"`
-	Greeting Greeting  `json:"greeting"`
-	Links    []Link    `json:"links"`
-	Motd     Motd      `json:"motd"`
+	Version  int       `toml:"version"`
+	Color    string    `toml:"color"`
+	Greeting Greeting  `toml:"greeting"`
+	Commands []Command `toml:"commands"`
+	Links    []Link    `toml:"links"`
+	Motd     Motd      `toml:"motd"`
 }
 
 type Command struct {
-	Cmd  string `json:"cmd"`
-	Desc string `json:"desc"`
+	Cmd  string `toml:"cmd"`
+	Desc string `toml:"desc"`
 }
 
 type Greeting struct {
-	Prefix  string `json:"prefix"`
-	Suffix  string `json:"suffix"`
-	Message string `json:"message"`
+	Prefix  string `toml:"prefix"`
+	Suffix  string `toml:"suffix"`
+	Message string `toml:"message"`
 }
 
 type Link struct {
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Name string `toml:"name"`
+	URL  string `toml:"url"`
 }
 
 type Motd struct {
-	Messages []string `json:"messages"`
-	Commands []string `json:"commands"`
+	Messages []string `toml:"messages"`
+	Commands []string `toml:"commands"`
 }
 
 // defaultConfig returns a sensible default config
 func defaultConfig() Config {
 	return Config{
+		Version: ConfigVersion,
 		Commands: []Command{
 			{Cmd: "uwelcome toggle", Desc: "banner_toggle"},
 			{Cmd: "fastfetch", Desc: "sys_info"},
 			{Cmd: "brew help", Desc: "cli_pkg"},
 		},
 		Links: []Link{
-			{Name: "source", URL: "https://github.com/projectbluefin/uwelcome/"},
-			{Name: "issues", URL: "https://github.com/projectbluefin/uwelcome/issues"},
-			{Name: "docs", URL: "https://github.com/projectbluefin/uwelcome/tree/main/docs"},
+			{Name: "source", URL: "https://github.com/ublue-os/uwelcome/"},
+			{Name: "issues", URL: "https://github.com/ublue-os/uwelcome/issues"},
+			{Name: "docs", URL: "https://github.com/ublue-os/uwelcome/tree/main/docs"},
 		},
 		Motd: Motd{
 			Messages: []string{
-				"uWelcome is made with ❤️  by Project Bluefin.",
-				"uWelcome is free and open source! [Check out the source code on GitHub](https://github.com/projectbluefin/uwelcome/)",
+				"uWelcome is made with ❤️ by Universal Blue.",
+				"uWelcome is free and open source! [Check out the source code on GitHub](https://github.com/ublue-os/uwelcome/)",
 				"uWelcome is a terminal welcome banner written in Go.",
-				"uWelcome is translatable! You can help translate it in your language. Read the [translation guide](https://github.com/projectbluefin/uwelcome/blob/main/TRANSLATION.md)",
+				"uWelcome is translatable! You can help translate it in your language. Read the [translation guide](https://github.com/ublue-os/uwelcome/blob/main/TRANSLATION.md)",
 				"You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`",
 			},
 		},
