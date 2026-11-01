@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	i "uwelcome/internal"
+	"uwelcome/internal"
 
 	"github.com/leonelquinteros/gotext"
 )
 
 var disabledFile string = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
-var IsDisabled, _ = i.DoesFileExist(disabledFile)
+var IsDisabled, _ = internal.DoesFileExist(disabledFile)
 
 func Toggle(l *gotext.Locale) {
 	if IsDisabled {
@@ -40,7 +40,7 @@ func Disable(l *gotext.Locale) {
 func setEnabled(l *gotext.Locale) {
 	err := os.Remove(disabledFile)
 	if err != nil && !os.IsNotExist(err) {
-		i.Error(l.Get("Failed to enable the banner."), err)
+		internal.Error(l.Get("Failed to enable the banner."), err)
 		return
 	}
 	fmt.Println(l.Get("The banner has been enabled."))
@@ -50,12 +50,12 @@ func setEnabled(l *gotext.Locale) {
 func setDisabled(l *gotext.Locale) {
 	err := os.MkdirAll(filepath.Dir(disabledFile), 0755)
 	if err != nil {
-		i.Error(l.Get("Failed to disable the banner."), err)
+		internal.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
 	newDisabledFile, err := os.Create(disabledFile)
 	if err != nil {
-		i.Error(l.Get("Failed to disable the banner."), err)
+		internal.Error(l.Get("Failed to disable the banner."), err)
 		return
 	}
 	fmt.Println(l.Get("The banner has been disabled."))

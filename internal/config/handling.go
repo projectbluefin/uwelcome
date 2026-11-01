@@ -11,7 +11,7 @@ import (
 	"slices"
 	"strings"
 
-	i "uwelcome/internal"
+	"uwelcome/internal"
 	"uwelcome/internal/symbols"
 
 	"github.com/BurntSushi/toml"
@@ -49,11 +49,11 @@ func createEtcConfig() error {
 }
 
 func createHomeConfig() error {
-	if exists, _ := i.DoesFileExist(etcPath); exists && check(etcPath) == nil {
+	if exists, _ := internal.DoesFileExist(etcPath); exists && check(etcPath) == nil {
 		return copyFile(etcPath, homePath)
-	} else {
-		return createDefault(homePath)
 	}
+
+	return createDefault(homePath)
 }
 
 // copyFile copies a file from a source path to the destination path
@@ -74,25 +74,21 @@ func check(path string) error {
 	return err
 }
 
-// check returns any problem from the given config file
-func getConfigVersion(path string) int {
+// getConfigVersion returns the config version & any problems related to its retrieval
+func getConfigVersion(path string) (int, error) {
 	var fileVersion ConfigCheck
 
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return -1
-	}
-
-	_, decodeErr := toml.Decode(string(data), &fileVersion)
+	_, decodeErr := toml.DecodeFile(path, &fileVersion)
 	if decodeErr != nil {
-		return -1
+		return 0, decodeErr
 	}
 
-	return fileVersion.Version
+	return fileVersion.Version, nil
 }
 
-func IsVersionSupported(path string) bool {
-	return ConfigVersion == getConfigVersion(path)
+func IsVersionSupported(path string) (bool, error) {
+	version, err := getConfigVersion(path)
+	return ConfigVersion == version, err
 }
 
 // CheckWrapper uses check() on a path and prints the status of the config of that path
@@ -102,16 +98,18 @@ func CheckWrapper(l *gotext.Locale) {
 
 	if err := check(path); err != nil {
 		if errors.Is(err, fs.ErrNotExist) {
-			i.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
-			return
-		} else {
-			i.Warn(l.Get("There is something wrong with the config file. uWelcome will use either your system's config or the default."), err)
+			internal.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
 			return
 		}
+
+		internal.Warn(l.Get("There is something wrong with the config file. uWelcome will use either your system's config or the default."), err)
+		return
 	}
 
-	if !IsVersionSupported(path) {
-		i.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", ConfigVersion), nil)
+	isSupported, _ := IsVersionSupported(path)
+
+	if !isSupported {
+		internal.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", ConfigVersion), nil)
 	}
 
 	fmt.Println(l.Get("The config file is OK.") + " " + symbols.GetSymbol("checkmark"))
@@ -120,11 +118,7 @@ func CheckWrapper(l *gotext.Locale) {
 // loadConfig loads the config at the given path or returns an error
 func loadConfig(path string) (Config, error) {
 	var c Config
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return c, err
-	}
-	_, decodeErr := toml.Decode(string(data), &c)
+	_, decodeErr := toml.DecodeFile(path, &c)
 	return c, decodeErr
 }
 
@@ -162,12 +156,12 @@ func Target() (path string, create func() error) {
 func Edit(l *gotext.Locale) {
 	configPath, create := Target()
 
-	if exists, err := i.DoesFileExist(configPath); exists && err != nil {
-		i.Error(l.Get("Failed to access the config path."), err)
+	if exists, err := internal.DoesFileExist(configPath); exists && err != nil {
+		internal.Error(l.Get("Failed to access the config path."), err)
 		return
-	} else if !exists && err != nil {
-		if err := create(); err != nil {
-			i.Error(l.Get("Failed to create the default config."), err)
+	} else if !exists {
+		if createErr := create(); createErr != nil {
+			internal.Error(l.Get("Failed to create the default config."), createErr)
 			return
 		}
 	}
@@ -184,44 +178,45 @@ func Edit(l *gotext.Locale) {
 	cmdEdit.Stderr = os.Stderr
 
 	if err := cmdEdit.Run(); err != nil {
-		i.Error(l.Get("Failed to edit the config file."), err)
+		internal.Error(l.Get("Failed to edit the config file."), err)
 		return
 	}
 
 	CheckWrapper(l)
 }
 
-// Reset resets the config to the system/default configuration
+// Reset resets the config to the system/default config
 func Reset(l *gotext.Locale) {
 	configPath, create := Target()
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println(l.Get("Are you sure? This will reset your configuration file (%s) (yes/NO)", configPath))
-	output, err := reader.ReadString('\n')
+	parsedResponse := ""
+
+	fmt.Println(l.Get("Are you sure? This will reset your config file (%s) (yes/NO)", configPath))
+	r := bufio.NewReader(os.Stdin)
+
+	response, err := r.ReadString('\n')
 	if err != nil {
-		i.Error(l.Get("There was an error in processing your answer"), err)
+		internal.Error(l.Get("There was an error parsing your answer."), err)
 		return
 	}
-	output = strings.ToLower(output)
-	output = strings.TrimSpace(output)
-	tmpTable := strings.Fields(output)
+
+	tmpTable := strings.Fields(response)
 	if len(tmpTable) > 0 {
-		output = tmpTable[0]
-	} else {
-		output = ""
+		parsedResponse = tmpTable[0]
 	}
 
-	responses := []string{}
+	parsedResponse = strings.ToLower(parsedResponse)
 
-	responses = append(responses, []string{
-		l.GetC("yes", "Single word affirmative response in response to a question (lower case only)"),
-		l.GetC("y", "First letter of the single word affirmative response in response to a question (lower case only)"),
-		"yes", "y"}...)
-
-	if slices.Contains(responses, output) {
+	if slices.Contains([]string{
+		l.GetC("yes", "Word used to give an affirmative response (lower case only)"),
+		l.GetC("y", "First letter of the word used to give an affirmative response (lower case only)"),
+		"yes", "y",
+	}, parsedResponse) {
 		if err := create(); err != nil {
-			i.Error(l.Get("Failed to reset the configuration file."), err)
+			internal.Error(l.Get("Failed to reset the config file."), err)
 		} else {
 			fmt.Println(l.Get("Config file reset successfully."))
 		}
+	} else {
+		fmt.Println(l.Get("Config file untouched."))
 	}
 }

@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	i "uwelcome/internal"
+	"uwelcome/internal"
 	"uwelcome/internal/config"
 	"uwelcome/internal/locale"
 	"uwelcome/internal/motd"
@@ -29,7 +29,7 @@ func main() {
 	l := gotext.NewLocaleFSWithPath(locale.GetLocale(localesFS), localesFS, "locales")
 	l.AddDomain("default")
 
-	i.InitCommonStrings(l)
+	internal.InitCommonStrings(l)
 
 	// Handles command line arguments
 	if len(os.Args) > 1 {
@@ -71,13 +71,13 @@ func main() {
 			return
 
 		case "help":
-			i.Usage(l)
+			internal.Usage(l)
 			return
 
 		// Default output
 		default:
-			i.Warn(l.Get("Invalid command."), nil)
-			i.Usage(l)
+			internal.Warn(l.Get("Invalid command."), nil)
+			internal.Usage(l)
 			return
 		}
 	}
@@ -87,9 +87,9 @@ func main() {
 		return
 	}
 
-	// Exists if the version is unsupported
-	if config.GetPath() != "" && !config.IsVersionSupported(config.GetPath()) {
-		i.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", config.ConfigVersion), nil)
+	// Exits if the version is unsupported
+	if isSupported, _ := config.IsVersionSupported(config.GetPath()); config.GetPath() != "" && !isSupported {
+		internal.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", config.ConfigVersion), nil)
 		return
 	}
 

@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"regexp"
 
-	i "uwelcome/internal"
+	"uwelcome/internal"
 )
 
 type ImageInfo struct {
@@ -31,7 +31,7 @@ func GetDesktop() string {
 
 // GetGreenbootInfo is a command to greenboot status
 func GetGreenbootInfo() string {
-	if exists, err := i.DoesFileExist("/etc/motd.d/boot-status"); !exists || err != nil {
+	if exists, err := internal.DoesFileExist("/etc/motd.d/boot-status"); !exists || err != nil {
 		return ""
 	}
 
