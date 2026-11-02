@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"uwelcome/cmd"
 	"uwelcome/internal"
 	"uwelcome/internal/config"
 	"uwelcome/internal/locale"
@@ -39,42 +40,42 @@ func main() {
 
 		// Toggles the banner
 		case "toggle":
-			state.Toggle(l)
+			cmd.Toggle(l)
 			return
 
 		// Enables the banner
 		case "enable":
-			state.Enable(l)
+			cmd.Enable(l)
 			return
 
 		// Disables the banner
 		case "disable":
-			state.Disable(l)
+			cmd.Disable(l)
 			return
 
 		// Shows the path and state of the config file
 		case "status":
-			config.CheckWrapper(l)
+			cmd.Status(l)
 			return
 
 		// Opens the default editor to the config file
 		case "edit":
-			config.Edit(l)
+			cmd.Edit(l)
 			return
 
 		// Resets the config file
 		case "reset":
-			config.Reset(l)
+			cmd.Reset(l)
 			return
 
 		case "help":
-			internal.Usage(l)
+			cmd.Usage(l)
 			return
 
 		// Default output
 		default:
 			internal.Warn(l.Get("Invalid command."), nil)
-			internal.Usage(l)
+			cmd.Usage(l)
 			os.Exit(1)
 		}
 	}
@@ -84,15 +85,8 @@ func main() {
 		return
 	}
 
-	// Exits if the version is unsupported
-	path := config.GetPath()
-	if isSupported, _ := config.IsVersionSupported(path); path != "" && !isSupported {
-		internal.Error(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", config.ConfigVersion), nil)
-		os.Exit(1)
-	}
-
 	// Loads the configuration from the system's config file
-	cfg, _ := config.GetConfig()
+	cfg, _, _ := config.Get()
 
 	// Grouping the sections to render
 	sections := []string{

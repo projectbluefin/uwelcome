@@ -1,6 +1,6 @@
 package config
 
-const ConfigVersion = 1
+const Version = 1
 
 type ConfigCheck struct {
 	Version int `toml:"version"`
@@ -37,9 +37,9 @@ type Motd struct {
 }
 
 // defaultConfig returns a sensible default config
-func defaultConfig() Config {
+func Default() Config {
 	return Config{
-		Version: ConfigVersion,
+		Version: Version,
 		Commands: []Command{
 			{Cmd: "uwelcome toggle", Desc: "banner_toggle"},
 			{Cmd: "fastfetch", Desc: "sys_info"},

@@ -20,32 +20,8 @@ func getDisabledFile() string {
 	return filepath.Join(dir, "uwelcome", "disabled")
 }
 
-func Toggle(l *gotext.Locale) {
-	if IsDisabled {
-		setEnabled(l)
-	} else {
-		setDisabled(l)
-	}
-}
-
-func Enable(l *gotext.Locale) {
-	if IsDisabled {
-		setEnabled(l)
-	} else {
-		fmt.Println(l.Get("The banner is already enabled."))
-	}
-}
-
-func Disable(l *gotext.Locale) {
-	if IsDisabled {
-		fmt.Println(l.Get("The banner is already disabled."))
-	} else {
-		setDisabled(l)
-	}
-}
-
 // setEnabled is a wrapper for os.remove
-func setEnabled(l *gotext.Locale) {
+func SetEnabled(l *gotext.Locale) {
 	err := os.Remove(disabledFile)
 	if err != nil && !os.IsNotExist(err) {
 		internal.Error(l.Get("Failed to enable the banner."), err)
@@ -55,7 +31,7 @@ func setEnabled(l *gotext.Locale) {
 }
 
 // setDisabled is a wrapper for os.MkdirAll
-func setDisabled(l *gotext.Locale) {
+func SetDisabled(l *gotext.Locale) {
 	err := os.MkdirAll(filepath.Dir(disabledFile), 0755)
 	if err != nil {
 		internal.Error(l.Get("Failed to disable the banner."), err)
