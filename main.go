@@ -9,11 +9,8 @@ import (
 	"uwelcome/internal"
 	"uwelcome/internal/config"
 	"uwelcome/internal/locale"
-	"uwelcome/internal/motd"
 	"uwelcome/internal/render"
 	"uwelcome/internal/state"
-	"uwelcome/internal/symbols"
-	"uwelcome/internal/system"
 
 	"github.com/leonelquinteros/gotext"
 )
@@ -78,7 +75,7 @@ func main() {
 		default:
 			internal.Warn(l.Get("Invalid command."), nil)
 			internal.Usage(l)
-			return
+			os.Exit(1)
 		}
 	}
 
@@ -88,127 +85,25 @@ func main() {
 	}
 
 	// Exits if the version is unsupported
-	if isSupported, _ := config.IsVersionSupported(config.GetPath()); config.GetPath() != "" && !isSupported {
-		internal.Warn(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", config.ConfigVersion), nil)
-		return
+	path := config.GetPath()
+	if isSupported, _ := config.IsVersionSupported(path); path != "" && !isSupported {
+		internal.Error(l.Get("Your config file's version isn't supported by this version of uwelcome. This version supports config version %d.", config.ConfigVersion), nil)
+		os.Exit(1)
 	}
 
 	// Loads the configuration from the system's config file
-
 	cfg, _ := config.GetConfig()
 
-	var out strings.Builder
-
-	// Greets the user
-
-	fmt.Fprintf(&out, "# %s", cfg.Greeting.Prefix)
-
-	if len(cfg.Greeting.Message) > 0 {
-		out.WriteString(cfg.Greeting.Message)
-	} else {
-		out.WriteString(l.Get("Welcome to %s", system.OSName))
-		if system.OSName == "" {
-			l.Get("your system")
-		}
+	// Grouping the sections to render
+	sections := []string{
+		render.GetGreeting(cfg, l),
+		render.GetInfo(),
+		render.GetGreenboot(l),
+		render.GetCommands(cfg, l),
+		render.GetMotd(cfg),
+		render.GetLinks(cfg, l),
 	}
 
-	out.WriteString(cfg.Greeting.Suffix)
-	out.WriteString("\n")
-
-	// Gets the image info
-
-	if imageInfo := system.GetImageInfo(); imageInfo.ImageRef != "" || imageInfo.ImageTag != "" {
-		fmt.Fprintf(&out, " %s `%s/%s:%s`\n\n", symbols.GetSymbol("oci"), imageInfo.ImageVendor, imageInfo.ImageName, imageInfo.ImageTag)
-	}
-
-	// Gets the Greenboot status
-
-	if greenboot := system.GetGreenbootInfo(); greenboot != "" {
-		fmt.Fprintf(&out, "\n %s `%s", symbols.GetSymbol("boot"), l.Get("Boot Status:"))
-		if greenboot == "healthy" {
-			fmt.Fprintf(&out, "%s", l.Get("Healthy")+" "+symbols.GetSymbol("checkmark"))
-		} else {
-			fmt.Fprintf(&out, "%s", greenboot)
-		}
-		fmt.Fprintf(&out, "`\n")
-	}
-
-	// Command list
-
-	if len(cfg.Commands) > 0 {
-		fmt.Fprintf(&out, " | %s %s | %s | \n", symbols.GetSymbol("command_palette"), l.Get("Command"), l.Get("Description"))
-		fmt.Fprintf(&out, "| ------------ | ----------- |\n")
-		for _, cmd := range cfg.Commands {
-			var commandDesc string
-			switch cmd.Desc {
-			case "banner_toggle":
-				commandDesc = l.Get("Toggle this banner on/off")
-			case "boot-restore":
-				commandDesc = l.Get("Launch Bootloader Restoring tool")
-			case "cli_pkg":
-				commandDesc = l.Get("Manage command line packages")
-			case "cmd_inst":
-				commandDesc = l.Get("Launch Installer")
-			case "cmd_list":
-				commandDesc = l.Get("List all available commands")
-			case "cmd_report":
-				commandDesc = l.Get("Report an issue to the contributors")
-			case "man_upd":
-				commandDesc = l.Get("Manually update the system")
-			case "sys_info":
-				commandDesc = l.Get("View system information")
-			case "term_bling":
-				commandDesc = l.Get("Enable terminal bling")
-			default:
-				commandDesc = cmd.Desc
-			}
-			fmt.Fprintf(&out, "| `%s` | %s |\n", cmd.Cmd, commandDesc)
-		}
-		fmt.Fprintf(&out, "\n")
-	}
-
-	// Gets a random motd
-
-	if len(cfg.Motd.Messages) > 0 || len(cfg.Motd.Commands) > 0 {
-		fmt.Fprintf(&out, "%s", motd.GetRandomMotd(cfg))
-		fmt.Fprintf(&out, "\n\n")
-	}
-
-	// Gets the links
-
-	if len(cfg.Links) > 0 {
-		for _, link := range cfg.Links {
-			var linkLabel string
-			switch link.Name {
-			case "bluesky":
-				linkLabel = symbols.GetSymbol("bluesky") + " [" + l.Get("Bluesky") + "]"
-			case "discord":
-				linkLabel = symbols.GetSymbol("discord") + " [" + l.Get("Discord") + "]"
-			case "discuss":
-				linkLabel = symbols.GetSymbol("discuss") + " [" + l.Get("Discuss") + "]"
-			case "docs":
-				linkLabel = symbols.GetSymbol("docs") + " [" + l.Get("Documentation") + "]"
-			case "donate":
-				linkLabel = symbols.GetSymbol("donate") + " [" + l.Get("Donate") + "]"
-			case "issues":
-				linkLabel = symbols.GetSymbol("issues") + " [" + l.Get("Report an issue") + "]"
-			case "mastodon":
-				linkLabel = symbols.GetSymbol("mastodon") + " [" + l.Get("Mastodon") + "]"
-			case "matrix":
-				linkLabel = symbols.GetSymbol("matrix") + " [" + l.Get("Matrix") + "]"
-			case "source":
-				linkLabel = symbols.GetSymbol("source") + " [" + l.Get("Source code") + "]"
-			case "website":
-				linkLabel = symbols.GetSymbol("website") + " [" + l.Get("Website") + "]"
-			default:
-				linkLabel = symbols.GetSymbol("link") + " [" + link.Name + "]"
-			}
-			fmt.Fprintf(&out, " - %s(%s)\n", linkLabel, link.URL)
-		}
-		fmt.Fprintf(&out, "\n")
-	}
-
-	// Renders the output
-
-	fmt.Print(render.GetRender(cfg.Color, out.String(), l))
+	// Renders the output sections together
+	fmt.Print(render.GetRender(cfg.Color, strings.Join(sections, "\n"), l))
 }

@@ -3,10 +3,8 @@ package system
 import (
 	"encoding/json"
 	"os"
-	"os/exec"
 	"regexp"
-
-	"uwelcome/internal"
+	"strings"
 )
 
 type ImageInfo struct {
@@ -18,42 +16,21 @@ type ImageInfo struct {
 }
 
 const infoFile = "/usr/share/ublue-os/image-info.json"
-
-var OSName = getOSName()
-
-func GetDesktop() string {
-	desktop := os.Getenv("XDG_CURRENT_DESKTOP")
-	if desktop == "" {
-		return "Unknown"
-	}
-	return desktop
-}
+const HealthyState = "healthy"
+const bootStatusFile = "/etc/motd.d/boot-status"
 
 // GetGreenbootInfo is a command to greenboot status
 func GetGreenbootInfo() string {
-	if exists, err := internal.DoesFileExist("/etc/motd.d/boot-status"); !exists || err != nil {
-		return ""
-	}
-
-	re := regexp.MustCompile(`status is GREEN`)
-
-	isGreen := re.FindString("status is GREEN")
-	if isGreen != "" {
-		return "healthy"
-	}
-
-	cmd := exec.Command("cat", "/etc/motd.d/boot-status")
-	output, err := cmd.Output()
+	data, err := os.ReadFile(bootStatusFile)
 	if err != nil {
 		return ""
 	}
-	return string(output)
-
+	text := strings.TrimSpace(string(data))
+	if strings.Contains(text, "status is GREEN") {
+		return HealthyState
+	}
+	return text
 }
-
-// func IsSignedImage(info ImageInfo) bool {
-// 	return strings.Contains(info.ImageRef, "ostree-image-signed:docker://")
-// }
 
 // GetImageInfo is a Universal Blue focused command that retrieves the system image reference from their image-info file
 func GetImageInfo() ImageInfo {
@@ -74,13 +51,25 @@ func GetImageInfo() ImageInfo {
 	return info
 }
 
-// getOSName gets the OS name from /etc/os-release
-func getOSName() string {
-	data, err := os.ReadFile("/etc/os-release")
-	if err != nil {
+// GetOSName gets the OS name from os-release
+func GetOSName() string {
+	possiblePaths := []string{
+		"/etc/os-release",
+		"/usr/lib/os-release",
+	}
+
+	var data []byte
+
+	for _, p := range possiblePaths {
+		if d, err := os.ReadFile(p); err == nil {
+			data = d
+			break
+		}
+	}
+	if len(data) == 0 {
 		return ""
 	}
-	re := regexp.MustCompile(`NAME="(.*)"`)
+	re := regexp.MustCompile(`(?m)^NAME="?([^"\n]*)"?$`)
 	match := re.FindStringSubmatch(string(data))
 	if len(match) > 1 {
 		return match[1]
