@@ -31,7 +31,7 @@ func Warn(msg string, err error) {
 func printWithErr(tag, msg string, err error) {
 	fmt.Fprintf(os.Stderr, "%s %s\n", tag, msg)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s %v\n", symbols.GetSymbol("arrow"), err)
+		fmt.Fprintf(os.Stderr, "%s %s\n", symbols.GetSymbol("arrow"), err)
 	}
 }
 

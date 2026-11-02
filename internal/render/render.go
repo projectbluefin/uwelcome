@@ -11,7 +11,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 	"github.com/rymdport/portal/settings"
 
-	i "uwelcome/internal"
+	"uwelcome/internal"
 )
 
 // colorMap maps color names to their corresponding hex values. These colors are used for accent and link styling in the rendered output.
@@ -72,7 +72,7 @@ func GetRender(color string, input string, l *gotext.Locale) string {
 		}
 		out, err = glamour.Render(input, colorScheme)
 		if err != nil {
-			i.Error(l.Get("An error occured while rendering the banner."), err)
+			internal.Error(l.Get("An error occured while rendering the banner."), err)
 			return ""
 		}
 	} else {
@@ -80,13 +80,13 @@ func GetRender(color string, input string, l *gotext.Locale) string {
 			glamour.WithStyles(getColorizedStyle(processColor)),
 		)
 		if err != nil {
-			i.Error(l.Get("An error occured while loading the renderer."), err)
+			internal.Error(l.Get("An error occured while loading the renderer."), err)
 			r.Close()
 			return ""
 		}
 		out, err = r.Render(input)
 		if err != nil {
-			i.Error(l.Get("An error occured while rendering the banner."), err)
+			internal.Error(l.Get("An error occured while rendering the banner."), err)
 			r.Close()
 			return ""
 		}

@@ -1,0 +1,40 @@
+version = 1
+color = "auto"
+
+[greeting]
+prefix = "🔭 "
+
+[[commands]]
+cmd = "ujust --choose"
+desc = "cmd_list"
+
+[[commands]]
+cmd = "uwelcome toggle"
+desc = "banner_toggle"
+
+[[commands]]
+cmd = "ujust aurora-cli"
+desc = "term_bling"
+
+[[commands]]
+cmd = "brew help"
+desc = "cli_pkg"
+
+[[links]]
+name = "issues"
+url = "https://github.com/ublue-os/aurora/issues"
+
+[[links]]
+name = "docs"
+url = "https://docs.getaurora.dev/guides/basic-usage"
+
+[[links]]
+name = "discuss"
+url = "https://github.com/ublue-os/aurora/discussions"
+
+[[links]]
+name = "discord"
+url = "https://discord.getaurora.dev/"
+
+[motd]
+commands = ["umotd"]

@@ -1,0 +1,40 @@
+version = 1
+color = "auto"
+
+[greeting]
+suffix = " 󰊴"
+
+[[commands]]
+cmd = "ujust --choose"
+desc = "cmd_list"
+
+[[commands]]
+cmd = "uwelcome toggle"
+desc = "banner_toggle"
+
+[[commands]]
+cmd = "fastfetch"
+desc = "sys_info"
+
+[[commands]]
+cmd = "brew help"
+desc = "cli_pkg"
+
+[[links]]
+name = "issues"
+url = "https://issues.bazzite.gg/"
+
+[[links]]
+name = "docs"
+url = "https://docs.bazzite.gg/"
+
+[[links]]
+name = "discord"
+url = "https://discord.gg/bazzite"
+
+[[links]]
+name = "bluesky"
+url = "https://bluesky.bazzite.gg/"
+
+[motd]
+commands = ["umotd"]

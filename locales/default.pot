@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: uwelcome 0.4.2\n"
+"Project-Id-Version: uwelcome 0.5.0\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-10-25 22:03+0100\n"
+"POT-Creation-Date: 2026-11-01 00:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,61 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: internal/config/handling.go:82
-msgid "The config file is OK."
-msgstr ""
-
-#: internal/config/handling.go:84
+#: internal/config/handling.go:105
 msgid ""
 "The config file doesn't exist (yet). uWelcome will use either your system's "
 "config or the default."
 msgstr ""
 
-#: internal/config/handling.go:86
+#: internal/config/handling.go:108
 msgid ""
 "There is something wrong with the config file. uWelcome will use either your "
 "system's config or the default."
 msgstr ""
 
-#: internal/config/handling.go:135
+#: internal/config/handling.go:114 main.go:91
+#, go-format
+msgid ""
+"Your config file's version isn't supported by this version of uwelcome. This "
+"version supports config version %d."
+msgstr ""
+
+#: internal/config/handling.go:117
+msgid "The config file is OK."
+msgstr ""
+
+#: internal/config/handling.go:166
 msgid "Failed to access the config path."
 msgstr ""
 
-#: internal/config/handling.go:139
+#: internal/config/handling.go:170
 msgid "Failed to create the default config."
 msgstr ""
 
-#: internal/config/handling.go:156
+#: internal/config/handling.go:187
 msgid "Failed to edit the config file."
 msgstr ""
 
-#: internal/config/handling.go:167
+#: internal/config/handling.go:198
 #, go-format
 msgid "Are you sure? This will reset your configuration file (%s) (yes/NO)"
 msgstr ""
 
-#: internal/config/handling.go:170
+#: internal/config/handling.go:201
 msgid "There was an error in processing your answer"
 msgstr ""
 
-#: internal/config/handling.go:185
+#: internal/config/handling.go:216
 msgctxt ""
 "Single word affirmative response in response to a question (lower case only)"
 msgid "yes"
 msgstr ""
 
-#: internal/config/handling.go:186
+#: internal/config/handling.go:217
 msgctxt ""
 "First letter of the single word affirmative response in response to a "
 "question (lower case only)"
 msgid "y"
 msgstr ""
 
-#: internal/config/handling.go:191
+#: internal/config/handling.go:222
 msgid "Failed to reset the configuration file."
 msgstr ""
 
-#: internal/config/handling.go:193
+#: internal/config/handling.go:224
 msgid "Config file reset successfully."
 msgstr ""
 
@@ -83,19 +90,27 @@ msgstr ""
 msgid "An error occured while loading the renderer."
 msgstr ""
 
-#: internal/state/state.go:18
+#: internal/state/state.go:27
+msgid "The banner is already enabled."
+msgstr ""
+
+#: internal/state/state.go:33
+msgid "The banner is already disabled."
+msgstr ""
+
+#: internal/state/state.go:43
 msgid "Failed to enable the banner."
 msgstr ""
 
-#: internal/state/state.go:21
+#: internal/state/state.go:46
 msgid "The banner has been enabled."
 msgstr ""
 
-#: internal/state/state.go:28 internal/state/state.go:33
+#: internal/state/state.go:53 internal/state/state.go:58
 msgid "Failed to disable the banner."
 msgstr ""
 
-#: internal/state/state.go:36
+#: internal/state/state.go:61
 msgid "The banner has been disabled."
 msgstr ""
 
@@ -153,115 +168,107 @@ msgstr ""
 msgid "print uwelcome version"
 msgstr ""
 
-#: main.go:62
-msgid "The banner is already enabled."
-msgstr ""
-
-#: main.go:69
-msgid "The banner is already disabled."
-msgstr ""
-
-#: main.go:97
+#: main.go:79
 msgid "Invalid command."
 msgstr ""
 
-#: main.go:122
+#: main.go:108
 #, go-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: main.go:124
+#: main.go:110
 msgid "your system"
 msgstr ""
 
-#: main.go:140
+#: main.go:126
 msgid "Boot Status:"
 msgstr ""
 
-#: main.go:142
+#: main.go:128
 msgid "Healthy"
 msgstr ""
 
-#: main.go:152
+#: main.go:138
 msgid "Command"
 msgstr ""
 
-#: main.go:152
+#: main.go:138
 msgid "Description"
 msgstr ""
 
-#: main.go:158
+#: main.go:144
 msgid "Toggle this banner on/off"
 msgstr ""
 
-#: main.go:160
+#: main.go:146
 msgid "Launch Bootloader Restoring tool"
 msgstr ""
 
-#: main.go:162
+#: main.go:148
 msgid "Manage command line packages"
 msgstr ""
 
-#: main.go:164
+#: main.go:150
 msgid "Launch Installer"
 msgstr ""
 
-#: main.go:166
+#: main.go:152
 msgid "List all available commands"
 msgstr ""
 
-#: main.go:168
+#: main.go:154
 msgid "Report an issue to the contributors"
 msgstr ""
 
-#: main.go:170
+#: main.go:156
 msgid "Manually update the system"
 msgstr ""
 
-#: main.go:172
+#: main.go:158
 msgid "View system information"
 msgstr ""
 
-#: main.go:174
+#: main.go:160
 msgid "Enable terminal bling"
 msgstr ""
 
-#: main.go:197
+#: main.go:183
 msgid "Bluesky"
 msgstr ""
 
-#: main.go:199
-msgid "Documentation"
-msgstr ""
-
-#: main.go:201
-msgid "Donate"
-msgstr ""
-
-#: main.go:203
+#: main.go:185
 msgid "Discord"
 msgstr ""
 
-#: main.go:205
+#: main.go:187
 msgid "Discuss"
 msgstr ""
 
-#: main.go:207
+#: main.go:189
+msgid "Documentation"
+msgstr ""
+
+#: main.go:191
+msgid "Donate"
+msgstr ""
+
+#: main.go:193
 msgid "Report an issue"
 msgstr ""
 
-#: main.go:209
+#: main.go:195
 msgid "Mastodon"
 msgstr ""
 
-#: main.go:211
+#: main.go:197
 msgid "Matrix"
 msgstr ""
 
-#: main.go:213
+#: main.go:199
 msgid "Source code"
 msgstr ""
 
-#: main.go:215
+#: main.go:201
 msgid "Website"
 msgstr ""
