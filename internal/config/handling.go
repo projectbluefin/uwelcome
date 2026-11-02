@@ -84,7 +84,6 @@ func Load(path string) (Config, error) {
 	}
 
 	if len(md.Undecoded()) > 0 {
-		// strings.Join(md.Undecoded(), " ")
 		return c, ErrUndecoded
 	}
 
@@ -103,7 +102,7 @@ func Target() (path string, create func() error) {
 func Get() (cfg Config, path string, warn error) {
 	for _, p := range []string{homePath, etcPath} {
 		c, err := Load(p)
-		if err == nil {
+		if err == nil || errors.Is(err, ErrUndecoded) {
 			return c, p, warn
 		}
 		if !errors.Is(err, fs.ErrNotExist) && warn == nil {

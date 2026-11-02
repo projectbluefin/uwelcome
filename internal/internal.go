@@ -10,11 +10,16 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-var errorStr, warnStr string
+var errorStr, warnStr, Default1, Default2, Default3, Default4, Default5 string
 
 func InitCommonStrings(l *gotext.Locale) {
 	errorStr = l.GetC("Error:", "Before an error message")
 	warnStr = l.GetC("Warning:", "Before a warning message")
+	Default1 = l.Get("uWelcome is made with ❤️ by Universal Blue.")
+	Default2 = l.Get("uWelcome is free and open source! [Check out the source code on GitHub](%s)", "https://github.com/ublue-os/uwelcome/")
+	Default3 = l.Get("uWelcome is a terminal welcome banner written in Go.")
+	Default4 = l.Get("uWelcome is translatable! You can help translate it in your language. Read the [translation guide](%s)", "https://github.com/ublue-os/uwelcome/blob/main/TRANSLATION.md")
+	Default5 = l.Get("You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`")
 }
 
 // Error uses printWithErr to print an error

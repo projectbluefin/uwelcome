@@ -1,5 +1,7 @@
 package config
 
+import "uwelcome/internal"
+
 const Version = 1
 
 type ConfigCheck struct {
@@ -52,11 +54,11 @@ func Default() Config {
 		},
 		Motd: Motd{
 			Messages: []string{
-				"uWelcome is made with ❤️ by Universal Blue.",
-				"uWelcome is free and open source! [Check out the source code on GitHub](https://github.com/ublue-os/uwelcome/)",
-				"uWelcome is a terminal welcome banner written in Go.",
-				"uWelcome is translatable! You can help translate it in your language. Read the [translation guide](https://github.com/ublue-os/uwelcome/blob/main/TRANSLATION.md)",
-				"You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`",
+				internal.Default1,
+				internal.Default2,
+				internal.Default3,
+				internal.Default4,
+				internal.Default5,
 			},
 		},
 		Greeting: Greeting{
