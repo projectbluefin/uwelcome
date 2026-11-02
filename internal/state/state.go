@@ -9,8 +9,16 @@ import (
 	"github.com/leonelquinteros/gotext"
 )
 
-var disabledFile string = os.ExpandEnv("$HOME/.config/uwelcome/disabled")
+var disabledFile string = getDisabledFile()
 var IsDisabled, _ = internal.DoesFileExist(disabledFile)
+
+func getDisabledFile() string {
+	dir, _ := os.UserConfigDir()
+	if dir == "" {
+		return dir
+	}
+	return filepath.Join(dir, "uwelcome", "disabled")
+}
 
 func Toggle(l *gotext.Locale) {
 	if IsDisabled {
