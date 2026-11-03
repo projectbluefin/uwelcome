@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uwelcome 0.5.0\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-11-03 00:16+0100\n"
+"POT-Creation-Date: 2026-11-03 22:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,33 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: internal/config/structure.go:59
+msgid "uWelcome is made with ❤️ by Universal Blue."
+msgstr ""
+
+#: internal/config/structure.go:60
+#, go-format
+msgid ""
+"uWelcome is free and open source! [Check out the source code on GitHub](%s)"
+msgstr ""
+
+#: internal/config/structure.go:61
+msgid "uWelcome is a terminal welcome banner written in Go."
+msgstr ""
+
+#: internal/config/structure.go:62
+#, go-format
+msgid ""
+"uWelcome is translatable! You can help translate it in your language. Read "
+"the [translation guide](%s)"
+msgstr ""
+
+#: internal/config/structure.go:63
+msgid ""
+"You're currently using the default config. You can customize it by editing "
+"the config file with `uwelcome edit`"
+msgstr ""
 
 #: internal/render/render.go:75 internal/render/render.go:89
 msgid "An error occured while rendering the banner."
@@ -126,57 +153,34 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
-#: internal/state/state.go:27
+#: internal/state/state.go:35 internal/state/state.go:50
+msgid "Failed to get the disabled file path."
+msgstr ""
+
+#: internal/state/state.go:40
 msgid "Failed to enable the banner."
 msgstr ""
 
-#: internal/state/state.go:30
+#: internal/state/state.go:43
 msgid "The banner has been enabled."
 msgstr ""
 
-#: internal/state/state.go:37 internal/state/state.go:42
+#: internal/state/state.go:54 internal/state/state.go:58
 msgid "Failed to disable the banner."
 msgstr ""
 
-#: internal/state/state.go:45
+#: internal/state/state.go:61
 msgid "The banner has been disabled."
 msgstr ""
 
-#: internal/internal.go:16
+#: internal/internal.go:18
 msgctxt "Before an error message"
 msgid "Error:"
 msgstr ""
 
-#: internal/internal.go:17
+#: internal/internal.go:19
 msgctxt "Before a warning message"
 msgid "Warning:"
-msgstr ""
-
-#: internal/internal.go:18
-msgid "uWelcome is made with ❤️ by Universal Blue."
-msgstr ""
-
-#: internal/internal.go:19
-#, go-format
-msgid ""
-"uWelcome is free and open source! [Check out the source code on GitHub](%s)"
-msgstr ""
-
-#: internal/internal.go:20
-msgid "uWelcome is a terminal welcome banner written in Go."
-msgstr ""
-
-#: internal/internal.go:21
-#, go-format
-msgid ""
-"uWelcome is translatable! You can help translate it in your language. Read "
-"the [translation guide](%s)"
-msgstr ""
-
-#: internal/internal.go:22
-msgid ""
-"You're currently using the default config. You can customize it by editing "
-"the config file with `uwelcome edit`"
 msgstr ""
 
 #: main.go:77
@@ -292,11 +296,11 @@ msgstr ""
 msgid "Failed to reset the config file."
 msgstr ""
 
-#: cmd/reset.go:44
+#: cmd/reset.go:45
 msgid "Config file reset successfully."
 msgstr ""
 
-#: cmd/reset.go:47
+#: cmd/reset.go:48
 msgid "Config file untouched."
 msgstr ""
 

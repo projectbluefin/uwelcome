@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uwelcome 0.4.1\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-11-03 00:08+0100\n"
-"PO-Revision-Date: 2026-11-03 00:14+0100\n"
+"POT-Creation-Date: 2026-11-03 22:34+0100\n"
+"PO-Revision-Date: 2026-11-03 22:43+0100\n"
 "Last-Translator: Mimolet <themimolet@proton.me>\n"
 "Language-Team: French <international-french@discourse.gnome.org>\n"
 "Language: fr\n"
@@ -17,6 +17,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Gtranslator 51.0\n"
+
+#: internal/config/structure.go:59
+msgid "uWelcome is made with ❤️ by Universal Blue."
+msgstr "uWelcome est conçu avec ❤️ par Universal Blue."
+
+#: internal/config/structure.go:60
+#, go-format
+msgid ""
+"uWelcome is free and open source! [Check out the source code on GitHub](%s)"
+msgstr ""
+"uWelcome est gratuit et open source ! [Aller voir le code source sur GitHub]"
+"(%s)"
+
+#: internal/config/structure.go:61
+msgid "uWelcome is a terminal welcome banner written in Go."
+msgstr "uWelcome est une bannière de terminal personnalisable écrite en Go."
+
+#: internal/config/structure.go:62
+#, go-format
+msgid ""
+"uWelcome is translatable! You can help translate it in your language. Read "
+"the [translation guide](%s)"
+msgstr ""
+"uWelcome est traduisible ! Vous pouvez aider à sa traduction dans votre "
+"langue. Voir le [guide de traduction](%s)"
+
+#: internal/config/structure.go:63
+msgid ""
+"You're currently using the default config. You can customize it by editing "
+"the config file with `uwelcome edit`"
+msgstr ""
+"Vous êtes actuellement en train de voir la configuration par défaut. Vous "
+"pouvez personnaliser uWelcome en éditant le fichier de configuration avec "
+"`uwelcome edit`"
 
 #: internal/render/render.go:75 internal/render/render.go:89
 msgid "An error occured while rendering the banner."
@@ -127,65 +161,35 @@ msgstr "Code source"
 msgid "Website"
 msgstr "Site Web"
 
-#: internal/state/state.go:27
+#: internal/state/state.go:35 internal/state/state.go:50
+msgid "Failed to get the disabled file path."
+msgstr "Échec de la récupération du fichier « disabled »."
+
+#: internal/state/state.go:40
 msgid "Failed to enable the banner."
 msgstr "Échec de l'activation de la bannière."
 
-#: internal/state/state.go:30
+#: internal/state/state.go:43
 msgid "The banner has been enabled."
 msgstr "La bannière a été activé."
 
-#: internal/state/state.go:37 internal/state/state.go:42
+#: internal/state/state.go:54 internal/state/state.go:58
 msgid "Failed to disable the banner."
 msgstr "Échec de la désactivation de la bannière."
 
-#: internal/state/state.go:45
+#: internal/state/state.go:61
 msgid "The banner has been disabled."
 msgstr "La bannière a été désactivé."
 
-#: internal/internal.go:16
+#: internal/internal.go:18
 msgctxt "Before an error message"
 msgid "Error:"
 msgstr "Erreur :"
 
-#: internal/internal.go:17
+#: internal/internal.go:19
 msgctxt "Before a warning message"
 msgid "Warning:"
 msgstr "Attention :"
-
-#: internal/internal.go:18
-msgid "uWelcome is made with ❤️ by Universal Blue."
-msgstr "uWelcome est conçu avec ❤️ par Universal Blue."
-
-#: internal/internal.go:19
-#, go-format
-msgid ""
-"uWelcome is free and open source! [Check out the source code on GitHub](%s)"
-msgstr ""
-"uWelcome est gratuit et open source ! [Aller voir le code source sur GitHub]"
-"(%s)"
-
-#: internal/internal.go:20
-msgid "uWelcome is a terminal welcome banner written in Go."
-msgstr "uWelcome est une bannière de terminal personnalisable écrite en Go."
-
-#: internal/internal.go:21
-#, go-format
-msgid ""
-"uWelcome is translatable! You can help translate it in your language. Read "
-"the [translation guide](%s)"
-msgstr ""
-"uWelcome est traduisible ! Vous pouvez aider à sa traduction dans votre "
-"langue. Voir le [guide de traduction](%s)"
-
-#: internal/internal.go:22
-msgid ""
-"You're currently using the default config. You can customize it by editing "
-"the config file with `uwelcome edit`"
-msgstr ""
-"Vous êtes actuellement en train de voir la configuration par défaut. Vous "
-"pouvez personnaliser uWelcome en éditant le fichier de configuration avec "
-"`uwelcome edit`"
 
 #: main.go:77
 msgid "Invalid command."
@@ -309,11 +313,11 @@ msgstr "o"
 msgid "Failed to reset the config file."
 msgstr "Échec de la réinitialisation du fichier de configuration."
 
-#: cmd/reset.go:44
+#: cmd/reset.go:45
 msgid "Config file reset successfully."
 msgstr "Fichier de configuration réinitialisé avec succès."
 
-#: cmd/reset.go:47
+#: cmd/reset.go:48
 msgid "Config file untouched."
 msgstr "Fichier de configuration intact."
 
