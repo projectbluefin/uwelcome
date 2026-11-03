@@ -18,10 +18,15 @@ import (
 
 //go:embed all:locales
 var localesFS embed.FS
-
-const version = "0.5.0"
+var version = "0.5.0"
 
 func main() {
+
+	hasArgs := len(os.Args) > 1
+	if hasArgs && os.Args[1] == "version" {
+		fmt.Println(version)
+		return
+	}
 
 	// Loads the locale based on the system's locale
 	l := gotext.NewLocaleFSWithPath(locale.GetLocale(localesFS), localesFS, "locales")
@@ -30,54 +35,20 @@ func main() {
 	internal.InitCommonStrings(l)
 
 	// Handles command line arguments
-	if len(os.Args) > 1 {
-		switch os.Args[1] {
+	if hasArgs {
+		commands := map[string]func(*gotext.Locale){
+			"toggle": cmd.Toggle, "enable": cmd.Enable, "disable": cmd.Disable,
+			"status": cmd.Status, "edit": cmd.Edit, "reset": cmd.Reset, "help": cmd.Usage,
+		}
 
-		// Prints the version
-		case "version":
-			fmt.Println(version)
-			return
-
-		// Toggles the banner
-		case "toggle":
-			cmd.Toggle(l)
-			return
-
-		// Enables the banner
-		case "enable":
-			cmd.Enable(l)
-			return
-
-		// Disables the banner
-		case "disable":
-			cmd.Disable(l)
-			return
-
-		// Shows the path and state of the config file
-		case "status":
-			cmd.Status(l)
-			return
-
-		// Opens the default editor to the config file
-		case "edit":
-			cmd.Edit(l)
-			return
-
-		// Resets the config file
-		case "reset":
-			cmd.Reset(l)
-			return
-
-		case "help":
-			cmd.Usage(l)
-			return
-
-		// Default output
-		default:
+		toRun := commands[os.Args[1]]
+		if toRun == nil {
 			internal.Warn(l.Get("Invalid command."), nil)
 			cmd.Usage(l)
 			os.Exit(1)
 		}
+		toRun(l)
+		return
 	}
 
 	// Exits if the banner is disabled
@@ -99,5 +70,5 @@ func main() {
 	}
 
 	// Renders the output sections together
-	fmt.Print(render.GetRender(cfg.Color, strings.Join(sections, "\n"), l))
+	fmt.Print(render.GetRender(cfg.Color, strings.Join(sections, ""), l))
 }

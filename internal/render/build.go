@@ -27,6 +27,7 @@ func GetGreeting(cfg config.Config, l *gotext.Locale) string {
 	}
 
 	out.WriteString(cfg.Greeting.Suffix)
+	out.WriteString("\n")
 
 	return out.String()
 }
@@ -63,6 +64,7 @@ func GetGreenboot(l *gotext.Locale) string {
 			out.WriteString(greenboot)
 		}
 		out.WriteString("`")
+		out.WriteString("\n")
 	}
 	return out.String()
 }
@@ -111,6 +113,7 @@ func GetCommands(cfg config.Config, l *gotext.Locale) string {
 			out.WriteString(" |\n")
 		}
 	}
+	out.WriteString("\n")
 	return out.String()
 }
 
@@ -150,6 +153,7 @@ func linkLabel(l *gotext.Locale, key string) string {
 
 func GetLinks(cfg config.Config, l *gotext.Locale) string {
 	var out strings.Builder
+	out.WriteString("\n")
 	for _, link := range cfg.Links {
 		out.WriteString(" - ")
 		out.WriteString(linkLabel(l, link.Name))
