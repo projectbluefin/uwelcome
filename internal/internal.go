@@ -5,21 +5,18 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"path/filepath"
 	"uwelcome/internal/symbols"
 
 	"github.com/leonelquinteros/gotext"
 )
 
-var errorStr, warnStr, Default1, Default2, Default3, Default4, Default5 string
+var errorStr, warnStr string
 
+// InitCommonStrings sets translatable strings that can be used globally without squeezing locale in
 func InitCommonStrings(l *gotext.Locale) {
 	errorStr = l.GetC("Error:", "Before an error message")
 	warnStr = l.GetC("Warning:", "Before a warning message")
-	Default1 = l.Get("uWelcome is made with ❤️ by Universal Blue.")
-	Default2 = l.Get("uWelcome is free and open source! [Check out the source code on GitHub](%s)", "https://github.com/ublue-os/uwelcome/")
-	Default3 = l.Get("uWelcome is a terminal welcome banner written in Go.")
-	Default4 = l.Get("uWelcome is translatable! You can help translate it in your language. Read the [translation guide](%s)", "https://github.com/ublue-os/uwelcome/blob/main/TRANSLATION.md")
-	Default5 = l.Get("You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`")
 }
 
 // Error uses printWithErr to print an error
@@ -43,5 +40,20 @@ func printWithErr(tag, msg string, err error) {
 // DoesFileExist checks if a file at a given path exists
 func DoesFileExist(path string) (bool, error) {
 	_, err := os.Stat(path)
-	return !errors.Is(err, fs.ErrNotExist), err
+	switch {
+	case err == nil:
+		return true, nil
+	case errors.Is(err, fs.ErrNotExist):
+		return false, nil
+	default:
+		return false, err
+	}
+}
+
+func UserDir() (string, error) {
+	dir, err := os.UserConfigDir()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(dir, "uwelcome"), nil
 }

@@ -81,14 +81,14 @@ func main() {
 	}
 
 	// Exits if the banner is disabled
-	if state.IsDisabled {
+	if state.IsDisabled() {
 		return
 	}
 
 	// Loads the configuration from the system's config file
-	cfg, _, _ := config.Get()
+	cfg := config.Get(l)
 
-	// Grouping the sections to render
+	// Groups the sections to render
 	sections := []string{
 		render.GetGreeting(cfg, l),
 		render.GetInfo(),

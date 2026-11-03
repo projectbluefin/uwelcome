@@ -8,7 +8,7 @@ import (
 )
 
 func Disable(l *gotext.Locale) {
-	if state.IsDisabled {
+	if state.IsDisabled() {
 		fmt.Println(l.Get("The banner is already disabled."))
 	} else {
 		state.SetDisabled(l)

@@ -7,7 +7,7 @@ import (
 )
 
 func Toggle(l *gotext.Locale) {
-	if state.IsDisabled {
+	if state.IsDisabled() {
 		state.SetEnabled(l)
 	} else {
 		state.SetDisabled(l)

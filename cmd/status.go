@@ -13,10 +13,10 @@ import (
 
 // Status uses check() on a path and prints the status of the config of that path
 func Status(l *gotext.Locale) {
-	path, _ := config.Target()
+	path, _ := config.Target(l)
 	fmt.Println(path)
 
-	if _, err := config.Load(path); err != nil {
+	if _, err := config.Load(path, l); err != nil {
 		if errors.Is(err, fs.ErrNotExist) {
 			internal.Warn(l.Get("The config file doesn't exist (yet). uWelcome will use either your system's config or the default."), nil)
 			return

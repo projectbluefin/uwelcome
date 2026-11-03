@@ -14,7 +14,7 @@ import (
 
 // Reset resets the config to the system/default config
 func Reset(l *gotext.Locale) {
-	configPath, create := config.Target()
+	configPath, create := config.Target(l)
 	parsedResponse := ""
 
 	fmt.Println(l.Get("Are you sure? This will reset your config file (%s) (yes/NO)", configPath))
@@ -23,7 +23,7 @@ func Reset(l *gotext.Locale) {
 	response, err := r.ReadString('\n')
 	if err != nil {
 		internal.Error(l.Get("There was an error parsing your answer."), err)
-		return
+		os.Exit(1)
 	}
 
 	tmpTable := strings.Fields(response)
@@ -38,8 +38,9 @@ func Reset(l *gotext.Locale) {
 		l.GetC("y", "First letter of the word used to give an affirmative response (lower case only)"),
 		"yes", "y",
 	}, parsedResponse) {
-		if err := create(); err != nil {
+		if err := create(l); err != nil {
 			internal.Error(l.Get("Failed to reset the config file."), err)
+			os.Exit(1)
 		} else {
 			fmt.Println(l.Get("Config file reset successfully."))
 		}

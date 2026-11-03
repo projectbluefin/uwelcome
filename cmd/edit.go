@@ -12,15 +12,15 @@ import (
 
 // Edit detects if the user has admin privileges and lets them edit the corresponding configuration file
 func Edit(l *gotext.Locale) {
-	configPath, create := config.Target()
+	configPath, create := config.Target(l)
 
-	if exists, err := internal.DoesFileExist(configPath); exists && err != nil {
+	if exists, err := internal.DoesFileExist(configPath); err != nil {
 		internal.Error(l.Get("Failed to access the config path."), err)
-		return
+		os.Exit(1)
 	} else if !exists {
-		if createErr := create(); createErr != nil {
+		if createErr := create(l); createErr != nil {
 			internal.Error(l.Get("Failed to create the default config."), createErr)
-			return
+			os.Exit(1)
 		}
 	}
 
@@ -37,7 +37,7 @@ func Edit(l *gotext.Locale) {
 
 	if err := cmdEdit.Run(); err != nil {
 		internal.Error(l.Get("Failed to edit the config file."), err)
-		return
+		os.Exit(1)
 	}
 
 	Status(l)

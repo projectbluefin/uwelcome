@@ -1,6 +1,8 @@
 package config
 
-import "uwelcome/internal"
+import (
+	"github.com/leonelquinteros/gotext"
+)
 
 const Version = 1
 
@@ -38,8 +40,8 @@ type Motd struct {
 	Commands []string `toml:"commands"`
 }
 
-// defaultConfig returns a sensible default config
-func Default() Config {
+// Default returns a default config
+func Default(l *gotext.Locale) Config {
 	return Config{
 		Version: Version,
 		Commands: []Command{
@@ -48,17 +50,17 @@ func Default() Config {
 			{Cmd: "brew help", Desc: "cli_pkg"},
 		},
 		Links: []Link{
-			{Name: "source", URL: "https://github.com/ublue-os/uwelcome/"},
-			{Name: "issues", URL: "https://github.com/ublue-os/uwelcome/issues"},
-			{Name: "docs", URL: "https://github.com/ublue-os/uwelcome/tree/main/docs"},
+			{Name: "source", URL: "https://github.com/projectbluefin/uwelcome/"},
+			{Name: "issues", URL: "https://github.com/projectbluefin/uwelcome/issues"},
+			{Name: "docs", URL: "https://github.com/projectbluefin/uwelcome/tree/main/docs"},
 		},
 		Motd: Motd{
 			Messages: []string{
-				internal.Default1,
-				internal.Default2,
-				internal.Default3,
-				internal.Default4,
-				internal.Default5,
+				l.Get("uWelcome is made with ❤️ by Universal Blue."),
+				l.Get("uWelcome is free and open source! [Check out the source code on GitHub](%s)", "https://github.com/projectbluefin/uwelcome/"),
+				l.Get("uWelcome is a terminal welcome banner written in Go."),
+				l.Get("uWelcome is translatable! You can help translate it in your language. Read the [translation guide](%s)", "https://github.com/projectbluefin/uwelcome/blob/main/TRANSLATION.md"),
+				l.Get("You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`"),
 			},
 		},
 		Greeting: Greeting{
