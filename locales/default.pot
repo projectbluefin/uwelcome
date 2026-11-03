@@ -8,78 +8,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uwelcome 0.5.0\n"
 "Report-Msgid-Bugs-To: themimolet@proton.me\n"
-"POT-Creation-Date: 2026-11-01 00:06+0100\n"
+"POT-Creation-Date: 2026-11-03 22:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: internal/config/handling.go:105
-msgid ""
-"The config file doesn't exist (yet). uWelcome will use either your system's "
-"config or the default."
+#: internal/config/structure.go:59
+msgid "uWelcome is made with ❤️ by Universal Blue."
 msgstr ""
 
-#: internal/config/handling.go:108
-msgid ""
-"There is something wrong with the config file. uWelcome will use either your "
-"system's config or the default."
-msgstr ""
-
-#: internal/config/handling.go:114 main.go:91
+#: internal/config/structure.go:60
 #, go-format
 msgid ""
-"Your config file's version isn't supported by this version of uwelcome. This "
-"version supports config version %d."
+"uWelcome is free and open source! [Check out the source code on GitHub](%s)"
 msgstr ""
 
-#: internal/config/handling.go:117
-msgid "The config file is OK."
+#: internal/config/structure.go:61
+msgid "uWelcome is a terminal welcome banner written in Go."
 msgstr ""
 
-#: internal/config/handling.go:166
-msgid "Failed to access the config path."
-msgstr ""
-
-#: internal/config/handling.go:170
-msgid "Failed to create the default config."
-msgstr ""
-
-#: internal/config/handling.go:187
-msgid "Failed to edit the config file."
-msgstr ""
-
-#: internal/config/handling.go:198
+#: internal/config/structure.go:62
 #, go-format
-msgid "Are you sure? This will reset your configuration file (%s) (yes/NO)"
+msgid ""
+"uWelcome is translatable! You can help translate it in your language. Read "
+"the [translation guide](%s)"
 msgstr ""
 
-#: internal/config/handling.go:201
-msgid "There was an error in processing your answer"
-msgstr ""
-
-#: internal/config/handling.go:216
-msgctxt ""
-"Single word affirmative response in response to a question (lower case only)"
-msgid "yes"
-msgstr ""
-
-#: internal/config/handling.go:217
-msgctxt ""
-"First letter of the single word affirmative response in response to a "
-"question (lower case only)"
-msgid "y"
-msgstr ""
-
-#: internal/config/handling.go:222
-msgid "Failed to reset the configuration file."
-msgstr ""
-
-#: internal/config/handling.go:224
-msgid "Config file reset successfully."
+#: internal/config/structure.go:63
+msgid ""
+"You're currently using the default config. You can customize it by editing "
+"the config file with `uwelcome edit`"
 msgstr ""
 
 #: internal/render/render.go:75 internal/render/render.go:89
@@ -90,23 +52,120 @@ msgstr ""
 msgid "An error occured while loading the renderer."
 msgstr ""
 
-#: internal/state/state.go:27
-msgid "The banner is already enabled."
+#: internal/render/build.go:24
+msgid "your system"
 msgstr ""
 
-#: internal/state/state.go:33
-msgid "The banner is already disabled."
+#: internal/render/build.go:26
+#, go-format
+msgid "Welcome to %s"
 msgstr ""
 
-#: internal/state/state.go:43
+#: internal/render/build.go:56
+msgid "Boot Status:"
+msgstr ""
+
+#: internal/render/build.go:59
+msgid "Healthy"
+msgstr ""
+
+#: internal/render/build.go:73
+msgid "Toggle this banner on/off"
+msgstr ""
+
+#: internal/render/build.go:75
+msgid "Launch Bootloader Restoring tool"
+msgstr ""
+
+#: internal/render/build.go:77
+msgid "Manage command line packages"
+msgstr ""
+
+#: internal/render/build.go:79
+msgid "Launch Installer"
+msgstr ""
+
+#: internal/render/build.go:81
+msgid "List all available commands"
+msgstr ""
+
+#: internal/render/build.go:83
+msgid "Report an issue to the contributors"
+msgstr ""
+
+#: internal/render/build.go:85
+msgid "Manually update the system"
+msgstr ""
+
+#: internal/render/build.go:87
+msgid "View system information"
+msgstr ""
+
+#: internal/render/build.go:89
+msgid "Enable terminal bling"
+msgstr ""
+
+#: internal/render/build.go:101
+msgid "Command"
+msgstr ""
+
+#: internal/render/build.go:103
+msgid "Description"
+msgstr ""
+
+#: internal/render/build.go:127
+msgid "Bluesky"
+msgstr ""
+
+#: internal/render/build.go:129
+msgid "Discord"
+msgstr ""
+
+#: internal/render/build.go:131
+msgid "Discuss"
+msgstr ""
+
+#: internal/render/build.go:133
+msgid "Documentation"
+msgstr ""
+
+#: internal/render/build.go:135
+msgid "Donate"
+msgstr ""
+
+#: internal/render/build.go:137
+msgid "Report an issue"
+msgstr ""
+
+#: internal/render/build.go:139
+msgid "Mastodon"
+msgstr ""
+
+#: internal/render/build.go:141
+msgid "Matrix"
+msgstr ""
+
+#: internal/render/build.go:143
+msgid "Source code"
+msgstr ""
+
+#: internal/render/build.go:145
+msgid "Website"
+msgstr ""
+
+#: internal/state/state.go:35 internal/state/state.go:50
+msgid "Failed to get the disabled file path."
+msgstr ""
+
+#: internal/state/state.go:40
 msgid "Failed to enable the banner."
 msgstr ""
 
-#: internal/state/state.go:46
+#: internal/state/state.go:43
 msgid "The banner has been enabled."
 msgstr ""
 
-#: internal/state/state.go:53 internal/state/state.go:58
+#: internal/state/state.go:54 internal/state/state.go:58
 msgid "Failed to disable the banner."
 msgstr ""
 
@@ -114,161 +173,141 @@ msgstr ""
 msgid "The banner has been disabled."
 msgstr ""
 
-#: internal/internal.go:16
+#: internal/internal.go:18
 msgctxt "Before an error message"
 msgid "Error:"
 msgstr ""
 
-#: internal/internal.go:17
+#: internal/internal.go:19
 msgctxt "Before a warning message"
 msgid "Warning:"
 msgstr ""
 
-#: internal/usage.go:13
-msgid "uWelcome is a customizable terminal banner for Linux."
-msgstr ""
-
-#: internal/usage.go:14
-msgid "Usage:"
-msgstr ""
-
-#: internal/usage.go:18
-msgid "The commands are:"
-msgstr ""
-
-#: internal/usage.go:19
-msgid "disable the terminal banner"
-msgstr ""
-
-#: internal/usage.go:20
-msgid "open your uwelcome config file with your default `$EDITOR`"
-msgstr ""
-
-#: internal/usage.go:21
-msgid "enable the terminal banner"
-msgstr ""
-
-#: internal/usage.go:22
-msgid "show this menu"
-msgstr ""
-
-#: internal/usage.go:23
-msgid "reset your uwelcome config file to the system default"
-msgstr ""
-
-#: internal/usage.go:24
-msgid "show the location and status of your uwelcome config"
-msgstr ""
-
-#: internal/usage.go:25
-msgid "toggle the terminal banner"
-msgstr ""
-
-#: internal/usage.go:26
-msgid "print uwelcome version"
-msgstr ""
-
-#: main.go:79
+#: main.go:77
 msgid "Invalid command."
 msgstr ""
 
-#: main.go:108
+#: cmd/usage.go:13
+msgid "uWelcome is a customizable terminal banner for Linux."
+msgstr ""
+
+#: cmd/usage.go:14
+msgid "Usage:"
+msgstr ""
+
+#: cmd/usage.go:18
+msgid "The commands are:"
+msgstr ""
+
+#: cmd/usage.go:19
+msgid "disable the terminal banner"
+msgstr ""
+
+#: cmd/usage.go:20
+msgid "open your uwelcome config file with your default `$EDITOR`"
+msgstr ""
+
+#: cmd/usage.go:21
+msgid "enable the terminal banner"
+msgstr ""
+
+#: cmd/usage.go:22
+msgid "show this menu"
+msgstr ""
+
+#: cmd/usage.go:23
+msgid "reset your uwelcome config file to the system default"
+msgstr ""
+
+#: cmd/usage.go:24
+msgid "show the path and status of your uwelcome config"
+msgstr ""
+
+#: cmd/usage.go:25
+msgid "toggle the terminal banner"
+msgstr ""
+
+#: cmd/usage.go:26
+msgid "print uwelcome version"
+msgstr ""
+
+#: cmd/status.go:21
+msgid ""
+"The config file doesn't exist (yet). uWelcome will use either your system's "
+"config or the default."
+msgstr ""
+
+#: cmd/status.go:26
 #, go-format
-msgid "Welcome to %s"
+msgid ""
+"Your config file's version isn't supported by this version of uWelcome. This "
+"version supports config version %d. uWelcome will use either your system's "
+"config or the default."
 msgstr ""
 
-#: main.go:110
-msgid "your system"
+#: cmd/status.go:31
+msgid ""
+"There is something wrong with the config file. uWelcome will use either your "
+"system's config or the default."
 msgstr ""
 
-#: main.go:126
-msgid "Boot Status:"
+#: cmd/status.go:35
+msgid "Unknown keys have been detected in your config file."
 msgstr ""
 
-#: main.go:128
-msgid "Healthy"
+#: cmd/status.go:39
+msgid "The config file is OK."
 msgstr ""
 
-#: main.go:138
-msgid "Command"
+#: cmd/edit.go:18
+msgid "Failed to access the config path."
 msgstr ""
 
-#: main.go:138
-msgid "Description"
+#: cmd/edit.go:22
+msgid "Failed to create the default config."
 msgstr ""
 
-#: main.go:144
-msgid "Toggle this banner on/off"
+#: cmd/edit.go:39
+msgid "Failed to edit the config file."
 msgstr ""
 
-#: main.go:146
-msgid "Launch Bootloader Restoring tool"
+#: cmd/reset.go:20
+#, go-format
+msgid "Are you sure? This will reset your config file (%s) (yes/NO)"
 msgstr ""
 
-#: main.go:148
-msgid "Manage command line packages"
+#: cmd/reset.go:25
+msgid "There was an error parsing your answer."
 msgstr ""
 
-#: main.go:150
-msgid "Launch Installer"
+#: cmd/reset.go:37
+msgctxt "Word used to give an affirmative response (lower case only)"
+msgid "yes"
 msgstr ""
 
-#: main.go:152
-msgid "List all available commands"
+#: cmd/reset.go:38
+msgctxt ""
+"First letter of the word used to give an affirmative response (lower case "
+"only)"
+msgid "y"
 msgstr ""
 
-#: main.go:154
-msgid "Report an issue to the contributors"
+#: cmd/reset.go:42
+msgid "Failed to reset the config file."
 msgstr ""
 
-#: main.go:156
-msgid "Manually update the system"
+#: cmd/reset.go:45
+msgid "Config file reset successfully."
 msgstr ""
 
-#: main.go:158
-msgid "View system information"
+#: cmd/reset.go:48
+msgid "Config file untouched."
 msgstr ""
 
-#: main.go:160
-msgid "Enable terminal bling"
+#: cmd/enable.go:14
+msgid "The banner is already enabled."
 msgstr ""
 
-#: main.go:183
-msgid "Bluesky"
-msgstr ""
-
-#: main.go:185
-msgid "Discord"
-msgstr ""
-
-#: main.go:187
-msgid "Discuss"
-msgstr ""
-
-#: main.go:189
-msgid "Documentation"
-msgstr ""
-
-#: main.go:191
-msgid "Donate"
-msgstr ""
-
-#: main.go:193
-msgid "Report an issue"
-msgstr ""
-
-#: main.go:195
-msgid "Mastodon"
-msgstr ""
-
-#: main.go:197
-msgid "Matrix"
-msgstr ""
-
-#: main.go:199
-msgid "Source code"
-msgstr ""
-
-#: main.go:201
-msgid "Website"
+#: cmd/disable.go:12
+msgid "The banner is already disabled."
 msgstr ""

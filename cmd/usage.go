@@ -1,4 +1,4 @@
-package internal
+package cmd
 
 import (
 	"fmt"
@@ -21,7 +21,7 @@ func Usage(l *gotext.Locale) {
 	println(space + "enable" + "     " + l.Get("enable the terminal banner"))
 	println(space + "help" + "       " + l.Get("show this menu"))
 	println(space + "reset" + "      " + l.Get("reset your uwelcome config file to the system default"))
-	println(space + "status" + "     " + l.Get("show the location and status of your uwelcome config"))
+	println(space + "status" + "     " + l.Get("show the path and status of your uwelcome config"))
 	println(space + "toggle" + "     " + l.Get("toggle the terminal banner"))
 	println(space + "version" + "    " + l.Get("print uwelcome version"))
 }

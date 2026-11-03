@@ -1,6 +1,10 @@
 package config
 
-const ConfigVersion = 1
+import (
+	"github.com/leonelquinteros/gotext"
+)
+
+const Version = 1
 
 type ConfigCheck struct {
 	Version int `toml:"version"`
@@ -36,27 +40,27 @@ type Motd struct {
 	Commands []string `toml:"commands"`
 }
 
-// defaultConfig returns a sensible default config
-func defaultConfig() Config {
+// Default returns a default config
+func Default(l *gotext.Locale) Config {
 	return Config{
-		Version: ConfigVersion,
+		Version: Version,
 		Commands: []Command{
 			{Cmd: "uwelcome toggle", Desc: "banner_toggle"},
 			{Cmd: "fastfetch", Desc: "sys_info"},
 			{Cmd: "brew help", Desc: "cli_pkg"},
 		},
 		Links: []Link{
-			{Name: "source", URL: "https://github.com/ublue-os/uwelcome/"},
-			{Name: "issues", URL: "https://github.com/ublue-os/uwelcome/issues"},
-			{Name: "docs", URL: "https://github.com/ublue-os/uwelcome/tree/main/docs"},
+			{Name: "source", URL: "https://github.com/projectbluefin/uwelcome/"},
+			{Name: "issues", URL: "https://github.com/projectbluefin/uwelcome/issues"},
+			{Name: "docs", URL: "https://github.com/projectbluefin/uwelcome/tree/main/docs"},
 		},
 		Motd: Motd{
 			Messages: []string{
-				"uWelcome is made with ❤️ by Universal Blue.",
-				"uWelcome is free and open source! [Check out the source code on GitHub](https://github.com/ublue-os/uwelcome/)",
-				"uWelcome is a terminal welcome banner written in Go.",
-				"uWelcome is translatable! You can help translate it in your language. Read the [translation guide](https://github.com/ublue-os/uwelcome/blob/main/TRANSLATION.md)",
-				"You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`",
+				l.Get("uWelcome is made with ❤️ by Universal Blue."),
+				l.Get("uWelcome is free and open source! [Check out the source code on GitHub](%s)", "https://github.com/projectbluefin/uwelcome/"),
+				l.Get("uWelcome is a terminal welcome banner written in Go."),
+				l.Get("uWelcome is translatable! You can help translate it in your language. Read the [translation guide](%s)", "https://github.com/projectbluefin/uwelcome/blob/main/TRANSLATION.md"),
+				l.Get("You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`"),
 			},
 		},
 		Greeting: Greeting{

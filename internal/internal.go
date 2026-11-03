@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"path/filepath"
 	"uwelcome/internal/symbols"
 
 	"github.com/leonelquinteros/gotext"
@@ -12,6 +13,7 @@ import (
 
 var errorStr, warnStr string
 
+// InitCommonStrings sets translatable strings that can be used globally without squeezing locale in
 func InitCommonStrings(l *gotext.Locale) {
 	errorStr = l.GetC("Error:", "Before an error message")
 	warnStr = l.GetC("Warning:", "Before a warning message")
@@ -38,5 +40,20 @@ func printWithErr(tag, msg string, err error) {
 // DoesFileExist checks if a file at a given path exists
 func DoesFileExist(path string) (bool, error) {
 	_, err := os.Stat(path)
-	return !errors.Is(err, fs.ErrNotExist), err
+	switch {
+	case err == nil:
+		return true, nil
+	case errors.Is(err, fs.ErrNotExist):
+		return false, nil
+	default:
+		return false, err
+	}
+}
+
+func UserDir() (string, error) {
+	dir, err := os.UserConfigDir()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(dir, "uwelcome"), nil
 }
