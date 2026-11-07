@@ -1,0 +1,327 @@
+# Ukrainian translations for uwelcome package.
+# Copyright (C) 2026 The Project Bluefin Contributors
+# This file is distributed under the same license as the uwelcome package.
+# Andrii Butsvin <58703326+andreysey@users.noreply.github.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: uwelcome 0.5.0\n"
+"Report-Msgid-Bugs-To: themimolet@proton.me\n"
+"POT-Creation-Date: 2026-11-03 22:34+0100\n"
+"PO-Revision-Date: 2026-11-07 12:00+0100\n"
+"Last-Translator: Andrii Butsvin <58703326+andreysey@users.noreply.github.com>\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: internal/config/structure.go:59
+msgid "uWelcome is made with ❤️ by Universal Blue."
+msgstr "uWelcome створено з ❤️ спільнотою Universal Blue."
+
+#: internal/config/structure.go:60
+#, go-format
+msgid ""
+"uWelcome is free and open source! [Check out the source code on GitHub](%s)"
+msgstr ""
+"uWelcome — вільне програмне забезпечення з відкритим кодом! [Перегляньте "
+"вихідний код на GitHub](%s)"
+
+#: internal/config/structure.go:61
+msgid "uWelcome is a terminal welcome banner written in Go."
+msgstr "uWelcome — це банер привітання в терміналі, написаний мовою Go."
+
+#: internal/config/structure.go:62
+#, go-format
+msgid ""
+"uWelcome is translatable! You can help translate it in your language. Read "
+"the [translation guide](%s)"
+msgstr ""
+"uWelcome можна перекладати! Ви можете допомогти перекласти його своєю мовою."
+" Прочитайте [інструкцію з перекладу](%s)"
+
+#: internal/config/structure.go:63
+msgid ""
+"You're currently using the default config. You can customize it by editing "
+"the config file with `uwelcome edit`"
+msgstr ""
+"Зараз використовується стандартна конфігурація. Ви можете змінити її, "
+"відредагувавши файл конфігурації командою `uwelcome edit`"
+
+#: internal/render/render.go:75 internal/render/render.go:89
+msgid "An error occured while rendering the banner."
+msgstr "Під час показу банера сталася помилка."
+
+#: internal/render/render.go:83
+msgid "An error occured while loading the renderer."
+msgstr "Під час завантаження засобу показу сталася помилка."
+
+#: internal/render/build.go:24
+msgid "your system"
+msgstr "вашої системи"
+
+#: internal/render/build.go:26
+#, go-format
+msgid "Welcome to %s"
+msgstr "Ласкаво просимо до %s"
+
+#: internal/render/build.go:56
+msgid "Boot Status:"
+msgstr "Стан запуску системи:"
+
+#: internal/render/build.go:59
+msgid "Healthy"
+msgstr "у нормі"
+
+#: internal/render/build.go:73
+msgid "Toggle this banner on/off"
+msgstr "Увімкнути/вимкнути цей банер"
+
+#: internal/render/build.go:75
+msgid "Launch Bootloader Restoring tool"
+msgstr "Запустити засіб відновлення завантажувача"
+
+#: internal/render/build.go:77
+msgid "Manage command line packages"
+msgstr "Керувати пакунками командного рядка"
+
+#: internal/render/build.go:79
+msgid "Launch Installer"
+msgstr "Запустити встановлювач"
+
+#: internal/render/build.go:81
+msgid "List all available commands"
+msgstr "Показати всі доступні команди"
+
+#: internal/render/build.go:83
+msgid "Report an issue to the contributors"
+msgstr "Повідомити розробникам про проблему"
+
+#: internal/render/build.go:85
+msgid "Manually update the system"
+msgstr "Оновити систему вручну"
+
+#: internal/render/build.go:87
+msgid "View system information"
+msgstr "Переглянути відомості про систему"
+
+#: internal/render/build.go:89
+msgid "Enable terminal bling"
+msgstr "Увімкнути оформлення терміналу (bling)"
+
+#: internal/render/build.go:101
+msgid "Command"
+msgstr "Команда"
+
+#: internal/render/build.go:103
+msgid "Description"
+msgstr "Опис"
+
+#: internal/render/build.go:127
+msgid "Bluesky"
+msgstr "Bluesky"
+
+#: internal/render/build.go:129
+msgid "Discord"
+msgstr "Discord"
+
+#: internal/render/build.go:131
+msgid "Discuss"
+msgstr "Форум"
+
+#: internal/render/build.go:133
+msgid "Documentation"
+msgstr "Документація"
+
+#: internal/render/build.go:135
+msgid "Donate"
+msgstr "Підтримати"
+
+#: internal/render/build.go:137
+msgid "Report an issue"
+msgstr "Повідомити про проблему"
+
+#: internal/render/build.go:139
+msgid "Mastodon"
+msgstr "Mastodon"
+
+#: internal/render/build.go:141
+msgid "Matrix"
+msgstr "Matrix"
+
+#: internal/render/build.go:143
+msgid "Source code"
+msgstr "Вихідний код"
+
+#: internal/render/build.go:145
+msgid "Website"
+msgstr "Вебсайт"
+
+#: internal/state/state.go:35 internal/state/state.go:50
+msgid "Failed to get the disabled file path."
+msgstr "Не вдалося отримати шлях до файлу вимкнення."
+
+#: internal/state/state.go:40
+msgid "Failed to enable the banner."
+msgstr "Не вдалося увімкнути банер."
+
+#: internal/state/state.go:43
+msgid "The banner has been enabled."
+msgstr "Банер увімкнено."
+
+#: internal/state/state.go:54 internal/state/state.go:58
+msgid "Failed to disable the banner."
+msgstr "Не вдалося вимкнути банер."
+
+#: internal/state/state.go:61
+msgid "The banner has been disabled."
+msgstr "Банер вимкнено."
+
+#: internal/internal.go:18
+msgctxt "Before an error message"
+msgid "Error:"
+msgstr "Помилка:"
+
+#: internal/internal.go:19
+msgctxt "Before a warning message"
+msgid "Warning:"
+msgstr "Попередження:"
+
+#: main.go:77
+msgid "Invalid command."
+msgstr "Неправильна команда."
+
+#: cmd/usage.go:13
+msgid "uWelcome is a customizable terminal banner for Linux."
+msgstr "uWelcome — це банер у терміналі для Linux, який можна налаштувати."
+
+#: cmd/usage.go:14
+msgid "Usage:"
+msgstr "Використання:"
+
+#: cmd/usage.go:18
+msgid "The commands are:"
+msgstr "Команди:"
+
+#: cmd/usage.go:19
+msgid "disable the terminal banner"
+msgstr "вимкнути банер у терміналі"
+
+#: cmd/usage.go:20
+msgid "open your uwelcome config file with your default `$EDITOR`"
+msgstr ""
+"відкрити файл конфігурації uwelcome у вашому типовому редакторі `$EDITOR`"
+
+#: cmd/usage.go:21
+msgid "enable the terminal banner"
+msgstr "увімкнути банер у терміналі"
+
+#: cmd/usage.go:22
+msgid "show this menu"
+msgstr "показати це меню"
+
+#: cmd/usage.go:23
+msgid "reset your uwelcome config file to the system default"
+msgstr "скинути файл конфігурації uwelcome до системних налаштувань"
+
+#: cmd/usage.go:24
+msgid "show the path and status of your uwelcome config"
+msgstr "показати шлях і стан конфігурації uwelcome"
+
+#: cmd/usage.go:25
+msgid "toggle the terminal banner"
+msgstr "увімкнути або вимкнути банер у терміналі"
+
+#: cmd/usage.go:26
+msgid "print uwelcome version"
+msgstr "показати версію uwelcome"
+
+#: cmd/status.go:21
+msgid ""
+"The config file doesn't exist (yet). uWelcome will use either your system's "
+"config or the default."
+msgstr ""
+"Файлу конфігурації (поки що) немає. uWelcome використає системну або "
+"стандартну конфігурацію."
+
+#: cmd/status.go:26
+#, go-format
+msgid ""
+"Your config file's version isn't supported by this version of uWelcome. This"
+" version supports config version %d. uWelcome will use either your system's "
+"config or the default."
+msgstr ""
+"Версія вашого файлу конфігурації не підтримується цією версією uWelcome. Ця "
+"версія підтримує конфігурацію версії %d. uWelcome використає системну або "
+"стандартну конфігурацію."
+
+#: cmd/status.go:31
+msgid ""
+"There is something wrong with the config file. uWelcome will use either your"
+" system's config or the default."
+msgstr ""
+"З файлом конфігурації щось не так. uWelcome використає системну або "
+"стандартну конфігурацію."
+
+#: cmd/status.go:35
+msgid "Unknown keys have been detected in your config file."
+msgstr "У вашому файлі конфігурації виявлено невідомі ключі."
+
+#: cmd/status.go:39
+msgid "The config file is OK."
+msgstr "Файл конфігурації в порядку."
+
+#: cmd/edit.go:18
+msgid "Failed to access the config path."
+msgstr "Не вдалося отримати доступ до шляху конфігурації."
+
+#: cmd/edit.go:22
+msgid "Failed to create the default config."
+msgstr "Не вдалося створити стандартну конфігурацію."
+
+#: cmd/edit.go:39
+msgid "Failed to edit the config file."
+msgstr "Не вдалося відредагувати файл конфігурації."
+
+#: cmd/reset.go:20
+#, go-format
+msgid "Are you sure? This will reset your config file (%s) (yes/NO)"
+msgstr "Ви впевнені? Буде скинуто ваш файл конфігурації (%s) (так/НІ)"
+
+#: cmd/reset.go:25
+msgid "There was an error parsing your answer."
+msgstr "Під час обробки вашої відповіді сталася помилка."
+
+#: cmd/reset.go:37
+msgctxt "Word used to give an affirmative response (lower case only)"
+msgid "yes"
+msgstr "так"
+
+#: cmd/reset.go:38
+msgctxt ""
+"First letter of the word used to give an affirmative response (lower case "
+"only)"
+msgid "y"
+msgstr "т"
+
+#: cmd/reset.go:42
+msgid "Failed to reset the config file."
+msgstr "Не вдалося скинути файл конфігурації."
+
+#: cmd/reset.go:45
+msgid "Config file reset successfully."
+msgstr "Файл конфігурації успішно скинуто."
+
+#: cmd/reset.go:48
+msgid "Config file untouched."
+msgstr "Файл конфігурації не змінено."
+
+#: cmd/enable.go:14
+msgid "The banner is already enabled."
+msgstr "Банер уже увімкнено."
+
+#: cmd/disable.go:12
+msgid "The banner is already disabled."
+msgstr "Банер уже вимкнено."
