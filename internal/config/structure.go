@@ -59,7 +59,7 @@ func Default(l *gotext.Locale) Config {
 				l.Get("uWelcome is made with ❤️ by Universal Blue."),
 				l.Get("uWelcome is free and open source! [Check out the source code on GitHub](%s)", "https://github.com/projectbluefin/uwelcome/"),
 				l.Get("uWelcome is a terminal welcome banner written in Go."),
-				l.Get("uWelcome is translatable! You can help translate it in your language. Read the [translation guide](%s)", "https://github.com/projectbluefin/uwelcome/blob/main/TRANSLATION.md"),
+				l.Get("uWelcome is translatable! You can help translate it in your language. Read the [translation guide](%s)", "https://github.com/projectbluefin/uwelcome/blob/main/docs/translating.md"),
 				l.Get("You're currently using the default config. You can customize it by editing the config file with `uwelcome edit`"),
 			},
 		},
