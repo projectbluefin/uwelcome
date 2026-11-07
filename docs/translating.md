@@ -25,7 +25,7 @@ You can also use a simple text editor if you wish.
 
 ## Testing your translation
 
-To test umotd, you will need to have [`go`](https://repology.org/project/go/versions) installed.
+To test uWelcome, you will need to have [`go`](https://repology.org/project/go/versions) installed.
 
 Then, to build the program, open the terminal in the project folder.
 After, you can run the project with the following:
@@ -34,7 +34,7 @@ After, you can run the project with the following:
 go run .
 ```
 
-It will run in the language used by your system (or english if umotd doesn't have any translation yet).
+It will run in the language used by your system (or english if uWelcome doesn't have any translation yet).
 
 If you want to make sure the program run in a specific language, you can use `LANGUAGE=<language code>` in front of the usual command to test your translation, like this:
 
