@@ -52,7 +52,7 @@ You'll then have the `uwelcome` binary in the current directory, which you can j
 ### How to edit uWelcome
 
 Once you have it installed on your system, you'll most likely meet our default configuration or the system configuration when running `uwelcome`.
-You can edit the configuration in the terminal with `uwelcome edit` which will open the configuration file with your default terminal editor.
+You can edit the configuration in the terminal with the `uwelcome edit` command which will open the configuration file with your default terminal editor.
 
 If you want to know more about the configuration file, check [this page](https://github.com/projectbluefin/uwelcome/tree/main/docs/configuration.md) out.
 
@@ -75,7 +75,7 @@ Learn more in the [docs folder](https://github.com/projectbluefin/uwelcome/tree/
 
 ## AI usage
 
-This project had mild AI involvement mainly for auto-completion and AI is still kind of used for code checking, but the code is still written by the hands of an idiot (me :P).
+This project had mild AI involvement mainly for auto-completion and code checking, but most of the code is still thought of and written by the hands of an idiot (me :P).
 The program is always tested before release, no worries. (I have standards >:3)
 
 [![REAL AI Rating - Level 3 "Moderate AI"](docs/ai-rating.png)](https://www.realgoodai.org/real-rating)
